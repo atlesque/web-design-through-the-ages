@@ -26,3 +26,6 @@ html[data-era-page="03"] .timebar__years {
 html[data-era-page="03"] .timebar__notch {
   background: #000033;
 }
+html[data-era-page="03"] .timebar__notch[aria-current='page'] {
+  background: var(--tb-accent);
+}

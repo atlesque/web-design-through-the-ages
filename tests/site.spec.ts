@@ -44,6 +44,12 @@ for (const room of rooms) {
       await page.waitForTimeout(1500)
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)
       expect(overflow, 'horizontal overflow').toBeLessThanOrEqual(1)
+      // axe can't judge contrast over the starfield/texture skins, so check the active notch directly
+      const notch = await page.locator('.timebar__notch[aria-current="page"]').evaluate((el) => {
+        const cs = getComputedStyle(el)
+        return { color: cs.color, background: cs.backgroundColor }
+      })
+      expect(notch.color, 'active notch label matches its background').not.toBe(notch.background)
       expect(errors).toEqual([])
       await page.screenshot({ path: `test-results/shots/${room.replace('/', '__')}-${test.info().project.name}.png` })
     })
