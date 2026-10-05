@@ -29,7 +29,7 @@
     align-items: center;
     gap: 6px 14px;
     margin: 0;
-    padding: 8px 12px;
+    padding: 12px 16px 8px;
     border: 0;
     border-bottom: 1px solid #000;
     background: #f0f0f0;
@@ -284,6 +284,81 @@
     font-size: 12px;
     p {
       margin: 4px 0;
+    }
+  }
+
+  /* ---------- Era stamp + travel links, raw ---------- */
+  .era-stamp {
+    margin: 0 0 10px;
+    font: 13px/1.4 var(--mono);
+    span {
+      display: inline;
+    }
+    .era-stamp__no {
+      padding: 0 4px;
+      background: #000;
+      color: #fff;
+    }
+    .era-stamp__years::before,
+    .era-stamp__title::before {
+      content: '// ';
+    }
+  }
+  .era-cta {
+    display: grid;
+    gap: 8px;
+    margin: 0 0 28px;
+    a {
+      text-decoration: none;
+    }
+    .era-cta__label,
+    .era-cta__to {
+      display: block;
+    }
+  }
+  /* snippet:raw-cta:start */
+  .era-cta__next {
+    border: var(--border);
+    padding: 8px 10px;
+    background: var(--paper);
+    .era-cta__label {
+      font-size: 56px;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+    }
+    .era-cta__to {
+      margin-top: 6px;
+      color: #000;
+      font: 13px var(--mono);
+    }
+    &:hover {
+      background: #0000ee;
+      color: #fff;
+      .era-cta__to {
+        color: #fff;
+      }
+    }
+    &:focus-visible {
+      outline: 3px solid #000;
+      outline-offset: 2px;
+    }
+  }
+  /* snippet:raw-cta:end */
+  .era-cta__prev {
+    justify-self: start;
+    font: 14px var(--mono);
+    .era-cta__label {
+      text-decoration: underline;
+    }
+    .era-cta__to {
+      color: #000;
+      font-size: 12px;
+    }
+    &:focus-visible {
+      outline: 2px dotted #000;
+      outline-offset: 2px;
     }
   }
 
@@ -592,6 +667,97 @@
       background: #fff;
       font-weight: 700;
     }
+    .era-stamp {
+      display: inline-block;
+      margin: 4px 0 18px;
+      padding: 3px 12px 3px 3px;
+      border: 2px solid #111;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 3px 3px 0 #111;
+      font: 800 13px/1.5 var(--mono);
+      .era-stamp__no {
+        display: inline-block;
+        padding: 3px 10px;
+        border: 2px solid #111;
+        border-radius: 999px;
+        background: #111;
+        color: #fde047;
+      }
+      .era-stamp__years::before,
+      .era-stamp__title::before {
+        content: ' · ';
+      }
+    }
+    .era-cta {
+      gap: 16px;
+      margin-bottom: 36px;
+      a {
+        color: #111;
+        font-weight: 900;
+      }
+      a:hover {
+        color: #111;
+      }
+    }
+    .era-cta__next {
+      padding: 16px 20px;
+      border: var(--border);
+      border-radius: var(--radius);
+      background: #ff6b9d;
+      box-shadow: var(--shadow);
+      transition: transform 80ms, box-shadow 80ms;
+      .era-cta__label {
+        font: 900 40px/1 var(--face);
+        letter-spacing: -0.02em;
+        text-decoration: none;
+      }
+      .era-cta__to {
+        margin-top: 8px;
+        color: #111;
+        font: 700 14px system-ui, sans-serif;
+      }
+      &:hover {
+        background: #fb923c;
+        color: #111;
+        .era-cta__to {
+          color: #111;
+        }
+      }
+      &:active {
+        transform: translate(6px, 6px);
+        box-shadow: 0 0 0 #111;
+      }
+      &:focus-visible {
+        outline: 3px solid #111;
+        outline-offset: 5px;
+      }
+    }
+    .era-cta__prev {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 2px 8px;
+      padding: 8px 16px;
+      border: var(--border);
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: 3px 3px 0 #111;
+      font: 800 15px system-ui, sans-serif;
+      .era-cta__label {
+        text-decoration: none;
+      }
+      .era-cta__to {
+        font: 600 13px system-ui, sans-serif;
+      }
+      &:hover {
+        background: #7dd3fc;
+      }
+      &:focus-visible {
+        outline: 3px solid #111;
+        outline-offset: 3px;
+      }
+    }
     .cc__foot {
       border-top: 3px solid #111;
       font: 600 13px system-ui, sans-serif;
@@ -646,6 +812,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .era-cta__next {
+      transition: none;
+    }
     .cc__ticker-track {
       animation: none;
     }

@@ -5,6 +5,7 @@ const meta: EraMeta = {
   slug: '07-web-standards',
   title: 'Web standards & CSS layouts',
   years: '2001–2007',
+  cta: { next: 'Next chapter →', prev: '← Previous chapter' },
   summary:
     'Designers threw out layout tables and proved one clean XHTML document could wear completely different designs, using nothing but floats, clever background images and a stylesheet.',
   context: {

@@ -45,6 +45,7 @@ const meta: EraMeta = {
     { label: 'HTML 4.01: Tables (W3C)', url: 'https://www.w3.org/TR/html401/struct/tables.html' },
     { label: 'Web Design Museum', url: 'https://www.webdesignmuseum.org/' },
   ],
+  cta: { next: 'Go »', prev: '« Back' },
   recreated: [
     'The browser window and its 640/800 widths are simulated inside the page; the portal inside it is real table markup.',
     'Rollover images are inline SVG data URIs rather than GIFs.',

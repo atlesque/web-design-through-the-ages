@@ -185,6 +185,55 @@
     font: 13px/1.35 Courier, 'Courier New', 'Liberation Mono', monospace;
   }
 
+  /* The era stamp: an <address>-style line, the server's own date line, set in the default italic. */
+  .era-stamp {
+    margin: 0 0 0.5em;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #808080;
+    box-shadow: 0 1px 0 #fff;
+    font-style: italic;
+    font-size: 14px;
+  }
+  .era-stamp__years::before,
+  .era-stamp__title::before {
+    content: '\2014  ';
+    font-style: normal;
+  }
+
+  /* The travel buttons: just two hypertext links, the first one a little louder, like an <H3>. */
+  .win__doc .era-cta {
+    margin: 1em 0;
+    padding-left: 40px;
+  }
+  .win__doc .era-cta a {
+    text-decoration: none;
+    display: list-item;
+    list-style: square;
+    width: fit-content;
+  }
+  .win__doc .era-cta__next {
+    font-size: 1.17em;
+    font-weight: 700;
+    margin-bottom: 0.4em;
+  }
+  /* Only the destination is underlined, so it reads "Next document: <link>". */
+  .era-cta__to {
+    text-decoration: underline;
+  }
+  .era-cta__label {
+    color: #000;
+    font-weight: 400;
+    font-style: italic;
+  }
+  .era-cta__next .era-cta__label {
+    font-weight: 700;
+    font-style: normal;
+  }
+  .win__doc .era-cta a:focus-visible {
+    outline: 2px dotted #000;
+    outline-offset: 2px;
+  }
+
   /* Without JS: show the :target page, or the first one. */
   .rcl-page {
     display: none;

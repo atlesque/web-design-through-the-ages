@@ -25,7 +25,8 @@ export function extractRegion(source: string, region: string) {
   const start = lines.findIndex((l) => l.includes(`snippet:${region}:start`))
   const end = lines.findIndex((l, i) => i > start && l.includes(`snippet:${region}:end`))
   if (start < 0 || end < 0) return `/* snippet "${region}" not found */`
-  const body = lines.slice(start + 1, end).filter((l) => !MARKER.test(l))
+  // The stage's era:stamp / era:cta slots are filled at build time, so they don't belong in the code panel.
+  const body = lines.slice(start + 1, end).filter((l) => !MARKER.test(l) && !/<!--\s*era:(stamp|cta)\s*-->/.test(l))
   const indent = Math.min(...body.filter((l) => l.trim()).map((l) => l.match(/^\s*/)![0].length))
   return body.map((l) => l.slice(Number.isFinite(indent) ? indent : 0)).join('\n')
 }

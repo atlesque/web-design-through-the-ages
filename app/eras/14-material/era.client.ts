@@ -3,6 +3,7 @@
 export default function setup(root: HTMLElement) {
   const md = root.querySelector<HTMLElement>('.md')!
   md.classList.add('md--js')
+  root.querySelectorAll('.era-cta a').forEach((a) => a.classList.add('ripple'))
   const quiet = () =>
     matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('readable')
 

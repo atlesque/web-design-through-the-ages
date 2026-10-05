@@ -117,6 +117,96 @@
     border: 1px solid #b7d38f;
   }
 
+  /* ---------- Era stamp: a "what's new" tagline in the header ---------- */
+  .era-stamp {
+    flex: 1 1 auto;
+    margin: 0 0 0 8px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #4f6a35;
+  }
+  .era-stamp__no {
+    display: inline-block;
+    margin-right: 6px;
+    padding: 0 9px;
+    font: bold 10px/18px Verdana, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background: linear-gradient(#5aa0e6 0%, #2f7fd1 50%, #1f6cbd 51%, #2f7fd1 100%);
+    border: 1px solid #1a5ea6;
+    border-radius: 10px;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.5);
+    text-shadow: 0 -1px 0 rgb(0 0 0 / 0.3);
+  }
+  .era-stamp__years {
+    font-weight: bold;
+    color: #3d6b0e;
+  }
+  .era-stamp__title::before {
+    content: '· ';
+  }
+
+  /* ---------- Travel CTA: a second glossy pill next to the sign-up ---------- */
+  .era-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 18px;
+    margin: -4px 0 0;
+    a {
+      text-decoration: none;
+    }
+    a:focus-visible {
+      outline: 3px solid #e0306e;
+      outline-offset: 3px;
+    }
+  }
+  .era-cta__next {
+    display: inline-block;
+    padding: 8px 24px 9px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgb(0 0 0 / 0.35);
+    border: 1px solid #124f8f;
+    border-radius: 999px;
+    background: linear-gradient(#3a80c9 0%, #2a72bf 49%, #155ea8 51%, #2370bd 100%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.55), 0 2px 4px rgb(0 0 0 / 0.25);
+    .era-cta__label {
+      display: block;
+      font: bold 16px/1.2 'Lucida Grande', 'Helvetica Neue', Arial, sans-serif;
+    }
+    .era-cta__to {
+      display: block;
+      font-size: 11px;
+      line-height: 1.4;
+      color: #e8f3ff;
+    }
+  }
+  .era-cta__next:hover {
+    background: linear-gradient(#4a8fd6 0%, #3279c4 49%, #1b65b0 51%, #2a78c4 100%);
+  }
+  .era-cta__next:active {
+    box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.35);
+  }
+  .era-cta__prev {
+    font-size: 12px;
+    color: #1d4f6e;
+    .era-cta__label {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    .era-cta__to::before {
+      content: '(';
+    }
+    .era-cta__to::after {
+      content: ')';
+    }
+  }
+  .era-cta__prev:hover .era-cta__label {
+    color: #e0306e;
+  }
+
   /* ---------- Hero ---------- */
   .gl__hero {
     background:
@@ -482,6 +572,11 @@
     .gl__logo {
       font-size: 44px;
       height: 54px;
+    }
+    .era-stamp {
+      order: 3;
+      flex-basis: 100%;
+      margin: 0;
     }
   }
 }

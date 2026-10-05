@@ -43,6 +43,7 @@ const meta: EraMeta = {
     { label: 'Material Design 2 guidelines: Elevation', url: 'https://m2.material.io/design/environment/elevation.html' },
     { label: 'The <dialog> element (MDN)', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog' },
   ],
+  cta: { next: 'Next era', prev: 'Back' },
   recreated: ['Touch ripples and the FAB-to-dialog morph are approximated with CSS animations on a desktop pointer.'],
 }
 

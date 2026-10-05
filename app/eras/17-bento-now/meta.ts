@@ -41,6 +41,7 @@ const meta: EraMeta = {
     { label: 'CSS Containment Module Level 3 (W3C)', url: 'https://www.w3.org/TR/css-contain-3/' },
     { label: 'Interop 2024 (web-platform-tests)', url: 'https://wpt.fyi/interop-2024' },
   ],
+  cta: { next: 'Back to the lobby', prev: 'Previous era' },
 }
 
 export default meta

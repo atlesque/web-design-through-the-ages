@@ -176,7 +176,7 @@ for (const room of rooms()) {
   const html = `<!doctype html>
 <html lang="en" data-era-page="${id}">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="data:,">
 <title>${meta.title} preview</title>
 <style>${shellCss}</style>
 <style>@layer era, shell;\n@layer era {\n${frameMod.toScreenCss(strip(css))}\n}</style>

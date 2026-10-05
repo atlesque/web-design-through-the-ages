@@ -31,7 +31,7 @@ const meta: EraMeta = {
     { file: 'era.client.ts', lang: 'typescript', caption: 'Parallax: shift each layer by scroll × depth', region: 'parallax' },
     { file: 'era.css', lang: 'css', caption: 'Scenes are stacks of absolutely positioned SVG layers', region: 'scene' },
     { file: 'era.client.ts', lang: 'typescript', caption: 'A scroll spy with IntersectionObserver', region: 'spy' },
-    { file: 'timebar.css', lang: 'css', caption: 'Today’s way: a scroll-driven progress bar in pure CSS', region: 'progress' },
+    { file: 'era.css', lang: 'css', caption: 'Today’s way: a scroll-driven progress bar in pure CSS', region: 'progress' },
   ],
   sources: [
     { label: 'Parallax scrolling (Wikipedia)', url: 'https://en.wikipedia.org/wiki/Parallax_scrolling' },
@@ -39,6 +39,7 @@ const meta: EraMeta = {
     { label: 'prefers-reduced-motion (MDN)', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion' },
     { label: 'Scroll-driven animations (MDN)', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll-driven_animations' },
   ],
+  cta: { next: 'Continue the story', prev: 'Previous chapter' },
   recreated: [
     'Period sites often used a looping background video in the hero; here an animated dawn gradient and SVG mountains stand in for it.',
     'Parallax and reveal effects are switched off for visitors who prefer reduced motion.',

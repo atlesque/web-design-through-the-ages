@@ -43,6 +43,7 @@ const meta: EraMeta = {
     { label: 'Blink element (Wikipedia)', url: 'https://en.wikipedia.org/wiki/Blink_element' },
     { label: 'Web Design Museum', url: 'https://www.webdesignmuseum.org/' },
   ],
+  cta: { next: 'ENTER the next era!!', prev: '<< Go back' },
   recreated: [
     '<marquee> and <blink> are recreated with CSS animations (blink at 1 Hz, under the flash threshold).',
     'Animated GIFs (under construction, mailbox) are drawn as animated inline SVG.',

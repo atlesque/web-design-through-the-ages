@@ -459,7 +459,7 @@
   .md__fab-wrap {
     position: fixed;
     right: 24px;
-    bottom: calc(var(--timebar-h, 60px) + 24px);
+    bottom: 24px;
     z-index: 20;
     display: grid;
     justify-items: end;
@@ -652,7 +652,7 @@
   .md__snackbar {
     position: fixed;
     left: 50%;
-    bottom: var(--timebar-h, 60px);
+    bottom: 0;
     z-index: 25;
     display: flex;
     align-items: center;
@@ -702,9 +702,118 @@
     }
   }
 
+  /* ---------- Era stamp: the app bar's subtitle row ---------- */
+  .md__appbar {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 64px;
+    row-gap: 0;
+  }
+  .era-stamp {
+    flex: 1 0 100%;
+    box-sizing: border-box;
+    margin: -10px 0 0;
+    padding: 0 16px 12px 72px; /* the 72dp title keyline */
+    color: rgb(255 255 255 / 0.82);
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+  }
+  .era-stamp__no {
+    font-weight: 500;
+  }
+  .era-stamp__years::before,
+  .era-stamp__title::before {
+    content: '· ';
+  }
+
+  /* ---------- Travel card: a raised accent button and a flat one ---------- */
+  .md__travel {
+    margin: 16px 0 8px;
+    padding: 16px 16px 8px;
+    .md__card-sub {
+      margin-bottom: 16px;
+    }
+  }
+  .era-cta {
+    display: grid;
+    gap: 4px;
+    justify-items: start;
+  }
+  .era-cta a {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    border-radius: 2px;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .era-cta__label {
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .era-cta__to {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  /* snippet:raised-cta:start */
+  .era-cta__next {
+    justify-self: stretch;
+    padding: 10px 16px;
+    background: #d81b60; /* Pink 600: the accent, dark enough for white text */
+    color: #fff;
+    box-shadow: var(--dp-2);
+    transition: box-shadow 280ms var(--md-ease), background 200ms var(--md-ease);
+    .era-cta__label::after {
+      content: ' \2192';
+    }
+    .era-cta__to {
+      color: rgb(255 255 255 / 0.9);
+    }
+    &:hover {
+      background: #c2185b;
+      box-shadow: var(--dp-4);
+    }
+    &:active {
+      box-shadow: var(--dp-8);
+    }
+    &:focus-visible {
+      outline: 3px solid #880e4f;
+      outline-offset: 3px;
+      box-shadow: var(--dp-8);
+    }
+  }
+  /* snippet:raised-cta:end */
+  .era-cta__prev {
+    margin-left: -8px;
+    padding: 8px;
+    color: var(--md-primary-text);
+    grid-template-columns: auto 1fr;
+    column-gap: 8px;
+    align-items: baseline;
+    .era-cta__label::before {
+      content: '\2190  ';
+    }
+    .era-cta__to {
+      color: var(--md-ink-54);
+    }
+    &:hover {
+      background: rgb(0 0 0 / 0.06);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--md-primary-text);
+      outline-offset: 2px;
+    }
+  }
+
   @media (max-width: 600px) {
     .md__appbar {
-      height: 56px;
+      min-height: 56px;
+    }
+    .era-stamp {
+      padding-left: 64px;
+      margin-top: -8px;
     }
     .md__title {
       margin-left: 12px;
@@ -729,7 +838,7 @@
     }
     .md__fab-wrap {
       right: 16px;
-      bottom: calc(var(--timebar-h, 60px) + 16px);
+      bottom: 16px;
     }
     .md__snackbar {
       left: 0;

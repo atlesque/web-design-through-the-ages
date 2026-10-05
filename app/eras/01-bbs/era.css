@@ -53,7 +53,8 @@
 
   .bbs__screen {
     padding: 1em 1ch;
-    min-height: 25lh;
+    /* Tall enough for every screen; the travel menu below should still fit on the monitor. */
+    min-height: 18lh;
     outline: none;
   }
   .bbs__screen:focus-visible {
@@ -185,6 +186,93 @@
     margin: 0;
     flex-basis: 100%;
   }
+
+  /* The era stamp: the terminal program's own title line, black on cyan above the status bar. */
+  .era-stamp {
+    margin: 0;
+    padding: 2px 1ch;
+    background: var(--cga-3);
+    color: var(--cga-0);
+    font-size: clamp(12px, 1.6vw, 16px);
+    line-height: 1.35;
+  }
+  .era-stamp__no {
+    background: var(--cga-0);
+    color: var(--cga-14);
+    padding: 0 1ch;
+  }
+  .era-stamp__years::before,
+  .era-stamp__title::before {
+    content: '\2502  ';
+  }
+
+  /* The travel buttons: a lightbar menu in a double-line box, like a BBS door menu. */
+  .era-cta {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 2ch;
+    margin: 20px 0 4px;
+    padding: 18px 1ch 10px;
+    border: 4px double var(--cga-9);
+    font-size: clamp(14px, 1.8vw, 18px);
+    line-height: 1.35;
+  }
+  .era-cta::before {
+    content: ' TIME TRAVEL ';
+    position: absolute;
+    top: -0.8em;
+    left: 2ch;
+    padding: 0 1ch;
+    background: #000;
+    color: var(--cga-15);
+    white-space: pre;
+  }
+  .era-cta a {
+    display: block;
+    padding: 4px 1ch;
+    text-decoration: none;
+  }
+  .era-cta__next {
+    flex: 1 1 auto;
+    background: var(--cga-1);
+    color: var(--cga-15);
+  }
+  .era-cta__next .era-cta__label {
+    color: var(--cga-14);
+  }
+  .era-cta__next .era-cta__to::before {
+    content: '\BB  ';
+    color: var(--cga-11);
+  }
+  .era-cta__prev {
+    color: var(--cga-7);
+  }
+  .era-cta__prev .era-cta__label {
+    color: var(--cga-11);
+  }
+  .era-cta__prev .era-cta__to::before {
+    content: '\2190  ';
+  }
+  .era-cta__label {
+    display: inline-block;
+    min-width: 11ch;
+  }
+  .era-cta a:hover,
+  .era-cta a:focus-visible {
+    background: var(--cga-3);
+    color: var(--cga-0);
+    outline: none;
+  }
+  .era-cta a:hover *,
+  .era-cta a:focus-visible * {
+    color: var(--cga-0);
+  }
+  .era-cta a:focus-visible {
+    box-shadow: 0 0 0 2px #000, 0 0 0 4px var(--cga-14);
+  }
+
   :focus-visible {
     outline: 2px solid var(--cga-14);
     outline-offset: 2px;

@@ -5,6 +5,7 @@ const meta: EraMeta = {
   slug: '06-y2k',
   title: 'Y2K chrome & futurism',
   years: '1998–2003',
+  cta: { next: 'Launch the future', prev: 'Rewind' },
   summary:
     'At the turn of the millennium the web went shiny: brushed-chrome logos, blobby gel buttons, translucent candy-coloured plastic, lens flares, bubbles and an "e-" in front of everything.',
   context: {

@@ -43,6 +43,7 @@ const meta: EraMeta = {
     { label: 'Folksonomy (Wikipedia)', url: 'https://en.wikipedia.org/wiki/Folksonomy' },
     { label: '-webkit-box-reflect (MDN)', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-box-reflect' },
   ],
+  cta: { next: "Try the next era — it's free!", prev: '« Take me back' },
   recreated: [
     'Gloss, gradients and rounded corners were sliced PNG images in 2006; here they are CSS gradients and border-radius.',
     'The "Ajax" save is simulated with a timer; no request leaves the page.',

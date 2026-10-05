@@ -42,6 +42,7 @@ const meta: EraMeta = {
     { label: 'Neubrutalism – UI Design Trend (Nielsen Norman Group)', url: 'https://www.nngroup.com/articles/neobrutalism/' },
     { label: ':has() (MDN)', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/:has' },
   ],
+  cta: { next: 'NEXT →', prev: '← back' },
   recreated: ['The scrolling ticker is a CSS transform animation, not the obsolete <marquee> element; it can be paused.'],
 }
 
