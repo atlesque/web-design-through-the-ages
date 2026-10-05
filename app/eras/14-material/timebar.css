@@ -20,7 +20,7 @@ html[data-era-page="14"] .timebar__title {
 html[data-era-page="14"] .timebar__btn {
   text-transform: uppercase;
 }
-html[data-era-page="14"] .timebar__btn:hover,
+html[data-era-page="14"] .timebar__btn:hover:not([aria-pressed="true"], [aria-expanded="true"]),
 html[data-era-page="14"] .timebar__step:hover {
   background: rgb(255 255 255 / 0.12);
 }
