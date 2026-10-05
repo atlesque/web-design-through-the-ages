@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
-import { readdirSync, existsSync } from 'node:fs'
+import { readdirSync, existsSync, readFileSync } from 'node:fs'
 
 const eras = readdirSync('app/eras', { withFileTypes: true })
   .filter((d) => d.isDirectory() && /^\d\d-/.test(d.name))
@@ -76,8 +76,8 @@ test('keyboard: arrow right goes to the next era', async ({ page }) => {
   await expect(page).toHaveURL(new RegExp(`/eras/${eras[2]}/`))
 })
 
-test('headers file has a CSP for every room', async ({ request }) => {
-  const res = await request.get('/_headers')
-  const text = await res.text()
+// Read from disk: Cloudflare Pages (and wrangler pages dev) never serve _headers itself.
+test('headers file has a CSP for every room', () => {
+  const text = readFileSync('.output/public/_headers', 'utf8')
   for (const room of rooms) expect(text).toContain(`/eras/${room}/\n  Content-Security-Policy:`)
 })

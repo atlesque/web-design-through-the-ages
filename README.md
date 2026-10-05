@@ -63,8 +63,9 @@ The pre-web room's Teletext/Minitel/Gopher markup is generated: edit `scripts/ge
 ## Deploy (Cloudflare Pages, free plan)
 
 1. Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git → this repository.
-2. Framework preset **Nuxt.js**; build command `npm run generate`; output directory `.output/public`;
-   environment variable `NODE_VERSION=22`.
+2. Framework preset **Nuxt.js**; build command `pnpm generate`; output directory `.output/public`;
+   environment variables `NODE_VERSION=22` and `PNPM_VERSION=10` (the v3 build image does not read the pnpm
+   version from the lockfile).
 3. Production branch `main`. Pull requests get preview URLs.
 4. Custom domains → add `webdesign.atlesque.dev`. If `atlesque.dev` is on Cloudflare DNS the CNAME is created
    for you; otherwise add `CNAME webdesign → <project>.pages.dev` at your DNS host.
