@@ -1,0 +1,32 @@
+/* Era 07 time bar skin: a tidy 2005 standardista bar. Georgia, muted green, small caps. */
+html[data-era-page="07"] .timebar {
+  --tb-bg: #f4f1e8;
+  --tb-fg: #2b3320;
+  --tb-muted: #4f5a42;
+  --tb-accent: #4f6b34;
+  --tb-accent-fg: #ffffff;
+  --tb-notch: #b9c2a4;
+  --tb-btn-bg: #ffffff;
+  --tb-btn-border: 1px solid #9aa684;
+  --tb-btn-radius: 0;
+  --tb-font: Georgia, 'Times New Roman', serif;
+  --tb-shadow: 0 -1px 0 #ffffff inset;
+  border-top: 3px double #4f6b34;
+}
+html[data-era-page="07"] .timebar__title,
+html[data-era-page="07"] .timebar__btn {
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+}
+html[data-era-page="07"] .timebar__years {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 13px;
+}
+html[data-era-page="07"] .timebar__notch {
+  border-radius: 0;
+  width: 22px;
+  height: 22px;
+  font-family: Georgia, serif;
+}

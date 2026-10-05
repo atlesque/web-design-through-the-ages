@@ -1,0 +1,120 @@
+<div class="cc">
+  <!-- snippet:toggle:start -->
+  <fieldset class="cc__switch" data-trait="toggle">
+    <legend>View this page as</legend>
+    <span><input type="radio" name="cc-variant" id="cc-raw" value="raw" checked>
+    <label for="cc-raw">Raw <small>(2016 brutalist)</small></label></span>
+    <span><input type="radio" name="cc-variant" id="cc-neo" value="neo">
+    <label for="cc-neo">Neubrutalist <small>(2021+)</small></label></span>
+    <span class="cc__still"><input type="checkbox" id="cc-still">
+    <label for="cc-still">Stop the ticker</label></span>
+  </fieldset>
+  <!-- snippet:toggle:end -->
+
+  <div class="cc__page" data-trait="raw-html">
+    <div class="cc__ticker" data-trait="marquee" aria-hidden="true">
+      <div class="cc__ticker-track">
+        <span>NO GRADIENTS ✦ NO STOCK PHOTOS ✦ NO CAROUSELS ✦ ISSUE 07 OUT NOW ✦ OPEN STUDIO THURSDAY ✦ BRING YOUR OWN CHAIR ✦ </span>
+        <span>NO GRADIENTS ✦ NO STOCK PHOTOS ✦ NO CAROUSELS ✦ ISSUE 07 OUT NOW ✦ OPEN STUDIO THURSDAY ✦ BRING YOUR OWN CHAIR ✦ </span>
+      </div>
+    </div>
+    <p class="sr-only">News: Issue 07 out now. Open studio Thursday. Bring your own chair.</p>
+
+    <header class="cc__head">
+      <h1 class="cc__logo"><span>CONCRETE</span> <span>CLUB</span></h1>
+      <p class="cc__tagline">a zine + collective for people who like websites that look like websites</p>
+      <nav class="cc__nav" aria-label="Concrete Club">
+        <a href="#cc-manifesto">manifesto</a> /
+        <a href="#cc-issues">issues</a> /
+        <a href="#cc-events">events</a> /
+        <a href="#cc-join">join</a>
+      </nav>
+      <span class="cc__sticker cc__sticker--a" data-trait="stickers" aria-hidden="true">ISSUE<br>07!</span>
+    </header>
+
+    <!-- snippet:broken-grid:start -->
+    <main class="cc__grid" data-trait="broken-grid">
+      <section class="cc__manifesto" id="cc-manifesto">
+        <h2>Manifesto (v0.3, unfinished)</h2>
+        <ol>
+          <li>A button is a button. It should look like it can be pressed.</li>
+          <li>Links are blue and underlined because that is what links are.</li>
+          <li>The browser already has a default stylesheet. We are not ashamed of it.</li>
+          <li>Every page should load on a train going through a tunnel.</li>
+          <li>Show the grid. Then ignore it on purpose.</li>
+        </ol>
+      </section>
+
+      <figure class="cc__poster">
+        <svg viewBox="0 0 200 240" role="img" aria-labelledby="cc-poster-t">
+          <title id="cc-poster-t">Poster: a stack of grey concrete blocks</title>
+          <rect class="cc__block" x="20" y="150" width="160" height="70"/>
+          <rect class="cc__block cc__block--2" x="40" y="88" width="120" height="62"/>
+          <rect class="cc__block cc__block--3" x="65" y="36" width="70" height="52"/>
+          <circle class="cc__dot" cx="150" cy="40" r="18"/>
+        </svg>
+        <figcaption>fig. 1 — "Stack", risograph, 2 colours</figcaption>
+      </figure>
+
+      <aside class="cc__note">
+        <p><b>NOTE:</b> this box is in the wrong place. that is fine.</p>
+      </aside>
+
+      <section class="cc__issues" id="cc-issues">
+        <h2>Back issues</h2>
+        <div class="cc__table-wrap">
+          <table>
+            <caption>All issues, newest first</caption>
+            <thead><tr><th scope="col">#</th><th scope="col">Title</th><th scope="col">Pages</th><th scope="col">Status</th></tr></thead>
+            <tbody>
+              <tr><td>07</td><td><a href="#cc-join">Default Stylesheet</a></td><td>32</td><td><mark>new</mark></td></tr>
+              <tr><td>06</td><td><a href="#cc-join">Visited Links Are Purple</a></td><td>28</td><td>in stock</td></tr>
+              <tr><td>05</td><td><a href="#cc-join">The Fold Does Not Exist</a></td><td>24</td><td>sold out</td></tr>
+              <tr><td>04</td><td><a href="#cc-join">Times New Roman, Again</a></td><td>20</td><td>sold out</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="cc__events" id="cc-events">
+        <h2>Events</h2>
+        <ul>
+          <li><b>THU 19:00</b> Open studio. View-source night. <span class="cc__badge">free</span></li>
+          <li><b>SAT 14:00</b> Riso printing workshop <span class="cc__badge cc__badge--hot">6 spots</span></li>
+          <li><b>SUN</b> Closed. Go outside.</li>
+        </ul>
+      </section>
+    </main>
+    <!-- snippet:broken-grid:end -->
+
+    <section class="cc__join" id="cc-join">
+      <h2>Join (it's free, there are no perks)</h2>
+      <form class="cc__form" action="#cc-join" data-trait="press">
+        <label for="cc-email">email</label>
+        <input id="cc-email" type="email" placeholder="you@somewhere" autocomplete="email">
+        <label for="cc-fav">favourite HTML element</label>
+        <input id="cc-fav" type="text" placeholder="&lt;marquee&gt;">
+        <!-- snippet:press:start -->
+        <button type="submit" class="cc__btn" data-trait="hard-shadow">Submit</button>
+        <!-- snippet:press:end -->
+        <output class="cc__out" for="cc-email cc-fav" aria-live="polite"></output>
+      </form>
+      <span class="cc__sticker cc__sticker--b" aria-hidden="true">NO<br>SPAM</span>
+    </section>
+
+    <section class="cc__ring" aria-labelledby="cc-ring-h">
+      <h2 id="cc-ring-h">Guestbook (latest 3)</h2>
+      <dl>
+        <dt>anna_k — 2 days ago</dt><dd>finally a site that doesn't ask me about cookies before I can read it</dd>
+        <dt>m. — last week</dt><dd>the table is beautiful. please never change the table.</dd>
+        <dt>a printer — last month</dt><dd>bring more green ink to the riso night</dd>
+      </dl>
+      <p class="cc__webring"><a href="#cc-join">← prev</a> · <b>Plain Pages Webring</b> · <a href="#cc-manifesto">random</a> · <a href="#cc-events">next →</a></p>
+    </section>
+
+    <footer class="cc__foot" data-trait="borders">
+      <p>Concrete Club · est. 2016 · hand-coded in a text editor · <a href="#cc-manifesto">top</a></p>
+      <p>Last updated: whenever. This page weighs 14 KB.</p>
+    </footer>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+<div class="sg" id="sg">
+  <form class="sg__switcher" action="#sg" data-trait="style-switcher liquid-elastic" aria-label="Style switcher">
+    <fieldset>
+      <legend>Stylesheet</legend>
+      <label><input type="radio" name="sg-theme" id="sgt-a" value="a" checked> Wisteria</label>
+      <label><input type="radio" name="sg-theme" id="sgt-b" value="b"> Raster</label>
+      <label><input type="radio" name="sg-theme" id="sgt-c" value="c"> Afterhours</label>
+    </fieldset>
+    <fieldset>
+      <legend>Layout</legend>
+      <label><input type="radio" name="sg-width" id="sgw-fixed" value="fixed" checked> Fixed 760px</label>
+      <label><input type="radio" name="sg-width" id="sgw-liquid" value="liquid"> Liquid %</label>
+      <label><input type="radio" name="sg-width" id="sgw-elastic" value="elastic"> Elastic em</label>
+    </fieldset>
+    <fieldset>
+      <legend>Text size</legend>
+      <label><input type="radio" name="sg-size" id="sgs-s" value="s"> A</label>
+      <label><input type="radio" name="sg-size" id="sgs-m" value="m" checked> A+</label>
+      <label><input type="radio" name="sg-size" id="sgs-l" value="l"> A++</label>
+    </fieldset>
+    <p class="sg__hint">Same XHTML, three stylesheets. Try <em>Elastic</em> and then change the text size. On a phone, the fixed 760px page scrolls sideways, just as it did in 2005: pick <em>Liquid</em>.</p>
+  </form>
+
+  <div class="sg__stage">
+<!-- snippet:markup:start -->
+<div id="sg-page" class="sg__page" data-trait="semantic">
+  <div id="header">
+    <h1 id="logo" data-trait="image-replacement"><span>The Semantic Garden</span></h1>
+    <p id="tagline">One document. Many gardens. Plant a stylesheet and watch it grow.</p>
+  </div>
+
+  <ul id="nav" class="clearfix" data-trait="sliding-doors">
+    <li class="current"><a href="#sg-page"><span>Home</span></a></li>
+    <li><a href="#sg-why"><span>Why CSS?</span></a></li>
+    <li><a href="#sg-prune"><span>Pruning</span></a></li>
+    <li><a href="#sg-join"><span>Submit a design</span></a></li>
+  </ul>
+
+  <div id="wrap" class="clearfix" data-trait="floats faux-columns">
+    <div id="content">
+      <p class="intro">Your boss says tables are how websites are built. Your boss also prints out
+        his email. This page has <strong>no layout tables</strong>, no <code>&lt;font&gt;</code> tags and
+        no spacer GIFs. Everything you see is decided by one external stylesheet.</p>
+
+      <h2 id="sg-why"><span class="num">01</span> Why plant in CSS?</h2>
+      <p>Structure goes in the markup; presentation goes in the stylesheet. Keep them apart and a
+        redesign becomes a single file upload, your pages shrink by a third, and screen readers finally
+        hear headings instead of nested <code>&lt;td&gt;</code> soup.</p>
+      <blockquote><p>&ldquo;Markup is a promise about meaning. Style is a suggestion about looks.&rdquo;</p>
+        <cite>overheard at a web standards meetup, 2004</cite></blockquote>
+
+      <h2 id="sg-prune"><span class="num">02</span> Pruning the markup</h2>
+      <ul class="checklist">
+        <li>Headings are <code>&lt;h1&gt;</code> to <code>&lt;h3&gt;</code>, in order. No more <code>&lt;b&gt;&lt;font size="4"&gt;</code>.</li>
+        <li>Navigation is a list, because it <em>is</em> a list.</li>
+        <li>Lowercase tags, quoted attributes, every element closed. <code>&lt;br /&gt;</code> included.</li>
+        <li>The logo is real text, swapped for a picture with <code>text-indent</code>.</li>
+      </ul>
+
+      <h3>Hacks every gardener knows by heart</h3>
+      <dl class="hacks">
+        <dt>The box model hack</dt>
+        <dd>Internet Explorer 5 puts padding <em>inside</em> the width. Feed it one width, then hide the right one behind a parser bug.</dd>
+        <dt>The clearfix</dt>
+        <dd>Floats escape their parent. A generated <code>:after</code> block with <code>clear: both</code> pulls the parent back around them.</dd>
+        <dt>The double-margin float bug</dt>
+        <dd>IE6 doubles the margin on a floated box. Add <code>display: inline</code>; nobody else minds.</dd>
+      </dl>
+
+      <h2 id="sg-join"><span class="num">03</span> Submit a design</h2>
+      <p>Download the XHTML and the sample CSS. You may change <em>only</em> the stylesheet and your own
+        images. Make it beautiful, make it strange, make it validate. Then send it in.</p>
+    </div>
+
+    <div id="sidebar">
+      <h3>Select a garden</h3>
+      <ul class="designs">
+        <li><label for="sgt-a"><b>Wisteria</b> by Hazel Moorcroft</label></li>
+        <li><label for="sgt-b"><b>Raster</b> by Kaj Lindqvist</label></li>
+        <li><label for="sgt-c"><b>Afterhours</b> by DJ Semicolon</label></li>
+      </ul>
+      <h3>Archives</h3>
+      <ul>
+        <li><a href="#sg-page">March 2005</a></li>
+        <li><a href="#sg-page">February 2005</a></li>
+        <li><a href="#sg-page">January 2005</a></li>
+      </ul>
+      <h3>Resources</h3>
+      <ul>
+        <li><a href="#sg-page">View this design's CSS</a></li>
+        <li><a href="#sg-page">Standards FAQ</a></li>
+        <li><a href="#sg-page">Translations</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="footer" data-trait="badges">
+    <p class="badges">
+      <span class="badge"><b>XHTML</b><i>1.0 valid</i></span>
+      <span class="badge"><b>CSS</b><i>valid</i></span>
+      <span class="badge"><b>WCAG</b><i>AA</i></span>
+      <span class="badge"><b>RSS</b><i>2.0</i></span>
+    </p>
+    <p>Last tended 14 March 2005. Best viewed in <em>any</em> browser that respects the standards.</p>
+  </div>
+</div>
+<!-- snippet:markup:end -->
+  </div>
+</div>

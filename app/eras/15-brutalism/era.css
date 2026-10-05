@@ -1,0 +1,659 @@
+/* Era 15: Brutalism (2016) and neubrutalism (2021+). One page, two skins, switched with :has(). */
+[data-era="15"] {
+  background: #ffffff;
+  color: #000000;
+  &:has(#cc-neo:checked) {
+    background: #fde047;
+  }
+
+  .cc {
+    --ink: #000;
+    --paper: #fff;
+    --link: #0000ee;
+    --visited: #551a8b;
+    --face: 'Times New Roman', Times, 'Liberation Serif', serif;
+    --mono: 'Courier New', Courier, 'Liberation Mono', monospace;
+    --border: 1px solid #000;
+    --shadow: none;
+    --radius: 0;
+    min-height: 100%;
+    font-family: var(--face);
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  /* ---------- The variant switch (works with no JS) ---------- */
+  .cc__switch {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    margin: 0;
+    padding: 8px 12px;
+    border: 0;
+    border-bottom: 1px solid #000;
+    background: #f0f0f0;
+    font: 13px/1.3 var(--mono);
+    legend {
+      float: left;
+      padding: 0;
+      margin-right: 6px;
+      font-weight: bold;
+    }
+    > span {
+      white-space: nowrap;
+    }
+    small {
+      opacity: 0.75;
+    }
+    label {
+      cursor: pointer;
+    }
+    input:focus-visible + label {
+      outline: 2px solid #0000ee;
+      outline-offset: 2px;
+    }
+  }
+  .cc__still {
+    margin-left: auto;
+  }
+
+  /* ================= RAW (2016) ================= */
+  .cc__page {
+    position: relative;
+    max-width: 980px;
+    padding: 8px 8px 48px;
+  }
+  .cc {
+    overflow: hidden;
+    /* The visible grid, like a debug overlay left on by accident. */
+    background-image:
+      linear-gradient(to right, rgb(0 0 0 / 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(0 0 0 / 0.07) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  a {
+    color: var(--link);
+  }
+  a:visited {
+    color: var(--visited);
+  }
+  a:focus-visible {
+    outline: 2px dotted currentColor;
+  }
+
+  /* snippet:marquee:start */
+  .cc__ticker {
+    overflow: hidden;
+    border: var(--border);
+    background: #000;
+    color: #0f0;
+    font: 14px/28px var(--mono);
+    white-space: nowrap;
+  }
+  .cc__ticker-track {
+    display: inline-flex;
+    animation: e15-marquee 40s linear infinite;
+  }
+  .cc:has(#cc-still:checked) .cc__ticker-track {
+    animation-play-state: paused;
+  }
+  /* snippet:marquee:end */
+
+  .cc__head {
+    position: relative;
+    margin: 16px 0 24px;
+  }
+  .cc__logo {
+    margin: 0;
+    font-size: clamp(48px, 14vw, 132px);
+    line-height: 0.85;
+    font-weight: normal;
+    letter-spacing: -0.04em;
+    span + span {
+      margin-left: 1.2em;
+    }
+  }
+  .cc__tagline {
+    margin: 12px 0 8px;
+    font-family: var(--mono);
+    font-size: 14px;
+  }
+  .cc__nav {
+    font-size: 20px;
+  }
+
+  .cc__sticker {
+    display: none;
+  }
+
+  .cc__grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 16px;
+    align-items: start;
+  }
+  h2 {
+    margin: 0 0 8px;
+    font-size: 24px;
+  }
+  .cc__manifesto {
+    grid-column: 1 / 8;
+    border: var(--border);
+    padding: 12px;
+    background: var(--paper);
+    ol {
+      margin: 0;
+      padding-left: 1.6em;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+  }
+  .cc__poster {
+    grid-column: 8 / 13;
+    margin: 40px -40px 0 0; /* deliberately spills out of the grid */
+    border: var(--border);
+    background: var(--paper);
+    padding: 8px;
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 280px;
+    }
+    figcaption {
+      font: 12px var(--mono);
+    }
+  }
+  .cc__block { fill: #ccc; stroke: #000; }
+  .cc__block--2 { fill: #aaa; }
+  .cc__block--3 { fill: #888; }
+  .cc__dot { fill: #ff0000; }
+  .cc__note {
+    grid-column: 3 / 7;
+    grid-row: 2;
+    margin-top: -24px;
+    transform: rotate(-2deg);
+    border: 1px dashed #000;
+    padding: 4px 8px;
+    background: #ffff00;
+    font-family: var(--mono);
+    font-size: 13px;
+    p {
+      margin: 0;
+    }
+  }
+  .cc__issues {
+    grid-column: 2 / 9;
+    grid-row: 3;
+  }
+  .cc__table-wrap {
+    overflow-x: auto;
+  }
+  table {
+    border: 1px solid #000;
+    border-collapse: separate;
+    border-spacing: 2px;
+    font-family: var(--mono);
+    font-size: 14px;
+  }
+  caption {
+    text-align: left;
+    font-style: italic;
+  }
+  th,
+  td {
+    border: 1px solid #000;
+    padding: 2px 8px;
+    text-align: left;
+  }
+  mark {
+    background: #ffff00;
+  }
+  .cc__events {
+    grid-column: 9 / 13;
+    grid-row: 3;
+    margin-top: 72px;
+    border-left: 4px solid #000;
+    padding-left: 12px;
+    ul {
+      margin: 0;
+      padding-left: 1.2em;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+  }
+  .cc__badge {
+    font-family: var(--mono);
+    font-size: 12px;
+    border: 1px solid #000;
+    padding: 0 4px;
+  }
+
+  .cc__join {
+    position: relative;
+    margin-top: 32px;
+    border-top: 3px double #000;
+    padding-top: 12px;
+  }
+  .cc__form {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 260px);
+    justify-content: start;
+    gap: 8px 12px;
+    align-items: center;
+    input {
+      font: inherit;
+      font-family: var(--mono);
+    }
+  }
+  /* A 2016 brutalist button: the browser's own. */
+  .cc__btn {
+    grid-column: 2;
+    justify-self: start;
+    font: inherit;
+  }
+  .cc__out {
+    grid-column: 1 / -1;
+    font-family: var(--mono);
+  }
+  .cc__ring {
+    margin-top: 32px;
+    dl {
+      margin: 0;
+    }
+    dt {
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+    dd {
+      margin: 0 0 10px 2em;
+    }
+  }
+  .cc__webring {
+    text-align: center;
+    border: var(--border);
+    padding: 6px;
+  }
+  .cc__foot {
+    margin-top: 32px;
+    border-top: 1px solid #000;
+    font-family: var(--mono);
+    font-size: 12px;
+    p {
+      margin: 4px 0;
+    }
+  }
+
+  /* ================= NEUBRUTALIST (2021+) ================= */
+  /* snippet:neo:start */
+  .cc:has(#cc-neo:checked) {
+    --ink: #111;
+    --paper: #fffdf5;
+    --link: #111;
+    --visited: #111;
+    --face: 'Arial Black', 'Helvetica Neue', Inter, system-ui, sans-serif;
+    --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    --border: 3px solid #111;
+    --shadow: 6px 6px 0 #111;
+    --radius: 12px;
+    background: #fde047;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 500;
+  }
+  /* snippet:neo:end */
+  .cc:has(#cc-neo:checked) {
+    .cc__switch {
+      background: #111;
+      color: #fff;
+      border-bottom: 3px solid #111;
+      input:focus-visible + label {
+        outline-color: #fde047;
+      }
+    }
+    .cc__page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 24px 64px;
+      background-image: radial-gradient(#111 1.2px, transparent 1.3px);
+      background-size: 22px 22px;
+      background-color: #fde047;
+    }
+    a {
+      text-decoration-thickness: 3px;
+      text-underline-offset: 3px;
+      font-weight: 800;
+    }
+    a:hover {
+      background: #111;
+      color: #fde047;
+    }
+    a:focus-visible {
+      outline: 3px solid #111;
+      outline-offset: 2px;
+    }
+    .cc__ticker {
+      border: var(--border);
+      border-radius: var(--radius);
+      background: #ff6b9d;
+      color: #111;
+      font: 900 15px/36px var(--face);
+      box-shadow: var(--shadow);
+    }
+    .cc__head {
+      margin: 32px 0;
+    }
+    .cc__logo {
+      font-family: var(--face);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      span {
+        display: inline-block;
+        padding: 0 0.12em;
+        border: 4px solid #111;
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 8px 8px 0 #111;
+      }
+      span + span {
+        margin: 12px 0 0 0.6em;
+        background: #7dd3fc;
+        transform: rotate(-3deg);
+      }
+    }
+    .cc__tagline {
+      font: 600 18px/1.4 system-ui, sans-serif;
+      max-width: 34ch;
+    }
+    .cc__nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: transparent; /* hides the raw " / " separators */
+      font-size: 16px;
+      a {
+        padding: 6px 14px;
+        border: var(--border);
+        border-radius: 999px;
+        background: #fff;
+        color: #111;
+        text-decoration: none;
+        box-shadow: 3px 3px 0 #111;
+      }
+    }
+    .cc__sticker {
+      display: grid;
+      place-items: center;
+      position: absolute;
+      width: 96px;
+      height: 96px;
+      border: 3px solid #111;
+      border-radius: 50%;
+      background: #a3e635;
+      color: #111;
+      font: 900 18px/1 var(--face);
+      text-align: center;
+      transform: rotate(14deg);
+      box-shadow: 4px 4px 0 #111;
+    }
+    .cc__sticker--a {
+      right: 4%;
+      top: 0;
+    }
+    .cc__sticker--b {
+      right: 6%;
+      top: -36px;
+      background: #ff6b9d;
+      transform: rotate(-10deg);
+    }
+    .cc__grid {
+      gap: 24px;
+    }
+    h2 {
+      font-family: var(--face);
+      font-weight: 900;
+      font-size: 26px;
+      letter-spacing: -0.01em;
+    }
+    .cc__manifesto,
+    .cc__poster,
+    .cc__events,
+    .cc__issues {
+      border: var(--border);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+    .cc__manifesto {
+      background: #fff;
+      li::marker {
+        font-weight: 900;
+      }
+    }
+    .cc__poster {
+      margin: 0;
+      background: #c4b5fd;
+      figcaption {
+        font-weight: 700;
+      }
+    }
+    .cc__block { fill: #fff; stroke: #111; stroke-width: 3; }
+    .cc__block--2 { fill: #7dd3fc; }
+    .cc__block--3 { fill: #fb923c; }
+    .cc__dot { fill: #ff6b9d; stroke: #111; stroke-width: 3; }
+    .cc__note {
+      margin-top: 0;
+      grid-column: 1 / 8;
+      transform: rotate(-1.5deg);
+      border: var(--border);
+      border-radius: 8px;
+      background: #a3e635;
+      box-shadow: 4px 4px 0 #111;
+      padding: 10px 14px;
+      font: 700 14px/1.3 system-ui, sans-serif;
+    }
+    .cc__issues {
+      grid-column: 1 / 9;
+      background: #fff;
+    }
+    .cc__events {
+      grid-column: 9 / 13;
+      margin-top: 0;
+      border-left: var(--border);
+      background: #7dd3fc;
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        padding: 8px 0;
+        border-bottom: 2px solid #111;
+      }
+    }
+    table {
+      width: 100%;
+      border: var(--border);
+      border-radius: 8px;
+      border-spacing: 0;
+      overflow: hidden;
+      font: 600 15px system-ui, sans-serif;
+    }
+    caption {
+      font-style: normal;
+      font-weight: 800;
+      padding-bottom: 6px;
+    }
+    th {
+      background: #111;
+      color: #fff;
+    }
+    th,
+    td {
+      border: 0;
+      border-bottom: 2px solid #111;
+      padding: 8px 12px;
+    }
+    tr:last-child td {
+      border-bottom: 0;
+    }
+    mark {
+      padding: 2px 8px;
+      border: 2px solid #111;
+      border-radius: 999px;
+      background: #ff6b9d;
+    }
+    .cc__badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border: 2px solid #111;
+      border-radius: 999px;
+      background: #fff;
+      font: 800 12px system-ui, sans-serif;
+    }
+    .cc__badge--hot {
+      background: #fb923c;
+    }
+    .cc__join {
+      margin-top: 40px;
+      padding: 24px;
+      border: var(--border);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 8px 8px 0 #111;
+    }
+    .cc__form {
+      label {
+        font-weight: 800;
+      }
+      input {
+        padding: 10px 12px;
+        border: var(--border);
+        border-radius: 8px;
+        background: #fffdf5;
+        font: 600 16px system-ui, sans-serif;
+      }
+      input:focus {
+        outline: none;
+        box-shadow: 4px 4px 0 #111;
+        background: #fff;
+      }
+    }
+    /* snippet:press-css:start */
+    .cc__btn {
+      padding: 12px 28px;
+      border: var(--border);
+      border-radius: 8px;
+      background: #ff6b9d;
+      color: #111;
+      font: 900 18px var(--face);
+      box-shadow: 5px 5px 0 #111;
+      cursor: pointer;
+      transition: transform 80ms, box-shadow 80ms;
+    }
+    .cc__btn:hover {
+      background: #fb923c;
+    }
+    /* Pressing removes the offset: the button slides into its own shadow. */
+    .cc__btn:active {
+      transform: translate(5px, 5px);
+      box-shadow: 0 0 0 #111;
+    }
+    /* snippet:press-css:end */
+    .cc__btn:focus-visible {
+      outline: 3px solid #111;
+      outline-offset: 4px;
+    }
+    .cc__out {
+      font: 700 15px system-ui, sans-serif;
+    }
+    .cc__ring {
+      padding: 24px;
+      border: var(--border);
+      border-radius: var(--radius);
+      background: #c4b5fd;
+      box-shadow: var(--shadow);
+      dt {
+        font-weight: 800;
+      }
+      dd {
+        margin: 2px 0 12px;
+        padding: 10px 14px;
+        border: 2px solid #111;
+        border-radius: 10px;
+        background: #fff;
+      }
+    }
+    .cc__webring {
+      border-radius: 999px;
+      background: #fff;
+      font-weight: 700;
+    }
+    .cc__foot {
+      border-top: 3px solid #111;
+      font: 600 13px system-ui, sans-serif;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .cc__grid {
+      display: block;
+      > * {
+        margin: 0 0 20px;
+      }
+    }
+    .cc__poster {
+      max-width: 260px;
+      margin-left: auto;
+      margin-right: -20px;
+    }
+    .cc__note {
+      max-width: 75%;
+    }
+    .cc__logo span + span {
+      margin-left: 0.6em;
+    }
+    .cc__form {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .cc__btn {
+      grid-column: 1;
+    }
+    .cc:has(#cc-neo:checked) {
+      .cc__page {
+        padding: 16px 16px 48px;
+      }
+      .cc__poster {
+        margin-right: 0;
+      }
+      .cc__sticker {
+        width: 72px;
+        height: 72px;
+        font-size: 14px;
+      }
+      .cc__sticker--a {
+        top: 64px;
+        right: 12px;
+      }
+      .cc__sticker--b {
+        top: -48px;
+        right: 8px;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cc__ticker-track {
+      animation: none;
+    }
+  }
+}
+
+@keyframes e15-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}

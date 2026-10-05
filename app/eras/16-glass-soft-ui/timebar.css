@@ -1,0 +1,25 @@
+/* Era 16 time bar skin: a frosted glass bar floating over the gradient blobs. */
+html[data-era-page="16"] .timebar {
+  --tb-bg: rgb(40 28 96 / 0.62);
+  --tb-fg: #ffffff;
+  --tb-muted: #e4defc;
+  --tb-accent: #ffb3d9;
+  --tb-accent-fg: #2a1a5e;
+  --tb-notch: rgb(255 255 255 / 0.4);
+  --tb-btn-bg: rgb(255 255 255 / 0.12);
+  --tb-btn-border: 1px solid rgb(255 255 255 / 0.3);
+  --tb-btn-radius: 12px;
+  --tb-radius: 20px;
+  --tb-font: system-ui, -apple-system, 'Segoe UI Variable Display', 'Segoe UI', Roboto, sans-serif;
+  --tb-border: 1px solid rgb(255 255 255 / 0.35);
+  --tb-shadow: 0 -8px 32px rgb(60 30 140 / 0.3), inset 0 1px 0 rgb(255 255 255 / 0.3);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  backdrop-filter: blur(20px) saturate(170%);
+}
+html[data-era-page="16"] .timebar__notch {
+  background: rgb(40 28 96 / 0.7);
+}
+html[data-era-page="16"] .timebar__notch[aria-current='page'] {
+  background: linear-gradient(135deg, #ffb3d9, #c9c1ff);
+  box-shadow: 0 4px 14px rgb(255 122 182 / 0.6);
+}

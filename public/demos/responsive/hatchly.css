@@ -1,0 +1,260 @@
+/* Hatchly, circa 2013. A hand-rolled 12-column grid in the Bootstrap 3 manner:
+   mobile-first floats, breakpoints at 768 / 992 / 1200px. */
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 14px; }
+body {
+  margin: 0;
+  font: 14px/1.428571429 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #333;
+  background: #fff;
+}
+a { color: #428bca; text-decoration: none; }
+a:hover, a:focus { color: #2a6496; text-decoration: underline; }
+:focus-visible { outline: 3px solid #66afe9; outline-offset: 2px; }
+h1, h2, h3 { font-weight: 500; line-height: 1.1; margin: 20px 0 10px; }
+h1 { font-size: 36px; } h2 { font-size: 30px; } h3 { font-size: 22px; }
+p { margin: 0 0 10px; }
+.lead { font-size: 16px; font-weight: 200; line-height: 1.4; margin-bottom: 20px; }
+.text-center { text-align: center; }
+.text-muted { color: #737373; }
+.pull-right { float: right; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.img-responsive { display: block; max-width: 100%; height: auto; }
+
+/* ---------- The grid ---------- */
+.container { margin: 0 auto; padding: 0 15px; }
+.container::after, .row::after { content: ''; display: table; clear: both; }
+.row { margin: 0 -15px; }
+[class*='col-'] { position: relative; min-height: 1px; padding: 0 15px; }
+@media (min-width: 768px) {
+  .container { width: 750px; }
+  .col-sm-4 { float: left; width: 33.33333333%; }
+  .col-sm-6 { float: left; width: 50%; }
+  .col-sm-12 { float: left; width: 100%; }
+}
+@media (min-width: 992px) {
+  .container { width: 970px; }
+  .col-md-5 { float: left; width: 41.66666667%; }
+  .col-md-7 { float: left; width: 58.33333333%; }
+}
+@media (min-width: 1200px) {
+  .container { width: 1170px; }
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  background-image: linear-gradient(#fff, #e0e0e0);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+}
+.btn:hover { text-decoration: none; }
+.btn-default { color: #333; border-color: #ccc; text-shadow: 0 1px 0 #fff; }
+.btn-primary { color: #fff; background-image: linear-gradient(#428bca, #2d6ca2); border-color: #2b669a; }
+.btn-success { color: #fff; background-image: linear-gradient(#5cb85c, #419641); border-color: #3e8f3e; }
+.btn-primary:hover, .btn-success:hover { color: #fff; filter: brightness(.92); }
+.btn-lg { padding: 10px 16px; font-size: 18px; border-radius: 6px; }
+.btn-block { display: block; width: 100%; }
+
+/* ---------- Navbar ---------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  min-height: 50px;
+  background-image: linear-gradient(#3c3c3c, #222);
+  border-bottom: 1px solid #080808;
+}
+.navbar-brand {
+  float: left;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 50px;
+  padding: 15px 0;
+  font-size: 18px;
+  color: #ddd;
+}
+.navbar-brand:hover { color: #fff; text-decoration: none; }
+.nav-toggle { position: absolute; opacity: 0; pointer-events: none; }
+.navbar-toggle {
+  float: right;
+  margin: 8px 0;
+  padding: 9px 10px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.navbar-toggle:hover, .navbar-toggle:focus { background: #333; }
+.icon-bar { display: block; width: 22px; height: 2px; border-radius: 1px; background: #fff; }
+.icon-bar + .icon-bar { margin-top: 4px; }
+.navbar-collapse {
+  clear: both;
+  display: none;
+  border-top: 1px solid #101010;
+  padding: 7px 0 12px;
+}
+/* The checkbox hack: no JavaScript needed to open the menu. */
+@media (max-width: 767px) {
+  .nav-toggle:checked ~ .navbar .navbar-collapse { display: block; }
+}
+.nav { list-style: none; margin: 0; padding: 0; }
+.nav a { display: block; padding: 10px 0; color: #999; }
+.nav a:hover { color: #fff; text-decoration: none; }
+.nav .active a { color: #fff; }
+.navbar-btn { margin-top: 6px; }
+
+@media (min-width: 768px) {
+  .navbar-toggle { display: none; }
+  .navbar-collapse {
+    display: flex;
+    clear: none;
+    float: right;
+    align-items: center;
+    gap: 12px;
+    border: 0;
+    padding: 0;
+  }
+  .nav { display: flex; }
+  .nav a { padding: 15px; line-height: 20px; }
+  .nav .active a { background-image: linear-gradient(#222, #282828); box-shadow: inset 0 3px 9px rgba(0,0,0,.25); }
+  .navbar-btn { margin: 0; }
+}
+
+/* ---------- Carousel / jumbotron ---------- */
+.carousel {
+  position: relative;
+  color: #fff;
+  background: #2d6ca2 linear-gradient(135deg, #428bca, #2a4f7a);
+  text-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+.carousel h1, .carousel h2 { font-size: 30px; }
+.item { padding: 40px 34px 56px; }
+.js .item:not(.active) { display: none; }
+#slide-2 { background: linear-gradient(135deg, #5cb85c, #2f7a4b); }
+#slide-3 { background: linear-gradient(135deg, #8e5ea2, #4b3a7a); }
+#slide-2, #slide-3 { text-align: center; }
+.item .img-responsive { margin: 20px auto 0; max-width: 360px; width: 100%; }
+.item .btn-default { color: #333; }
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  margin-top: -24px;
+  width: 36px;
+  height: 48px;
+  font-size: 36px;
+  line-height: 40px;
+  color: #fff;
+  background: rgba(0,0,0,.25);
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: .7;
+}
+.carousel-control:hover, .carousel-control:focus { opacity: 1; }
+.carousel-control.left { left: 4px; }
+.carousel-control.right { right: 4px; }
+.carousel-indicators {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.carousel-indicators a {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+.carousel-indicators a[aria-current='true'] { background: #fff; }
+@media (min-width: 768px) {
+  .item { padding: 60px 50px 70px; }
+  .carousel h1, .carousel h2 { font-size: 48px; }
+  .lead { font-size: 21px; }
+  .carousel-control { width: 50px; font-size: 48px; }
+  .carousel-control.left { left: 10px; }
+  .carousel-control.right { right: 10px; }
+}
+@media (min-width: 992px) {
+  .item .img-responsive { margin-top: 0; }
+}
+
+/* ---------- Features ---------- */
+.features { padding: 30px 15px; text-align: center; }
+.feature-icon {
+  display: grid;
+  place-items: center;
+  width: 110px;
+  height: 110px;
+  margin: 20px auto 0;
+  border-radius: 50%;
+}
+
+/* ---------- Pricing ---------- */
+.pricing { background: #f5f5f5; padding: 20px 0 40px; border-top: 1px solid #e5e5e5; }
+.panel {
+  margin: 20px 0 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  text-align: center;
+}
+.panel-heading {
+  padding: 10px 15px;
+  font-size: 18px;
+  background-image: linear-gradient(#f5f5f5, #e8e8e8);
+  border-bottom: 1px solid #ddd;
+  border-radius: 3px 3px 0 0;
+}
+.panel-primary { border-color: #428bca; }
+.panel-primary .panel-heading { color: #fff; background-image: linear-gradient(#428bca, #357ebd); border-color: #357ebd; }
+.label { font-size: 11px; font-weight: bold; padding: 2px 6px; border-radius: 3px; background: #f0ad4e; vertical-align: middle; }
+.panel-body { padding: 15px; }
+.panel-body ul { list-style: none; margin: 0 0 15px; padding: 0; }
+.panel-body li { padding: 6px 0; border-bottom: 1px solid #eee; }
+.price { font-size: 40px; font-weight: 200; margin: 6px 0 10px; }
+.price small { font-size: 14px; color: #737373; }
+@media (min-width: 768px) {
+  .panel-primary { margin-top: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+  .panel-primary .panel-body { padding-bottom: 27px; }
+}
+
+/* ---------- Footer & responsive utilities ---------- */
+.footer { padding-top: 20px; padding-bottom: 20px; border-top: 1px solid #e5e5e5; color: #737373; }
+.footer p { margin-bottom: 4px; }
+.visible-xs { display: block; }
+.hidden-xs { display: none; }
+@media (min-width: 768px) {
+  .visible-xs { display: none; }
+  .hidden-xs { display: block; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* Grid overlay, switched on by the museum room ("Show grid"). */
+.show-grid .container { position: relative; }
+.show-grid .container::before {
+  content: '';
+  position: absolute;
+  inset: 0 15px;
+  pointer-events: none;
+  z-index: 20;
+  background: repeating-linear-gradient(90deg, rgba(217,83,79,.14) 0 calc((100% + 30px) / 12 - 30px), transparent 0 calc((100% + 30px) / 12));
+}
+.show-grid .item .container::before { inset: -40px 15px -56px; }

@@ -1,0 +1,502 @@
+/* Era 09: Web 2.0 gloss. Big friendly type, pastel gradients, glossy pills,
+   wet-floor reflections, beta badges, diagonal stripes and the yellow fade. */
+[data-era="09"] {
+  background: #fff;
+  color: #333;
+  font: 15px/1.55 'Lucida Grande', 'Lucida Sans Unicode', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  a {
+    color: #0b6fb3;
+  }
+  :focus-visible {
+    outline: 3px solid #ff8a00;
+    outline-offset: 2px;
+  }
+
+  .gl__inner {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  /* ---------- Header ---------- */
+  .gl__top {
+    background: linear-gradient(#ffffff, #eef5e4);
+    border-bottom: 1px solid #d4e3c0;
+    .gl__inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 20px;
+      padding-top: 18px;
+      padding-bottom: 6px;
+    }
+  }
+  .gl__brand {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  /* snippet:reflection:start */
+  .gl__logo {
+    margin: 0;
+    position: relative;
+    font: bold 54px/1 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing: -3px;
+    height: 64px;
+  }
+  .gl__word {
+    display: block;
+    background: linear-gradient(#a6e34b 0%, #6cbf1d 48%, #4e9d0c 52%, #74c728 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Fallback: a flipped copy fading out underneath ("wet floor"). */
+  .gl__mirror {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin-top: -6px;
+    transform: scaleY(-1);
+    color: #6cbf1d;
+    opacity: 0.35;
+    mask-image: linear-gradient(to top, #000 0%, transparent 55%);
+    -webkit-mask-image: linear-gradient(to top, #000 0%, transparent 55%);
+    pointer-events: none;
+  }
+  /* Where the proprietary property exists, let the browser draw the reflection. */
+  @supports (-webkit-box-reflect: below 0) {
+    .gl__word {
+      -webkit-box-reflect: below -14px linear-gradient(transparent 55%, rgb(0 0 0 / 0.35));
+    }
+    .gl__mirror {
+      display: none;
+    }
+  }
+  /* snippet:reflection:end */
+
+  .gl__beta {
+    margin: 4px 0 0 6px;
+    padding: 2px 9px 3px;
+    font: bold 12px/1.2 'Lucida Grande', Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    background: linear-gradient(#ff7aa8, #e0306e);
+    border-radius: 10px;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.6), 0 1px 2px rgb(0 0 0 / 0.25);
+    transform: rotate(-8deg);
+    text-shadow: 0 -1px 0 rgb(0 0 0 / 0.25);
+  }
+
+  .gl__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 14px;
+    a {
+      color: #4c7a16;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+  .gl__login {
+    padding: 4px 12px;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid #b7d38f;
+  }
+
+  /* ---------- Hero ---------- */
+  .gl__hero {
+    background:
+      repeating-linear-gradient(-45deg, rgb(255 255 255 / 0.35) 0 12px, transparent 12px 24px),
+      linear-gradient(#e2f6ff, #b9e5fb);
+    border-bottom: 1px solid #9fd2ea;
+  }
+  .gl__hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-top: 34px;
+    padding-bottom: 34px;
+  }
+  .gl__pitch {
+    flex: 1;
+    h2 {
+      margin: 0 0 12px;
+      font: bold 36px/1.15 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      letter-spacing: -1.2px;
+      color: #1d4f6e;
+      text-shadow: 0 1px 0 #fff;
+    }
+    em {
+      font-style: normal;
+      color: #e0306e;
+    }
+    p {
+      margin: 0 0 18px;
+      font-size: 17px;
+      max-width: 34em;
+      color: #2c5168;
+    }
+  }
+  .gl__cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 16px;
+  }
+  .gl__small {
+    font-size: 12px;
+    color: #4b6e83;
+  }
+
+  /* snippet:pill:start */
+  .gl__pill {
+    display: inline-block;
+    position: relative;
+    padding: 12px 30px 13px;
+    font: bold 20px/1 'Lucida Grande', 'Helvetica Neue', Arial, sans-serif;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgb(0 0 0 / 0.3);
+    border: 1px solid #3f8a0a;
+    border-radius: 999px;
+    /* The gloss: a hard stop halfway down a vertical gradient. */
+    background: linear-gradient(#b5ec6a 0%, #8fd63a 49%, #6cbf1d 51%, #8fd63a 100%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.7), 0 2px 4px rgb(0 0 0 / 0.25);
+    cursor: pointer;
+  }
+  .gl__pill:hover {
+    background: linear-gradient(#c6f387 0%, #a0e04e 49%, #7dcc2c 51%, #a0e04e 100%);
+  }
+  .gl__pill:active {
+    box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.3);
+  }
+  /* snippet:pill:end */
+  .gl__pill--small {
+    font-size: 14px;
+    padding: 7px 16px 8px;
+  }
+
+  .gl__burst {
+    position: relative;
+    flex: none;
+    width: 120px;
+    height: 120px;
+    transform: rotate(12deg);
+    svg {
+      display: block;
+      filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.2));
+    }
+    span {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font: bold 19px/1.05 'Helvetica Neue', Arial, sans-serif;
+      color: #8a2d00;
+    }
+  }
+
+  /* ---------- App + sidebar ---------- */
+  .gl__body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding-top: 28px;
+    padding-bottom: 12px;
+  }
+  .gl__app {
+    flex: 2 1 420px;
+    min-width: 0;
+    background: #fff;
+    border: 1px solid #cfe3b4;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgb(80 140 20 / 0.12);
+    overflow: hidden;
+  }
+  .gl__app-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 16px;
+    background: linear-gradient(#f6fbef, #e3f2cf);
+    border-bottom: 1px solid #cfe3b4;
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      color: #3d6b0e;
+    }
+  }
+  .gl__count {
+    font-size: 12px;
+    color: #556;
+    b {
+      font-size: 15px;
+    }
+  }
+  .gl__add {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 16px;
+    border-bottom: 1px dashed #dde8cf;
+    input {
+      flex: 1 1 200px;
+      min-width: 0;
+      font: 15px 'Lucida Grande', Arial, sans-serif;
+      padding: 7px 12px;
+      border: 1px solid #b9c9a6;
+      border-radius: 16px;
+      box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.12);
+    }
+  }
+  .gl__label {
+    font-weight: bold;
+    font-size: 13px;
+    color: #3d6b0e;
+    flex-basis: 100%;
+  }
+  .gl__spinner {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #667;
+  }
+  .gl__spinner i {
+    visibility: hidden;
+  }
+  .gl__add.is-busy .gl__spinner i {
+    visibility: visible;
+  }
+  /* snippet:spinner:start */
+  /* The "Ajax loader" GIF, rebuilt with a conic gradient and a stepped spin. */
+  .gl__spinner i {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: conic-gradient(#6cbf1d, rgb(108 191 29 / 0.05));
+    mask: radial-gradient(circle, transparent 5px, #000 6px);
+    -webkit-mask: radial-gradient(circle, transparent 5px, #000 6px);
+    animation: e09-spin 0.9s steps(12) infinite;
+  }
+  /* snippet:spinner:end */
+
+  .gl__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      padding: 10px 16px;
+      border-bottom: 1px solid #eef3e8;
+    }
+    li:last-child {
+      border-bottom: 0;
+    }
+    b {
+      display: block;
+      color: #223;
+    }
+    li.is-new {
+      animation: e09-yft 2.4s ease-out;
+    }
+  }
+  .gl__tags,
+  .gl__meta {
+    font-size: 12px;
+    color: #667;
+  }
+  .gl__tags a {
+    display: inline-block;
+    padding: 0 7px;
+    margin: 0 1px;
+    background: #e5f1fb;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+
+  .gl__side {
+    flex: 1 1 220px;
+    h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: #1d4f6e;
+      text-transform: lowercase;
+    }
+  }
+  .gl__cloud {
+    margin: 0 0 22px;
+    line-height: 1.4;
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      background: #0b6fb3;
+      color: #fff;
+    }
+    .s1 { font-size: 12px; }
+    .s2 { font-size: 15px; }
+    .s3 { font-size: 19px; }
+    .s4 { font-size: 23px; font-weight: bold; }
+    .s5 { font-size: 28px; font-weight: bold; letter-spacing: -1px; }
+  }
+  .gl__share {
+    display: flex;
+    gap: 6px;
+    margin: 0 0 18px;
+    a {
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border: 1px solid #d8dde3;
+      border-radius: 6px;
+      background: linear-gradient(#fff, #eef1f4);
+    }
+    svg {
+      display: block;
+    }
+  }
+  .gl__chip {
+    display: inline-block;
+    padding: 1px 8px;
+    font: bold 10px/16px Verdana, sans-serif;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(#7fbfff, #2f7fd1);
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.5);
+  }
+  .gl__chip--rss {
+    background: linear-gradient(#ffb15c, #f07800);
+    color: #3a1a00;
+  }
+  .gl__chip--rails {
+    background: linear-gradient(#e86a6a, #a81717);
+  }
+
+  /* ---------- Features & testimonials ---------- */
+  .gl__section {
+    margin: 30px 0 16px;
+    font: bold 26px/1.2 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    letter-spacing: -0.8px;
+    color: #1d4f6e;
+  }
+  .gl__features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 18px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      text-align: center;
+      padding: 18px 14px;
+      border-radius: 14px;
+      background: linear-gradient(#fbfdf8, #f1f7e8);
+      border: 1px solid #e2edd3;
+    }
+    svg {
+      filter: drop-shadow(0 3px 3px rgb(0 0 0 / 0.18));
+    }
+    h3 {
+      margin: 10px 0 4px;
+      font-size: 17px;
+      color: #334;
+    }
+    p {
+      margin: 0;
+      font-size: 13px;
+      color: #556;
+    }
+  }
+  .gl__quotes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+    padding-bottom: 30px;
+    blockquote {
+      position: relative;
+      margin: 0 0 18px;
+      padding: 16px 18px;
+      background: #fffbe0;
+      border: 1px solid #f0e2a0;
+      border-radius: 14px;
+    }
+    blockquote::after {
+      content: '';
+      position: absolute;
+      left: 28px;
+      bottom: -11px;
+      border: 10px solid transparent;
+      border-top-color: #f0e2a0;
+      border-bottom: 0;
+    }
+    p {
+      margin: 0;
+      font-size: 16px;
+      color: #4a4220;
+    }
+    cite {
+      position: absolute;
+      left: 52px;
+      bottom: -26px;
+      font-size: 12px;
+      color: #776;
+    }
+  }
+
+  .gl__foot {
+    padding: 18px 0 10px;
+    background: linear-gradient(#f3f3f3, #e2e2e2);
+    border-top: 1px solid #d0d0d0;
+    font-size: 12px;
+    color: #555;
+    p {
+      margin: 0 0 8px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .gl__pitch h2 {
+      font-size: 28px;
+    }
+    .gl__burst {
+      display: none;
+    }
+    .gl__logo {
+      font-size: 44px;
+      height: 54px;
+    }
+  }
+}
+
+@keyframes e09-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+/* The Yellow Fade Technique: flash a new item yellow, then fade back to white. */
+@keyframes e09-yft {
+  from {
+    background-color: #ffff66;
+  }
+  to {
+    background-color: #fff;
+  }
+}

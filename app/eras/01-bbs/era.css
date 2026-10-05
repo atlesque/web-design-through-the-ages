@@ -1,0 +1,192 @@
+/* Era 01: BBS terminal. An 80-column text grid in the 16-colour CGA palette. */
+[data-era="01"] {
+  /* snippet:palette:start */
+  --cga-0: #000000; --cga-1: #0000aa; --cga-2: #00aa00; --cga-3: #00aaaa;
+  --cga-4: #aa0000; --cga-5: #aa00aa; --cga-6: #aa5500; --cga-7: #aaaaaa;
+  --cga-8: #555555; --cga-9: #5555ff; --cga-10: #55ff55; --cga-11: #55ffff;
+  --cga-12: #ff5555; --cga-13: #ff55ff; --cga-14: #ffff55; --cga-15: #ffffff;
+  /* snippet:palette:end */
+  background: #000;
+  color: var(--cga-7);
+  font-family: 'Perfect DOS VGA 437', 'Px437 IBM VGA8', ui-monospace, 'Cascadia Mono', 'DejaVu Sans Mono', Consolas, monospace;
+
+  .bbs {
+    container-type: inline-size;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .bbs__frame {
+    /* 80 columns at 0.6em per column = 48em. Scale the type so 80 columns always fit. */
+    font-size: clamp(7px, calc(100cqi / 49), 19px);
+    line-height: 1.2;
+    background: #000;
+    border: 1px solid #333;
+    box-shadow: 0 0 60px rgb(85 255 255 / 0.08), inset 0 0 80px rgb(0 0 0 / 0.9);
+    position: relative;
+    overflow: hidden;
+  }
+  /* Faint scanlines */
+  .bbs__frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(to bottom, rgb(255 255 255 / 0.035) 0 1px, transparent 1px 3px);
+  }
+
+  .bbs__status {
+    display: flex;
+    gap: 2ch;
+    padding: 0 1ch;
+    background: var(--cga-1);
+    color: var(--cga-15);
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .bbs__online {
+    margin-left: auto;
+    color: var(--cga-14);
+  }
+
+  .bbs__screen {
+    padding: 1em 1ch;
+    min-height: 25lh;
+    outline: none;
+  }
+  .bbs__screen:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--cga-11);
+  }
+
+  pre {
+    margin: 0;
+    font: inherit;
+    white-space: pre;
+  }
+  .bbs__splash {
+    margin-bottom: 1lh;
+  }
+
+  /* CGA colour classes, as an ANSI art editor would export them. */
+  .c-0 { color: var(--cga-0); } .c-1 { color: var(--cga-1); } .c-2 { color: var(--cga-2); } .c-3 { color: var(--cga-3); }
+  .c-4 { color: var(--cga-4); } .c-5 { color: var(--cga-5); } .c-6 { color: var(--cga-6); } .c-7 { color: var(--cga-7); }
+  .c-8 { color: var(--cga-8); } .c-9 { color: var(--cga-9); } .c-10 { color: var(--cga-10); } .c-11 { color: var(--cga-11); }
+  .c-12 { color: var(--cga-12); } .c-13 { color: var(--cga-13); } .c-14 { color: var(--cga-14); } .c-15 { color: var(--cga-15); }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  a:hover,
+  a:focus-visible {
+    background: var(--cga-1);
+    outline: none;
+  }
+
+  .bbs__login {
+    margin-bottom: 1lh;
+  }
+  .bbs__login input {
+    font: inherit;
+    width: 16ch;
+    padding: 0;
+    background: var(--cga-1);
+    color: var(--cga-15);
+    border: 0;
+    text-transform: uppercase;
+    caret-color: var(--cga-15);
+  }
+  .bbs__login input:focus {
+    outline: 1px solid var(--cga-11);
+  }
+  .bbs__enter {
+    font: inherit;
+    margin-left: 1ch;
+    padding: 0;
+    background: none;
+    border: 0;
+    color: var(--cga-14);
+    cursor: pointer;
+  }
+
+  /* Without JS, the :target screen shows; with JS, era.client.ts toggles .is-current. */
+  .bbs__panel {
+    display: none;
+  }
+  .bbs__panel.is-current,
+  .bbs__panel:target {
+    display: block;
+  }
+  .bbs__screen:has(.bbs__panel:target) .bbs__panel.is-current:not(:target) {
+    display: none;
+  }
+
+  /* snippet:cursor:start */
+  .bbs__cursor {
+    color: var(--cga-7);
+    animation: e01-blink 1.06s steps(1) infinite;
+  }
+  @keyframes e01-blink {
+    50% { opacity: 0; }
+  }
+  /* snippet:cursor:end */
+
+  /* While text "arrives" over the modem, unrevealed characters are hidden. */
+  .is-typing .bbs__pending {
+    visibility: hidden;
+  }
+
+  .bbs__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    align-items: center;
+    margin-top: 16px;
+    font-size: 15px;
+    color: var(--cga-7);
+  }
+  .bbs__baud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    align-items: center;
+    border: 1px solid var(--cga-8);
+    padding: 6px 12px 10px;
+  }
+  .bbs__baud legend {
+    color: var(--cga-11);
+    padding: 0 4px;
+  }
+  .bbs__baud input {
+    accent-color: var(--cga-14);
+  }
+  .bbs__redial {
+    font: inherit;
+    background: var(--cga-1);
+    color: var(--cga-15);
+    border: 1px solid var(--cga-9);
+    padding: 2px 10px;
+    cursor: pointer;
+  }
+  .bbs__help {
+    margin: 0;
+  }
+  kbd {
+    font: inherit;
+    color: var(--cga-14);
+  }
+  .bbs__room a {
+    color: var(--cga-11);
+    text-decoration: underline;
+  }
+  .bbs__room {
+    margin: 0;
+    flex-basis: 100%;
+  }
+  :focus-visible {
+    outline: 2px solid var(--cga-14);
+    outline-offset: 2px;
+  }
+}

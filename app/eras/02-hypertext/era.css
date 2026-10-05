@@ -1,0 +1,215 @@
+/* Era 02: early hypertext. The point is that the page had no author CSS at all.
+   These rules only undo today's browser defaults and rebuild the browser of 1993 around the page. */
+[data-era="02"] {
+  background: #808080;
+  color: #000;
+  font-family: 'Times New Roman', Times, 'Liberation Serif', 'DejaVu Serif', serif;
+
+  .mosaic {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  /* ---------- The browser window (chrome, not the document) ---------- */
+  .win {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #fff #000 #000 #fff;
+    box-shadow: 4px 4px 0 rgb(0 0 0 / 0.35);
+    font: 13px/1.3 Helvetica, Arial, 'Liberation Sans', sans-serif;
+  }
+  .win__title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #000080;
+    color: #fff;
+    font-weight: 700;
+    padding: 3px 4px;
+  }
+  .win__box,
+  .win__btns span {
+    display: inline-block;
+    width: 14px;
+    height: 12px;
+    background: #c0c0c0;
+    border: 1px solid;
+    border-color: #fff #000 #000 #fff;
+  }
+  .win__btns {
+    margin-left: auto;
+    display: flex;
+    gap: 2px;
+  }
+  .win__menu {
+    display: flex;
+    gap: 14px;
+    padding: 3px 8px;
+    border-bottom: 1px solid #808080;
+  }
+  .win__help {
+    margin-left: auto;
+  }
+  .win__tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 8px;
+    border-bottom: 1px solid #808080;
+  }
+  /* snippet:bevel:start */
+  .bevel {
+    font: 700 12px/1 Helvetica, Arial, sans-serif;
+    color: #000;
+    text-decoration: none;
+    background: #c0c0c0;
+    padding: 6px 10px;
+    border: 2px solid;
+    border-color: #fff #404040 #404040 #fff;
+    cursor: pointer;
+  }
+  .bevel:active,
+  .bevel[aria-pressed='true'] {
+    border-color: #404040 #fff #fff #404040;
+    background: #b0b0b0;
+  }
+  .bevel:disabled {
+    color: #808080;
+    text-shadow: 1px 1px 0 #fff;
+    cursor: default;
+  }
+  /* snippet:bevel:end */
+  .win__globe {
+    margin-left: auto;
+    display: inline-grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border: 2px solid;
+    border-color: #404040 #fff #fff #404040;
+  }
+  .is-loading .win__globe svg {
+    animation: e02-spin 1.2s steps(8) infinite;
+  }
+  @keyframes e02-spin {
+    to { transform: rotate(360deg); }
+  }
+  .win__url {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    padding: 3px 8px;
+    min-width: 0;
+  }
+  .win__url span {
+    flex: none;
+    width: 110px;
+  }
+  .win__url output {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: #fff;
+    padding: 2px 4px;
+    font-family: Courier, 'Courier New', 'Liberation Mono', monospace;
+    border: 2px solid;
+    border-color: #404040 #fff #fff #404040;
+  }
+  .win__status {
+    padding: 3px 8px;
+    border-top: 1px solid #fff;
+    box-shadow: inset 0 1px 0 #808080;
+  }
+
+  /* ---------- The document: browser defaults, circa 1993 ---------- */
+  /* snippet:defaults:start */
+  .win__doc,
+  .rcl-source {
+    margin: 6px 8px;
+    min-height: 420px;
+    padding: 8px 14px 16px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #404040 #fff #fff #404040;
+    font: 16px/1.25 'Times New Roman', Times, 'Liberation Serif', serif;
+    color: #000;
+  }
+  .win__doc a:link,
+  .win__doc a {
+    color: #0000ee;
+    text-decoration: underline;
+  }
+  .win__doc a.is-visited,
+  .win__doc a:visited {
+    color: #551a8b;
+  }
+  .win__doc a:active {
+    color: #ff0000;
+  }
+  .win__doc h1 { font-size: 2em; margin: 0.67em 0; font-weight: 700; }
+  .win__doc h2 { font-size: 1.5em; margin: 0.83em 0; font-weight: 700; }
+  .win__doc p,
+  .win__doc ul,
+  .win__doc dl,
+  .win__doc pre { margin: 1em 0; }
+  .win__doc ul { padding-left: 40px; list-style: disc; }
+  .win__doc dd { margin-left: 40px; }
+  .win__doc hr { border: 0; border-top: 1px solid #808080; border-bottom: 1px solid #fff; margin: 0.5em 0; }
+  .win__doc address { font-style: italic; }
+  .win__doc code,
+  .win__doc pre { font-family: Courier, 'Courier New', 'Liberation Mono', monospace; }
+  /* snippet:defaults:end */
+  .win__doc pre {
+    white-space: pre-wrap;
+  }
+  .rcl-logo {
+    vertical-align: bottom;
+    image-rendering: pixelated;
+  }
+  .rcl-form input:not([type]),
+  .rcl-form input[type='submit'],
+  .rcl-form input[type='reset'] {
+    font: 13px Helvetica, Arial, sans-serif;
+  }
+  .rcl-source {
+    margin: 6px 8px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    background: #fff;
+    font: 13px/1.35 Courier, 'Courier New', 'Liberation Mono', monospace;
+  }
+
+  /* Without JS: show the :target page, or the first one. */
+  .rcl-page {
+    display: none;
+  }
+  .rcl-page.is-current,
+  .rcl-page:target {
+    display: block;
+  }
+  .win__doc:has(.rcl-page:target) .rcl-page.is-current:not(:target) {
+    display: none;
+  }
+  .win__doc.is-hidden {
+    display: none;
+  }
+
+  :focus-visible {
+    outline: 1px dotted #000;
+    outline-offset: 1px;
+  }
+
+  @media (max-width: 600px) {
+    .mosaic { padding: 8px; }
+    .win__menu { gap: 8px; overflow: hidden; }
+    .win__url span { width: auto; }
+    .win__globe { display: none; }
+    .win__doc { padding: 4px 8px 12px; }
+  }
+}

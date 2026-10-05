@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hatchly &middot; Team check-ins that don't suck</title>
+<link rel="stylesheet" href="hatchly.css">
+</head>
+<body>
+<!-- The viewport meta tag above is the first line of every responsive site. -->
+<input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" tabindex="-1">
+<header class="navbar navbar-inverse">
+  <div class="container">
+    <a class="navbar-brand" href="#top"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><ellipse cx="11" cy="12" rx="8" ry="9.5" fill="#f6c94b"/><path d="M3.5 11l3 2.5 3-3 3 3 3-3 3 2.5" fill="none" stroke="#222" stroke-width="1.6"/></svg> Hatchly</a>
+    <label for="nav-toggle" class="navbar-toggle" role="button" tabindex="0" aria-controls="main-nav" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+    </label>
+    <nav class="navbar-collapse" id="main-nav" aria-label="Main">
+      <ul class="nav">
+        <li class="active"><a href="#top">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#footer">Blog</a></li>
+      </ul>
+      <a class="btn btn-success navbar-btn" href="#pricing">Sign up free</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="carousel" aria-roledescription="carousel" aria-label="Highlights">
+    <div class="carousel-inner">
+      <div class="item active" id="slide-1" role="group" aria-roledescription="slide" aria-label="1 of 3">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-7">
+              <h1>Stand-ups, minus the standing.</h1>
+              <p class="lead">Hatchly asks your team three questions every morning and emails everyone the answers. That's it. That's the app.</p>
+              <p><a class="btn btn-primary btn-lg" href="#pricing">Start your free trial &raquo;</a></p>
+            </div>
+            <div class="col-md-5">
+              <svg class="img-responsive" viewBox="0 0 400 260" role="img" aria-label="Hatchly running on a laptop, a tablet and a phone">
+                <rect x="40" y="20" width="270" height="170" rx="8" fill="#333"/><rect x="50" y="30" width="250" height="150" fill="#f5f5f5"/>
+                <rect x="50" y="30" width="250" height="18" fill="#222"/><rect x="62" y="62" width="120" height="10" fill="#428bca"/><rect x="62" y="80" width="200" height="6" fill="#ccc"/><rect x="62" y="92" width="180" height="6" fill="#ccc"/><rect x="62" y="114" width="70" height="20" rx="3" fill="#5cb85c"/>
+                <path d="M20 190h310l-14 14H34z" fill="#999"/>
+                <rect x="250" y="80" width="100" height="140" rx="8" fill="#222"/><rect x="258" y="90" width="84" height="116" fill="#fff"/><rect x="264" y="98" width="50" height="6" fill="#428bca"/><rect x="264" y="110" width="70" height="4" fill="#ccc"/><rect x="264" y="118" width="64" height="4" fill="#ccc"/>
+                <rect x="335" y="140" width="48" height="90" rx="7" fill="#111"/><rect x="339" y="150" width="40" height="66" fill="#fff"/><rect x="343" y="156" width="26" height="4" fill="#428bca"/><rect x="343" y="164" width="32" height="3" fill="#ccc"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="item" id="slide-2" role="group" aria-roledescription="slide" aria-label="2 of 3">
+        <div class="container">
+          <h2>Works on your phone. And your fridge, probably.</h2>
+          <p class="lead">One fluid layout for every screen. No separate m-dot site, no pinch-to-zoom.</p>
+          <p><a class="btn btn-default btn-lg" href="#features">See how &raquo;</a></p>
+        </div>
+      </div>
+      <div class="item" id="slide-3" role="group" aria-roledescription="slide" aria-label="3 of 3">
+        <div class="container">
+          <h2>&ldquo;We cancelled four meetings in week one.&rdquo;</h2>
+          <p class="lead">&mdash; a very happy engineering manager at a company you'd recognise</p>
+          <p><a class="btn btn-default btn-lg" href="#pricing">Join 2,000 teams &raquo;</a></p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control left" type="button" aria-label="Previous slide" hidden>&lsaquo;</button>
+    <button class="carousel-control right" type="button" aria-label="Next slide" hidden>&rsaquo;</button>
+    <ol class="carousel-indicators">
+      <li><a href="#slide-1" aria-label="Slide 1" aria-current="true"></a></li>
+      <li><a href="#slide-2" aria-label="Slide 2"></a></li>
+      <li><a href="#slide-3" aria-label="Slide 3"></a></li>
+    </ol>
+  </section>
+
+  <section class="container features" id="features">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="feature-icon" style="background:#428bca"><svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z" fill="#fff"/></svg></div>
+        <h3>Async by default</h3>
+        <p>Answer when you've had your coffee. Hatchly collects replies until 10am, then sends one tidy digest.</p>
+        <p><a class="btn btn-default" href="#features">View details &raquo;</a></p>
+      </div>
+      <div class="col-sm-4">
+        <div class="feature-icon" style="background:#5cb85c"><svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2" fill="#fff"/><rect x="9" y="5" width="6" height="11" fill="#5cb85c"/></svg></div>
+        <h3>Mobile first</h3>
+        <p>Designed for a 320px screen, then enhanced upward. Reply from the bus with one thumb.</p>
+        <p><a class="btn btn-default" href="#features">View details &raquo;</a></p>
+      </div>
+      <div class="col-sm-4">
+        <div class="feature-icon" style="background:#f0ad4e"><svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true"><path d="M3 20V10h4v10zm7 0V4h4v16zm7 0v-7h4v7z" fill="#fff"/></svg></div>
+        <h3>Mood graphs</h3>
+        <p>See who's swamped before it's a problem. Weekly charts with zero spreadsheet wrangling.</p>
+        <p><a class="btn btn-default" href="#features">View details &raquo;</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2 class="text-center">Simple pricing</h2>
+      <p class="text-center text-muted">Free for 30 days. No credit card required.</p>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="panel"><div class="panel-heading">Nest</div>
+            <div class="panel-body"><p class="price">$0<small>/mo</small></p><ul><li>Up to 5 people</li><li>Daily digest</li><li>Email support</li></ul><a class="btn btn-default btn-block" href="#pricing">Get started</a></div></div>
+        </div>
+        <div class="col-sm-4">
+          <div class="panel panel-primary"><div class="panel-heading">Flock <span class="label">Popular</span></div>
+            <div class="panel-body"><p class="price">$29<small>/mo</small></p><ul><li>Up to 25 people</li><li>Mood graphs</li><li>Slack-style chat hooks</li></ul><a class="btn btn-primary btn-block" href="#pricing">Start free trial</a></div></div>
+        </div>
+        <div class="col-sm-4">
+          <div class="panel"><div class="panel-heading">Aviary</div>
+            <div class="panel-body"><p class="price">$99<small>/mo</small></p><ul><li>Unlimited people</li><li>SSO &amp; audit log</li><li>Phone support</li></ul><a class="btn btn-default btn-block" href="#pricing">Contact sales</a></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="container footer" id="footer">
+  <p class="pull-right"><a href="#top">Back to top</a></p>
+  <p>&copy; 2013 Hatchly, Inc. &middot; <a href="#footer">Privacy</a> &middot; <a href="#footer">Terms</a> &middot; Made with &hearts; and a 12-column grid.</p>
+  <p class="visible-xs">You're on a phone. Hi!</p>
+  <p class="hidden-xs">Tip: make the window narrower and watch what happens.</p>
+</footer>
+<script src="hatchly.js"></script>
+</body>
+</html>

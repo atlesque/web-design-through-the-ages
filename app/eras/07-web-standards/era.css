@@ -1,0 +1,644 @@
+/* Era 07: Web standards. One XHTML document, three stylesheets, built only with
+   floats, clearfix, faux columns, sliding doors and image replacement. */
+[data-era="07"] {
+  background: #d6d3cc;
+  color: #222;
+  font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif;
+  transition: background-color 0.4s;
+
+  .sg {
+    padding: 16px 0 32px;
+  }
+
+  /* ---------- The style switcher widget (a 2005 standardista staple) ---------- */
+  .sg__switcher {
+    max-width: 760px;
+    margin: 0 auto 16px;
+    padding: 8px 12px;
+    background: #fff;
+    border: 1px solid #999;
+    font: 12px/1.4 Verdana, Geneva, sans-serif;
+    color: #333;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    align-items: center;
+  }
+  .sg__switcher fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 10px;
+    align-items: center;
+  }
+  .sg__switcher legend {
+    float: left;
+    margin-right: 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: #4f6b34;
+  }
+  .sg__switcher label {
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .sg__switcher input {
+    accent-color: #4f6b34;
+    margin: 0 3px 0 0;
+    vertical-align: -2px;
+  }
+  .sg__hint {
+    margin: 0;
+    flex-basis: 100%;
+    color: #555;
+    font-size: 11px;
+  }
+  .sg__switcher :focus-visible {
+    outline: 2px solid #4f6b34;
+    outline-offset: 2px;
+  }
+
+  /* Fixed widths need room: the stage scrolls sideways on small screens. */
+  .sg__stage {
+    overflow-x: auto;
+    padding: 0 8px;
+  }
+
+  /* ---------- Structure, shared by every design ---------- */
+  /* snippet:clearfix:start */
+  .clearfix:after {
+    content: '.';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+  #wrap {
+    background-repeat: repeat-y;
+    background-position: 70% 0; /* liquid faux columns: the seam sits at 70% */
+  }
+  #content {
+    float: left;
+    width: 70%;
+  }
+  #sidebar {
+    float: right;
+    width: 30%;
+  }
+  /* snippet:clearfix:end */
+
+  #sg-page {
+    margin: 0 auto;
+    width: 760px;
+    font-size: 80%;
+    line-height: 1.6;
+    transition: width 0.35s ease, font-size 0.2s;
+  }
+  #content > *,
+  #sidebar > * {
+    margin-left: 1.6em;
+    margin-right: 1.6em;
+  }
+  #content {
+    padding-bottom: 1.5em;
+  }
+  #sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  #sidebar li {
+    margin: 0 0 0.3em;
+  }
+  #sidebar label {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  #footer {
+    clear: both;
+    padding: 1em 1.6em;
+  }
+  #footer p {
+    margin: 0.4em 0;
+  }
+  .hacks dt {
+    font-weight: bold;
+    margin-top: 0.6em;
+  }
+  .hacks dd {
+    margin: 0 0 0 1.4em;
+  }
+  #content h3 {
+    font-size: 1.1em;
+    margin-top: 1.4em;
+    margin-bottom: 0.2em;
+  }
+  code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.05em;
+  }
+
+  /* snippet:image-replacement:start */
+  /* Phark image replacement: real text for robots and screen readers,
+     shoved off-screen; a picture of the text sits in the background. */
+  #logo {
+    margin: 0;
+    height: 84px;
+    text-indent: -9999px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+  }
+  /* snippet:image-replacement:end */
+  :root.readable & #logo {
+    text-indent: 0;
+    height: auto;
+  }
+
+  /* snippet:sliding-doors:start */
+  /* Sliding doors: a wide left image on the <a>, a narrow right cap on the
+     <span>. The tab grows with its text; hover slides both sprites up 40px. */
+  #nav {
+    margin: 0;
+    padding: 0 0 0 1.6em;
+    list-style: none;
+  }
+  #nav li {
+    float: left;
+    margin: 0 3px 0 0;
+  }
+  #nav a {
+    float: left;
+    padding-left: 12px;
+    text-decoration: none;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+  }
+  #nav a span {
+    float: left;
+    display: block;
+    height: 40px;
+    line-height: 42px;
+    padding: 0 16px 0 4px;
+    background-repeat: no-repeat;
+    background-position: 100% 0;
+  }
+  #nav a:hover,
+  #nav a:hover span,
+  #nav a:focus-visible,
+  #nav a:focus-visible span {
+    background-position-y: -40px;
+  }
+  #nav .current a,
+  #nav .current a span {
+    background-position-y: -80px;
+  }
+  /* snippet:sliding-doors:end */
+  #nav a:focus-visible {
+    outline: 2px dotted currentColor;
+    outline-offset: -4px;
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .badge {
+    display: inline-flex;
+    font: 10px/15px Verdana, Geneva, sans-serif;
+    border: 1px solid #555;
+    height: 15px;
+    overflow: hidden;
+  }
+  .badge b,
+  .badge i {
+    padding: 0 4px;
+    font-style: normal;
+  }
+  .badge b {
+    background: #fff;
+    color: #333;
+  }
+  .badge i {
+    background: #5e7a43;
+    color: #fff;
+  }
+
+  /* ---------- Layout toggles: fixed, liquid, elastic ---------- */
+  /* snippet:widths:start */
+  .sg:has(#sgw-fixed:checked) #sg-page { width: 760px; }   /* pixels: the "safe" 800x600 width */
+  .sg:has(#sgw-liquid:checked) #sg-page { width: 92%; }    /* percent: fills any window */
+  .sg:has(#sgw-elastic:checked) #sg-page { width: 58em; }  /* ems: grows with the text size */
+  .sg:has(#sgs-s:checked) #sg-page { font-size: 68%; }
+  .sg:has(#sgs-m:checked) #sg-page { font-size: 80%; }
+  .sg:has(#sgs-l:checked) #sg-page { font-size: 96%; }
+  /* snippet:widths:end */
+
+  /* =========================================================
+     DESIGN A: "Wisteria" by Hazel Moorcroft. Organic floral.
+     ========================================================= */
+  &:has(#sgt-a:checked) {
+    background: #c9c2d4 url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'><circle cx='6' cy='6' r='1.5' fill='%23b7aec6'/><circle cx='18' cy='18' r='1.5' fill='%23b7aec6'/></svg>");
+  }
+  .sg:has(#sgt-a:checked) {
+    #sg-page {
+      background: #fbf8ef;
+      border: 1px solid #a99bbd;
+      font-family: Georgia, 'Times New Roman', serif;
+      color: #3b3346;
+      box-shadow: 0 0 0 6px #ece5f2;
+    }
+    #header {
+      height: 150px;
+      padding: 22px 1.6em 0;
+      box-sizing: border-box;
+      background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='150'><path d='M260 4C200 10 170 30 150 60S100 100 60 96' fill='none' stroke='%237d9a5b' stroke-width='3'/><path d='M150 60c6-14 22-16 30-10-10 2-20 8-30 10zM110 86c-4-14 6-24 16-24-4 8-8 18-16 24z' fill='%237d9a5b'/><g fill='%23a385c9'><circle cx='200' cy='30' r='7'/><circle cx='194' cy='44' r='6'/><circle cx='204' cy='54' r='5'/><circle cx='198' cy='66' r='4'/><circle cx='202' cy='76' r='3'/></g><g fill='%23b99ad8'><circle cx='130' cy='76' r='6'/><circle cx='124' cy='88' r='5'/><circle cx='132' cy='98' r='4'/><circle cx='127' cy='108' r='3'/><circle cx='131' cy='116' r='2'/></g><g fill='%238e6ab8'><circle cx='72' cy='100' r='5'/><circle cx='68' cy='111' r='4'/><circle cx='73' cy='120' r='3'/><circle cx='70' cy='128' r='2'/></g></svg>") no-repeat 100% 0;
+      border-bottom: 0;
+    }
+    #logo {
+      width: 420px;
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='420' height='84'><text x='4' y='30' font-family='Georgia,serif' font-style='italic' font-size='22' fill='%237d9a5b'>the</text><text x='36' y='70' font-family='Georgia,serif' font-style='italic' font-size='44' fill='%235b3f7d'>Semantic Garden</text><path d='M40 78q60 8 120 0t130 0' fill='none' stroke='%237d9a5b' stroke-width='1.5'/><circle cx='298' cy='78' r='3' fill='%23a385c9'/></svg>");
+    }
+    #tagline {
+      margin: 0.2em 0 0;
+      font-style: italic;
+      color: #6b5a7e;
+    }
+    #nav {
+      border-bottom: 4px solid #7d9a5b;
+    }
+    #nav a {
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='120'><path d='M0 40V12Q0 2 12 2H400V40Z' fill='%23a2b98a'/><path d='M0 80V52Q0 42 12 42H400V80Z' fill='%237d9a5b'/><path d='M0 120V92Q0 82 12 82H400V120Z' fill='%237d9a5b'/></svg>");
+    }
+    #nav a span {
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='120'><path d='M0 2H2Q14 2 14 12V40H0Z' fill='%23a2b98a'/><path d='M0 42H2Q14 42 14 52V80H0Z' fill='%237d9a5b'/><path d='M0 82H2Q14 82 14 92V120H0Z' fill='%237d9a5b'/></svg>");
+      color: #24331a;
+      font-style: italic;
+      font-size: 1.1em;
+    }
+    #nav a:hover span,
+    #nav .current a span {
+      color: #fbf8ef;
+    }
+    #wrap {
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='2000' height='4'><rect width='1400' height='4' fill='%23fbf8ef'/><rect x='1400' width='600' height='4' fill='%23efe8f3'/><rect x='1400' width='1' height='2' fill='%23a99bbd'/></svg>");
+    }
+    .intro {
+      font-size: 1.15em;
+      margin-top: 1.4em;
+    }
+    .intro:first-letter {
+      float: left;
+      font-size: 3.4em;
+      line-height: 0.9;
+      margin: 0.05em 0.08em 0 0;
+      color: #5b3f7d;
+    }
+    h2 {
+      font-weight: normal;
+      font-style: italic;
+      color: #5b3f7d;
+      font-size: 1.6em;
+      margin-top: 1.2em;
+      margin-bottom: 0.3em;
+      padding-bottom: 0.1em;
+      border-bottom: 1px dotted #a385c9;
+    }
+    .num {
+      font-size: 0.6em;
+      color: #6f8c4f;
+      vertical-align: 0.4em;
+    }
+    blockquote {
+      background: #f0ecdf;
+      border-left: 4px solid #b79fd1;
+      padding: 0.4em 1em;
+      font-size: 1.1em;
+      font-style: italic;
+    }
+    blockquote p {
+      margin: 0.3em 0;
+    }
+    cite {
+      font-size: 0.8em;
+      color: #6b5a7e;
+    }
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+    }
+    .checklist li {
+      padding-left: 1.4em;
+      background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12'><path d='M1 11C1 5 5 1 11 1 11 7 7 11 1 11Z' fill='%237d9a5b'/></svg>") no-repeat 0 0.35em;
+      margin-bottom: 0.4em;
+    }
+    #sidebar h3 {
+      font-weight: normal;
+      font-style: italic;
+      color: #5b3f7d;
+      font-size: 1.2em;
+      margin-top: 1.2em;
+      margin-bottom: 0.3em;
+    }
+    #sidebar a,
+    #sidebar label {
+      color: #4f6b34;
+    }
+    #content a {
+      color: #5b3f7d;
+    }
+    #footer {
+      background: #5e7a43;
+      color: #fbf8ef;
+      font-style: italic;
+    }
+  }
+
+  /* =========================================================
+     DESIGN B: "Raster" by Kaj Lindqvist. Swiss modernist.
+     ========================================================= */
+  &:has(#sgt-b:checked) {
+    background: #ececec;
+  }
+  .sg:has(#sgt-b:checked) {
+    #sg-page {
+      background: #fff;
+      border-top: 14px solid #e2231a;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: #111;
+    }
+    #header {
+      padding: 28px 1.6em 18px;
+      background: #fff;
+    }
+    #logo {
+      width: 520px;
+      height: 122px;
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='520' height='122'><rect x='0' y='8' width='22' height='22' fill='%23e2231a'/><text x='34' y='52' font-family='Helvetica Neue,Helvetica,Arial,sans-serif' font-weight='700' font-size='54' letter-spacing='-3' fill='%23111'>semantic</text><text x='34' y='104' font-family='Helvetica Neue,Helvetica,Arial,sans-serif' font-weight='700' font-size='54' letter-spacing='-3' fill='%23111'>garden<tspan fill='%23e2231a'>.</tspan></text><text x='300' y='100' font-family='Helvetica Neue,Helvetica,Arial,sans-serif' font-size='11' letter-spacing='2' fill='%23111'>NO.2 / RASTER</text></svg>");
+    }
+    #tagline {
+      margin: 0.6em 0 0 34px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.85em;
+      font-weight: bold;
+    }
+    #nav {
+      background: #111;
+      padding-top: 8px;
+    }
+    #nav a {
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='120'><rect y='0' width='400' height='40' fill='%23333'/><rect y='40' width='400' height='40' fill='%23e2231a'/><rect y='80' width='400' height='40' fill='%23fff'/></svg>");
+    }
+    #nav a span {
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='120'><path d='M0 0H2L14 40H0Z' fill='%23333'/><path d='M0 40H2L14 80H0Z' fill='%23e2231a'/><path d='M0 80H2L14 120H0Z' fill='%23fff'/></svg>");
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: bold;
+      font-size: 0.85em;
+      padding-right: 22px;
+    }
+    #nav .current a span {
+      color: #111;
+    }
+    #wrap {
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='2000' height='4'><rect width='1400' height='4' fill='%23fff'/><rect x='1400' width='600' height='4' fill='%23111'/></svg>");
+    }
+    .intro {
+      font-size: 1.35em;
+      line-height: 1.35;
+      font-weight: bold;
+      letter-spacing: -0.01em;
+      margin-top: 1.2em;
+    }
+    h2 {
+      font-size: 1.15em;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 1.6em 1.6em 0.4em;
+      padding-top: 0.4em;
+      border-top: 3px solid #111;
+    }
+    .num {
+      display: block;
+      font-size: 3.2em;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: #e2231a;
+    }
+    blockquote {
+      margin: 1.2em 1.6em;
+      padding: 0 0 0 1em;
+      border-left: 6px solid #e2231a;
+      font-size: 1.4em;
+      line-height: 1.25;
+      font-weight: bold;
+    }
+    blockquote p {
+      margin: 0;
+    }
+    cite {
+      font-size: 0.55em;
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: normal;
+    }
+    .checklist {
+      list-style: square;
+    }
+    .checklist li::marker {
+      color: #e2231a;
+    }
+    #sidebar {
+      color: #fff;
+    }
+    #sidebar h3 {
+      font-size: 0.8em;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #ff7a72;
+      margin-top: 2em;
+    }
+    #sidebar a,
+    #sidebar label {
+      color: #fff;
+    }
+    #content a {
+      color: #c41c14;
+    }
+    #footer {
+      border-top: 14px solid #111;
+      font-size: 0.85em;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .badge {
+      border-color: #111;
+    }
+    .badge i {
+      background: #e2231a;
+    }
+  }
+
+  /* =========================================================
+     DESIGN C: "Afterhours" by DJ Semicolon. A dark nightclub.
+     ========================================================= */
+  &:has(#sgt-c:checked) {
+    background: #07050d repeating-linear-gradient(135deg, #0d0918 0 2px, transparent 2px 9px);
+  }
+  .sg:has(#sgt-c:checked) {
+    .sg__switcher {
+      background: #1d1233;
+      color: #e8e0ff;
+      border-color: #ff2fa8;
+    }
+    .sg__switcher legend {
+      color: #00e5ff;
+    }
+    .sg__hint {
+      color: #c6b8e8;
+    }
+    #sg-page {
+      background: #120c1f;
+      color: #d9d2ee;
+      font-family: 'Trebuchet MS', 'Lucida Sans', Verdana, sans-serif;
+      border: 1px solid #3a2560;
+      box-shadow: 0 0 40px rgb(255 47 168 / 0.25);
+    }
+    #header {
+      height: 140px;
+      padding: 26px 1.6em 0;
+      box-sizing: border-box;
+      background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='140'><g fill='%2300e5ff' opacity='.8'><rect x='40' y='80' width='10' height='40'/><rect x='56' y='50' width='10' height='70'/><rect x='72' y='92' width='10' height='28'/><rect x='88' y='30' width='10' height='90'/><rect x='104' y='64' width='10' height='56'/></g><g fill='%23ff2fa8' opacity='.8'><rect x='120' y='40' width='10' height='80'/><rect x='136' y='76' width='10' height='44'/><rect x='152' y='56' width='10' height='64'/><rect x='168' y='96' width='10' height='24'/></g></svg>") no-repeat 100% 0;
+    }
+    #logo {
+      width: 470px;
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='470' height='84'><g font-family='Trebuchet MS,Verdana,sans-serif' font-weight='700' font-size='40' letter-spacing='2'><text x='4' y='46' fill='none' stroke='%23ff2fa8' stroke-width='7' opacity='.3'>SEMANTIC GARDEN</text><text x='4' y='46' fill='none' stroke='%23ff7ccc' stroke-width='1.6'>SEMANTIC GARDEN</text></g><text x='250' y='76' font-family='Georgia,serif' font-style='italic' font-size='22' fill='%2300e5ff'>after hours</text></svg>");
+    }
+    #tagline {
+      margin: 0.3em 0 0;
+      font-variant: small-caps;
+      letter-spacing: 0.12em;
+      color: #b8a6e6;
+    }
+    #nav {
+      padding-top: 6px;
+      border-bottom: 2px solid #ff2fa8;
+    }
+    #nav a {
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='120'><path d='M0 40V20Q0 4 16 4H400V40Z' fill='%232a1745'/><path d='M0 80V60Q0 44 16 44H400V80Z' fill='%23ff2fa8'/><path d='M0 120V100Q0 84 16 84H400V120Z' fill='%2300e5ff'/></svg>");
+    }
+    #nav a span {
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='120'><path d='M0 4Q16 4 16 20V40H0Z' fill='%232a1745'/><path d='M0 44Q16 44 16 60V80H0Z' fill='%23ff2fa8'/><path d='M0 84Q16 84 16 100V120H0Z' fill='%2300e5ff'/></svg>");
+      color: #e8e0ff;
+      font-variant: small-caps;
+      letter-spacing: 0.1em;
+      font-size: 1.1em;
+    }
+    #nav a:hover span,
+    #nav .current a span {
+      color: #120c1f;
+    }
+    #wrap {
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='2000' height='4'><rect width='1400' height='4' fill='%23120c1f'/><rect x='1400' width='600' height='4' fill='%231d1233'/><rect x='1400' width='2' height='4' fill='%23ff2fa8'/></svg>");
+    }
+    .intro {
+      margin-top: 1.4em;
+      font-size: 1.1em;
+      color: #f1ecff;
+    }
+    h2 {
+      color: #00e5ff;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 1.15em;
+      text-shadow: 0 0 8px rgb(0 229 255 / 0.6);
+      margin-top: 1.6em;
+    }
+    .num {
+      color: #ff2fa8;
+      text-shadow: 0 0 8px rgb(255 47 168 / 0.8);
+    }
+    blockquote {
+      border: 1px dashed #ff2fa8;
+      padding: 0.2em 1em;
+      color: #ffd0ec;
+      font-style: italic;
+    }
+    cite {
+      color: #b8a6e6;
+    }
+    code {
+      color: #8ff4ff;
+    }
+    strong {
+      color: #ff7ccc;
+    }
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+    }
+    .checklist li::before {
+      content: '\266A  ';
+      color: #ff2fa8;
+    }
+    #sidebar h3 {
+      color: #ff7ccc;
+      font-variant: small-caps;
+      letter-spacing: 0.15em;
+      margin-top: 1.6em;
+    }
+    #sidebar a,
+    #sidebar label,
+    #content a {
+      color: #8ff4ff;
+    }
+    #footer {
+      background: #07050d;
+      border-top: 2px solid #ff2fa8;
+      color: #b8a6e6;
+      font-variant: small-caps;
+    }
+    .badge {
+      border-color: #ff2fa8;
+    }
+    .badge b {
+      background: #120c1f;
+      color: #e8e0ff;
+    }
+    .badge i {
+      background: #ff2fa8;
+      color: #120c1f;
+    }
+  }
+
+  /* A brief "loading the new stylesheet" flash when JS swaps designs. */
+  .sg__page.is-swapping {
+    animation: e07-swap 0.45s ease-out;
+  }
+
+  @media (max-width: 600px) {
+    .sg {
+      padding-top: 8px;
+    }
+    .sg__switcher {
+      margin: 0 8px 12px;
+    }
+  }
+}
+
+@keyframes e07-swap {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}

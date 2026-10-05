@@ -1,0 +1,664 @@
+/* Era 16: gradients, glassmorphism and soft UI (neumorphism), with a dark mode. */
+[data-era="16"] {
+  background: #f3eefe;
+  color: #1d1640;
+  font-family: system-ui, -apple-system, 'SF Pro Display', 'Segoe UI Variable Display', 'Segoe UI', Inter, Roboto, sans-serif;
+
+  &:has(.dw[data-theme='dark']) {
+    background: #0f0b24;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:not(:has(.dw[data-theme='light'])) {
+      background: #0f0b24;
+    }
+  }
+
+  /* ---------- Theme tokens. Light by default, dark via the OS or the switch. ---------- */
+  /* snippet:theme:start */
+  .dw {
+    --bg: #f3eefe;
+    --ink: #1d1640;
+    --muted: #4b4470;
+    --glass: rgb(255 255 255 / 0.32);
+    --glass-edge: rgb(255 255 255 / 0.65);
+    --glass-shadow: 0 8px 32px rgb(60 30 140 / 0.18);
+    --soft: #e7e8f0;
+    --soft-hi: #ffffff;
+    --soft-lo: #c3c5d4;
+    --soft-ink: #3a3b55;
+    --accent: #6a5cff;
+    --blob-a: #ff7ab6;
+    --blob-b: #6a5cff;
+    --blob-c: #5ef2ff;
+    --blob-d: #ffc46b;
+    color-scheme: light;
+  }
+  .dw[data-theme='dark'] {
+    --bg: #0f0b24;
+    --ink: #f4f1ff;
+    --muted: #c9c3ec;
+    --glass: rgb(30 22 70 / 0.38);
+    --glass-edge: rgb(255 255 255 / 0.16);
+    --glass-shadow: 0 8px 32px rgb(0 0 0 / 0.45);
+    --soft: #262838;
+    --soft-hi: #31344a;
+    --soft-lo: #17182a;
+    --soft-ink: #dcdcf2;
+    --accent: #9d93ff;
+    --blob-a: #d6338a;
+    --blob-b: #4b3bff;
+    --blob-c: #0fb6c9;
+    --blob-d: #b04cff;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    .dw:not([data-theme='light']) {
+      --bg: #0f0b24;
+      --ink: #f4f1ff;
+      --muted: #c9c3ec;
+      --glass: rgb(30 22 70 / 0.38);
+      --glass-edge: rgb(255 255 255 / 0.16);
+      --glass-shadow: 0 8px 32px rgb(0 0 0 / 0.45);
+      --soft: #262838;
+      --soft-hi: #31344a;
+      --soft-lo: #17182a;
+      --soft-ink: #dcdcf2;
+      --accent: #9d93ff;
+      --blob-a: #d6338a;
+      --blob-b: #4b3bff;
+      --blob-c: #0fb6c9;
+      --blob-d: #b04cff;
+      color-scheme: dark;
+    }
+  }
+  /* snippet:theme:end */
+
+  .dw {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 100%;
+    padding: 20px clamp(16px, 4vw, 48px) 40px;
+    background: var(--bg);
+    color: var(--ink);
+    transition: background-color 400ms ease, color 400ms ease;
+  }
+
+  /* ---------- Mesh-like gradient blobs ---------- */
+  .dw__blobs {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(48px) saturate(140%);
+  }
+  .dw__blob {
+    position: absolute;
+    width: 46vmax;
+    height: 46vmax;
+    max-width: 640px;
+    max-height: 640px;
+    border-radius: 50%;
+    opacity: 0.85;
+    animation: e16-drift 24s ease-in-out infinite alternate;
+  }
+  .dw__blob--1 { left: -10%; top: -8%; background: radial-gradient(circle, var(--blob-a), transparent 72%); }
+  .dw__blob--2 { right: -12%; top: 4%; background: radial-gradient(circle, var(--blob-b), transparent 72%); animation-delay: -6s; animation-duration: 30s; }
+  .dw__blob--3 { left: 20%; top: 38%; background: radial-gradient(circle, var(--blob-c), transparent 70%); animation-delay: -12s; }
+  .dw__blob--4 { right: 4%; bottom: 0; background: radial-gradient(circle, var(--blob-d), transparent 70%); animation-delay: -3s; animation-duration: 34s; }
+
+  /* ---------- Glass ---------- */
+  .glass {
+    background: var(--glass);
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    backdrop-filter: blur(22px) saturate(170%);
+    border: 1px solid var(--glass-edge);
+    box-shadow: var(--glass-shadow), inset 0 1px 0 rgb(255 255 255 / 0.35);
+  }
+
+  a {
+    color: inherit;
+  }
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .dw__nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 10px 12px 10px 16px;
+    border-radius: 20px;
+    nav {
+      display: flex;
+      gap: 20px;
+      margin-left: auto;
+      font-weight: 500;
+    }
+    nav a {
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  }
+  .dw__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  /* Neumorphic day/night switch */
+  .dw__theme {
+    position: relative;
+    width: 60px;
+    height: 32px;
+    flex: none;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: var(--soft);
+    box-shadow: inset 3px 3px 6px var(--soft-lo), inset -3px -3px 6px var(--soft-hi);
+    cursor: pointer;
+  }
+  .dw__theme-knob {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #fff6c9, #ffc46b);
+    box-shadow: 2px 2px 5px var(--soft-lo);
+    transition: transform 300ms cubic-bezier(0.3, 1.4, 0.5, 1), background 300ms;
+  }
+  .dw__theme[aria-checked='true'] .dw__theme-knob {
+    transform: translateX(28px);
+    background: radial-gradient(circle at 65% 35%, transparent 30%, #d8d4ff 31%);
+    box-shadow: none;
+  }
+
+  /* ---------- Hero ---------- */
+  .dw__hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    align-items: center;
+    gap: 48px;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 56px 0 48px;
+  }
+  .dw__kicker {
+    display: inline-block;
+    margin: 0 0 20px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .dw__title {
+    margin: 0;
+    font-size: clamp(44px, 7vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    font-weight: 300;
+    font-variation-settings: normal;
+    span {
+      display: inline-block;
+      font-weight: 300;
+      transition: font-weight 400ms ease;
+      animation: e16-weight 2.4s ease-in-out calc(var(--i) * 70ms) 2 alternate;
+    }
+  }
+  /* snippet:weight-css:start */
+  /* Variable system fonts (SF Pro, Segoe UI Variable) slide through every weight. */
+  .dw__title:hover span {
+    font-weight: 900;
+    transition-delay: calc(var(--i) * 25ms);
+  }
+  /* snippet:weight-css:end */
+  .dw__lede {
+    max-width: 46ch;
+    margin: 24px 0 32px;
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .dw__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .dw__btn {
+    display: inline-block;
+    padding: 14px 26px;
+    border-radius: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+  .dw__btn:hover {
+    transform: translateY(-2px);
+  }
+  .dw__btn--grad {
+    background: linear-gradient(120deg, #ff3d8b, #7a4dff 55%, #2f7bff);
+    color: #fff;
+    box-shadow: 0 10px 30px -8px rgb(122 77 255 / 0.7);
+  }
+
+  /* ---------- Player card ---------- */
+  .dw__player {
+    padding: 20px;
+    border-radius: 28px;
+    transform: rotate(2deg);
+  }
+  .dw__art svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+  }
+  .dw__track {
+    margin-top: 16px;
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+    }
+    p {
+      margin: 2px 0 0;
+      color: var(--muted);
+    }
+  }
+  .dw__progress {
+    height: 6px;
+    margin-top: 16px;
+    border-radius: 3px;
+    background: rgb(127 127 160 / 0.3);
+    span {
+      display: block;
+      width: 32%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #ff7ab6, #6a5cff);
+    }
+  }
+  .dw__player.is-playing .dw__progress span {
+    animation: e16-progress 30s linear forwards;
+  }
+  .dw__times {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .dw__controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin-top: 8px;
+  }
+  .dw__ctl {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+  }
+  .dw__ctl--play {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #ff7ab6, #6a5cff);
+    color: #fff;
+    box-shadow: 0 10px 24px -6px rgb(106 92 255 / 0.7);
+  }
+  .dw__ico-pause {
+    display: none;
+  }
+  .dw__ctl--play[aria-pressed='true'] {
+    .dw__ico-play { display: none; }
+    .dw__ico-pause { display: inline; }
+  }
+  .dw__tip {
+    margin: 12px 0 0;
+    text-align: center;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  /* ---------- Wallet ---------- */
+  .dw__wallet {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 20px;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .dw__card {
+    padding: 22px;
+    border-radius: 24px;
+    h2,
+    h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      font-weight: 600;
+    }
+  }
+  .dw__balance {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    span {
+      font-weight: 300;
+      margin-right: 2px;
+    }
+  }
+  .dw__muted {
+    margin: 4px 0 0;
+    color: var(--muted);
+  }
+  .dw__chart {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 12px;
+  }
+  .dw__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--glass-edge);
+    }
+    li:last-child {
+      border-bottom: 0;
+    }
+    b {
+      margin-left: auto;
+    }
+  }
+  .dw__av {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff8, transparent 40%), linear-gradient(135deg, var(--a), var(--b));
+  }
+  .dw__plastic {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    aspect-ratio: 1.586;
+    max-width: 260px;
+    margin: 8px 0 12px;
+    padding: 14px 16px;
+    box-sizing: border-box;
+    border-radius: 14px;
+    background:
+      radial-gradient(circle at 85% 15%, rgb(255 255 255 / 0.55), transparent 40%),
+      linear-gradient(135deg, #2f7bff, #7a4dff 50%, #ff3d8b);
+    color: #fff;
+    font: 600 13px/1 ui-monospace, Menlo, monospace;
+    letter-spacing: 0.12em;
+    box-shadow: 0 16px 30px -12px rgb(60 30 140 / 0.7);
+    transform: perspective(600px) rotateY(-14deg) rotateX(6deg);
+  }
+
+  /* ---------- Soft UI / neumorphism ---------- */
+  .dw__soft {
+    max-width: 1120px;
+    margin: 48px auto 0;
+    padding: 32px;
+    border-radius: 32px;
+    background: var(--soft);
+    color: var(--soft-ink);
+    box-shadow: 20px 20px 60px rgb(0 0 0 / 0.12);
+    h2 {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+    }
+    .dw__muted {
+      color: var(--soft-ink);
+      opacity: 0.85;
+    }
+  }
+  .dw__soft-grid {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: 28px;
+    margin-top: 28px;
+  }
+  /* snippet:neu:start */
+  .dw__neu {
+    border-radius: 24px;
+    background: var(--soft);
+    box-shadow:
+      9px 9px 18px var(--soft-lo),
+      -9px -9px 18px var(--soft-hi);
+  }
+  .dw__neu-btn {
+    display: grid;
+    place-items: center;
+    width: 72px;
+    height: 72px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--soft);
+    color: var(--soft-ink);
+    box-shadow: 6px 6px 12px var(--soft-lo), -6px -6px 12px var(--soft-hi);
+    cursor: pointer;
+    transition: box-shadow 200ms ease, color 200ms;
+  }
+  /* Pressed: the light flips inside, as if the button sank into the surface. */
+  .dw__neu-btn[aria-pressed='true'] {
+    color: var(--accent);
+    box-shadow: inset 6px 6px 12px var(--soft-lo), inset -6px -6px 12px var(--soft-hi);
+  }
+  /* snippet:neu:end */
+  .dw__neu-btn svg {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+  }
+  .dw__neu--panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 22px 26px;
+    font-weight: 600;
+  }
+  .dw__neu--wide {
+    align-items: stretch;
+    label {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .dw__switch {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    align-self: stretch;
+    cursor: pointer;
+    input {
+      position: absolute;
+      opacity: 0;
+    }
+  }
+  .dw__switch-track {
+    position: relative;
+    width: 52px;
+    height: 28px;
+    flex: none;
+    border-radius: 999px;
+    background: var(--soft);
+    box-shadow: inset 3px 3px 6px var(--soft-lo), inset -3px -3px 6px var(--soft-hi);
+    span {
+      position: absolute;
+      left: 3px;
+      top: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--soft);
+      box-shadow: 3px 3px 6px var(--soft-lo), -2px -2px 4px var(--soft-hi);
+      transition: transform 250ms ease, background 250ms;
+    }
+  }
+  .dw__switch input:checked + .dw__switch-track span {
+    transform: translateX(24px);
+    background: var(--accent);
+  }
+  .dw__switch input:focus-visible + .dw__switch-track {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .dw__range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 12px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent) var(--v), transparent var(--v)), var(--soft);
+    box-shadow: inset 3px 3px 6px var(--soft-lo), inset -3px -3px 6px var(--soft-hi);
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--soft);
+      box-shadow: 4px 4px 8px var(--soft-lo), -4px -4px 8px var(--soft-hi);
+      cursor: grab;
+    }
+    &::-moz-range-thumb {
+      width: 28px;
+      height: 28px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--soft);
+      box-shadow: 4px 4px 8px var(--soft-lo), -4px -4px 8px var(--soft-hi);
+    }
+  }
+  .dw__seg {
+    display: flex;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 16px;
+    box-shadow: inset 3px 3px 6px var(--soft-lo), inset -3px -3px 6px var(--soft-hi);
+    button {
+      flex: 1;
+      padding: 10px 8px;
+      border: 0;
+      border-radius: 12px;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button[aria-pressed='true'] {
+      background: var(--soft);
+      color: var(--accent);
+      box-shadow: 3px 3px 6px var(--soft-lo), -3px -3px 6px var(--soft-hi);
+    }
+  }
+
+  .dw__foot {
+    max-width: 1120px;
+    margin: 40px auto 0;
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+  }
+
+  @media (max-width: 860px) {
+    .dw__hero {
+      grid-template-columns: minmax(0, 1fr);
+      padding-top: 36px;
+    }
+    .dw__player {
+      max-width: 360px;
+      transform: none;
+    }
+    .dw__wallet {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .dw__soft-grid {
+      grid-template-columns: auto 1fr;
+    }
+    .dw__neu--wide {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 560px) {
+    .dw__nav nav {
+      display: none;
+    }
+    .dw__theme {
+      margin-left: auto;
+    }
+    .dw__soft {
+      padding: 22px 18px;
+    }
+    .dw__soft-grid {
+      gap: 20px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .dw__blob,
+    .dw__title span {
+      animation: none;
+    }
+  }
+}
+
+@keyframes e16-drift {
+  to {
+    transform: translate(8%, 10%) scale(1.15);
+  }
+}
+@keyframes e16-weight {
+  50% {
+    font-weight: 900;
+  }
+  100% {
+    font-weight: 100;
+  }
+}
+@keyframes e16-progress {
+  to {
+    width: 100%;
+  }
+}

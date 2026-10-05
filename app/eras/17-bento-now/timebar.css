@@ -1,0 +1,32 @@
+/* Era 17 time bar skin: a minimal dark floating pill, still docked at the bottom. */
+html[data-era-page="17"] .timebar {
+  --tb-bg: oklch(23% 0.03 270);
+  --tb-fg: #f7f5f0;
+  --tb-muted: #b9b8c6;
+  --tb-accent: oklch(72% 0.17 40);
+  --tb-accent-fg: #17151f;
+  --tb-notch: #44434f;
+  --tb-btn-bg: rgb(255 255 255 / 0.06);
+  --tb-btn-border: 1px solid rgb(255 255 255 / 0.12);
+  --tb-btn-radius: 999px;
+  --tb-radius: 999px;
+  --tb-font: ui-sans-serif, system-ui, -apple-system, 'Segoe UI Variable Text', 'Segoe UI', Inter, sans-serif;
+  --tb-shadow: 0 10px 30px rgb(0 0 0 / 0.35), inset 0 1px 0 rgb(255 255 255 / 0.08);
+  left: 10px;
+  right: 10px;
+  bottom: 6px;
+  height: 52px;
+  border-radius: 999px;
+  padding: 0 10px;
+}
+html[data-era-page="17"] .timebar__notch {
+  width: 22px;
+  height: 22px;
+  border-width: 1px;
+}
+html[data-era-page="17"] .timebar__notches::before {
+  height: 1px;
+}
+html[data-era-page="17"] .timebar__step {
+  border-radius: 999px;
+}

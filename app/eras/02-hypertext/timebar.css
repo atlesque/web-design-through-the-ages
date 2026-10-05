@@ -1,0 +1,27 @@
+/* Era 02 time bar skin: a grey browser toolbar with bevelled buttons. */
+html[data-era-page="02"] .timebar {
+  --tb-bg: #c0c0c0;
+  --tb-fg: #000000;
+  --tb-muted: #303030;
+  --tb-accent: #000080;
+  --tb-accent-fg: #ffffff;
+  --tb-notch: #808080;
+  --tb-btn-bg: #c0c0c0;
+  --tb-btn-border: 2px outset #e0e0e0;
+  --tb-btn-radius: 0;
+  --tb-font: Helvetica, Arial, 'Liberation Sans', sans-serif;
+  --tb-shadow: inset 0 2px 0 #ffffff, 0 -1px 0 #808080;
+  --tb-radius: 0;
+}
+html[data-era-page="02"] .timebar__notch {
+  border-radius: 0;
+  border-style: outset;
+  background: #c0c0c0;
+}
+html[data-era-page="02"] .timebar__btn[aria-pressed='true'],
+html[data-era-page="02"] .timebar__btn[aria-expanded='true'] {
+  border-style: inset;
+}
+html[data-era-page="02"] .timebar__years {
+  color: #000080;
+}

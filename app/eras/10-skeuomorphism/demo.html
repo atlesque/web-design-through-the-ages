@@ -1,0 +1,163 @@
+<div class="lq" id="lq">
+  <header class="lq-top" data-trait="texture">
+    <div class="lq-top__inner">
+      <!-- snippet:icon:start -->
+      <svg class="lq-icon" data-trait="gloss" viewBox="0 0 120 120" width="96" height="96" role="img" aria-label="Ledger &amp; Quill app icon: a stitched leather journal with a quill">
+        <defs>
+          <linearGradient id="lq-leather" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#9a5a34"/><stop offset="1" stop-color="#4a2412"/>
+          </linearGradient>
+          <linearGradient id="lq-gloss" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity=".05"/>
+          </linearGradient>
+          <linearGradient id="lq-feather" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#fffdf5"/><stop offset="1" stop-color="#c9bfa6"/>
+          </linearGradient>
+        </defs>
+        <rect x="4" y="4" width="112" height="112" rx="26" fill="url(#lq-leather)"/>
+        <rect x="12" y="12" width="96" height="96" rx="19" fill="none" stroke="#f3d9b5" stroke-opacity=".75" stroke-width="2" stroke-dasharray="5 4"/>
+        <path d="M84 22c-18 6-34 26-44 58l4 2c8-14 16-24 26-30-6 0-10 0-14-1 10-4 18-10 24-18-6 1-10 1-14 0 8-3 14-6 18-11z" fill="url(#lq-feather)" stroke="#6b5a3e" stroke-width="1"/>
+        <path d="M40 80l-6 14 9-11" fill="#1e140c"/>
+        <path d="M4 30C4 16 16 4 30 4h60c14 0 26 12 26 26v22C82 62 40 62 4 52z" fill="url(#lq-gloss)"/>
+      </svg>
+      <!-- snippet:icon:end -->
+      <div class="lq-brand">
+        <h1 class="lq-title" data-trait="letterpress">Ledger <span>&amp;</span> Quill</h1>
+        <p class="lq-tag">The journal you&rsquo;ll actually want to hold. For iPad, iPhone &amp; Mac.</p>
+      </div>
+      <a class="lq-buy" href="#lq-desk">
+        <span class="lq-buy__small">Available now</span>
+        <span class="lq-buy__big">Download &mdash; $4.99</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- snippet:stitch:start -->
+  <nav class="lq-nav" data-trait="stitch" aria-label="Ledger &amp; Quill">
+    <ul>
+      <li><a href="#lq-desk" aria-current="page">Journal</a></li>
+      <li><a href="#lq-features">Features</a></li>
+      <li><a href="#lq-praise">Praise</a></li>
+      <li><a href="#lq-foot">Support</a></li>
+    </ul>
+  </nav>
+  <!-- snippet:stitch:end -->
+
+  <section class="lq-desk" id="lq-desk" aria-labelledby="lq-desk-h">
+    <h2 class="lq-visually-hidden" id="lq-desk-h">Try the journal</h2>
+
+    <div class="lq-book" data-trait="stitch">
+      <div class="lq-page lq-page--left">
+        <p class="lq-date" data-trait="script">Tuesday, the 4th of October</p>
+        <form class="lq-note" id="lq-note">
+          <label for="lq-text" class="lq-label">Dear journal&hellip;</label>
+          <textarea id="lq-text" name="note" rows="7" maxlength="160" spellcheck="false">Picked up fresh espresso beans. Remember to call Grandma on Sunday!</textarea>
+          <div class="lq-note__actions">
+            <button type="submit" class="lq-key lq-key--brass">Tear off &amp; pin</button>
+            <button type="reset" class="lq-key">Erase</button>
+          </div>
+        </form>
+      </div>
+      <div class="lq-page lq-page--right" data-trait="curl">
+        <h3 class="lq-script-h">Pinned to the desk</h3>
+        <ul class="lq-stickies" id="lq-stickies" aria-live="polite">
+          <li class="lq-sticky lq-sticky--yellow">Buy moleskin-ish notebook refills</li>
+          <li class="lq-sticky lq-sticky--blue">Ideas: a recipe ledger? ✿</li>
+        </ul>
+        <p class="lq-hint">Write a note on the left page, then tear it off. Your notes stay on this desk (in this browser).</p>
+      </div>
+    </div>
+
+    <aside class="lq-lamp" aria-label="Desk lamp controls">
+      <svg class="lq-lamp__art" viewBox="0 0 160 200" width="150" height="188" aria-hidden="true">
+        <defs>
+          <linearGradient id="lq-brass" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#7a5a1c"/><stop offset=".45" stop-color="#f4d77a"/><stop offset="1" stop-color="#8a6420"/>
+          </linearGradient>
+          <linearGradient id="lq-shade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#2f6b3c"/><stop offset="1" stop-color="#13361c"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="80" cy="190" rx="52" ry="9" fill="url(#lq-brass)"/>
+        <rect x="76" y="70" width="8" height="118" fill="url(#lq-brass)"/>
+        <path d="M30 40 Q80 -6 130 40 L140 70 H20 Z" fill="url(#lq-shade)"/>
+        <path d="M40 34 Q80 8 120 34" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="4" stroke-linecap="round"/>
+        <rect x="18" y="68" width="124" height="6" rx="3" fill="url(#lq-brass)"/>
+        <ellipse class="lq-bulb" cx="80" cy="78" rx="38" ry="6" fill="#fff6c8"/>
+      </svg>
+      <div class="lq-plate">
+        <!-- snippet:switch:start -->
+        <label class="lq-switch" data-trait="controls">
+          <input type="checkbox" id="lq-lamp" role="switch" checked>
+          <span class="lq-switch__track" aria-hidden="true"><span class="lq-switch__lever"></span></span>
+          <span class="lq-switch__label">Lamp</span>
+        </label>
+        <!-- snippet:switch:end -->
+        <div class="lq-knob-wrap">
+          <div class="lq-knob" id="lq-knob" role="slider" tabindex="0" data-keys="own" aria-label="Lamp dimmer" aria-valuemin="20" aria-valuemax="100" aria-valuenow="100" aria-valuetext="100 percent">
+            <span class="lq-knob__mark" aria-hidden="true"></span>
+          </div>
+          <span class="lq-switch__label" aria-hidden="true">Dimmer</span>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="lq-features" id="lq-features" aria-labelledby="lq-feat-h">
+    <h2 id="lq-feat-h" class="lq-section-h" data-trait="letterpress">Crafted like the real thing</h2>
+    <div class="lq-cards">
+      <article class="lq-card" data-trait="paper">
+        <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+          <defs><linearGradient id="lq-lock" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6dc86"/><stop offset="1" stop-color="#9c7322"/></linearGradient></defs>
+          <path d="M20 30V20a12 12 0 0 1 24 0v10" fill="none" stroke="#9aa0a6" stroke-width="6"/>
+          <path d="M20 30V20a12 12 0 0 1 24 0v10" fill="none" stroke="#e8ecef" stroke-width="2"/>
+          <rect x="12" y="28" width="40" height="30" rx="5" fill="url(#lq-lock)" stroke="#6b4e14"/>
+          <circle cx="32" cy="41" r="4" fill="#3b2a08"/><rect x="30" y="42" width="4" height="9" fill="#3b2a08"/>
+          <rect x="14" y="30" width="36" height="8" rx="3" fill="#fff" opacity=".35"/>
+        </svg>
+        <h3>A brass clasp lock</h3>
+        <p>Spin the combination dial to open your private pages. Nobody peeks. Not even your little brother.</p>
+      </article>
+      <article class="lq-card" data-trait="paper">
+        <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+          <defs><linearGradient id="lq-calc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fdfdfb"/><stop offset="1" stop-color="#cfcabc"/></linearGradient></defs>
+          <rect x="8" y="10" width="48" height="46" rx="9" fill="#8a8578"/>
+          <rect x="8" y="8" width="48" height="44" rx="9" fill="url(#lq-calc)" stroke="#7a7466"/>
+          <rect x="12" y="10" width="40" height="14" rx="6" fill="#fff" opacity=".7"/>
+          <text x="32" y="40" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="22" fill="#4a463c">+</text>
+        </svg>
+        <h3>A ledger that adds up</h3>
+        <p>Jot down what you spent on the green cloth ledger page. Tap the big chunky keys and the totals tally themselves.</p>
+      </article>
+      <article class="lq-card" data-trait="paper">
+        <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+          <defs><linearGradient id="lq-ribbon" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7d1420"/><stop offset=".5" stop-color="#c8323f"/><stop offset="1" stop-color="#7d1420"/></linearGradient></defs>
+          <rect x="10" y="6" width="44" height="52" rx="3" fill="#e9dfc4" stroke="#a89466"/>
+          <path d="M16 16h32M16 24h32M16 32h22" stroke="#9fb5c8" stroke-width="2"/>
+          <path d="M38 2h12v52l-6-6-6 6z" fill="url(#lq-ribbon)"/>
+        </svg>
+        <h3>Ribbon bookmarks</h3>
+        <p>Silk ribbons keep your place on every device, carried there by Cloud Courier sync. Turn the page with a swipe.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="lq-praise" id="lq-praise" aria-labelledby="lq-praise-h">
+    <h2 id="lq-praise-h" class="lq-section-h" data-trait="letterpress">Kind words</h2>
+    <figure class="lq-quote">
+      <blockquote><p>&ldquo;So convincing I tried to smell the leather.&rdquo;</p></blockquote>
+      <figcaption>&mdash; Pocket Gadget Monthly, ★★★★★</figcaption>
+    </figure>
+    <figure class="lq-quote lq-quote--tilt">
+      <blockquote><p>&ldquo;The page-turn alone is worth five bucks.&rdquo;</p></blockquote>
+      <figcaption>&mdash; The Daily Tapper</figcaption>
+    </figure>
+    <div class="lq-badge" aria-label="Staff favorite 2011"><span>Staff<br>Favorite</span><small>2011</small></div>
+  </section>
+
+  <footer class="lq-foot" id="lq-foot">
+    <p class="lq-foot__brand" data-trait="letterpress">Ledger &amp; Quill Co.</p>
+    <p>Hand-stitched in Portland, Oregon &middot; <a href="#lq">Support</a> &middot; <a href="#lq">Press kit</a> &middot; <a href="#lq">Follow @ledgerquill</a></p>
+    <p class="lq-foot__fine">&copy; 2011 Ledger &amp; Quill Co. All pages reserved. Requires iOS 4.3 or later.</p>
+  </footer>
+</div>

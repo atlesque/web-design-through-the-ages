@@ -1,0 +1,21 @@
+/* Era 12 time bar skin: one solid colour, square notches, thin type. */
+html[data-era-page="12"] .timebar {
+  --tb-bg: #2c3e50;
+  --tb-fg: #ffffff;
+  --tb-muted: #c7d2dc;
+  --tb-accent: #f1c40f;
+  --tb-accent-fg: #2c3e50;
+  --tb-notch: #4f6478;
+  --tb-btn-bg: transparent;
+  --tb-btn-border: 2px solid #ffffff;
+  --tb-btn-radius: 0;
+  --tb-font: 'Segoe UI', 'Helvetica Neue', system-ui, sans-serif;
+  --tb-shadow: none;
+  font-weight: 300;
+}
+html[data-era-page="12"] .timebar__notch {
+  border-radius: 0;
+}
+html[data-era-page="12"] .timebar__notches::before {
+  height: 4px;
+}

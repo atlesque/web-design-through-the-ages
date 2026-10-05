@@ -1,0 +1,125 @@
+<div class="bbs" data-trait="grid">
+  <div class="bbs__frame">
+    <div class="bbs__status" data-trait="status">
+      <span>COM1</span><span>2400 8N1</span><span>ANSI-BBS</span><span class="bbs__online">ONLINE 00:00</span>
+    </div>
+
+    <div class="bbs__screen" id="bbs-screen" tabindex="0" data-keys="own" aria-label="BBS terminal. Press a menu hotkey letter.">
+      <!-- snippet:ansi-splash:start -->
+      <pre class="bbs__splash" data-trait="ansi-art" aria-label="Neon Basement BBS logo"><span class="c-12">█▄  █ ████ ▄██▄ █▄  █</span>
+<span class="c-12">█▀▄ █ █▄▄  █  █ █▀▄ █</span>   <span class="c-11">Node 1 of 2</span>
+<span class="c-4">█ ▀▄█ █    █  █ █ ▀▄█</span>   <span class="c-3">Est. 1989</span>
+<span class="c-4">█  ▀█ ████ ▀██▀ █  ▀█</span>
+
+<span class="c-13">███▄ ▄██▄ ▄███ ████ █▄ ▄█ ████ █▄  █ █████</span>
+<span class="c-13">█▄▄▀ █  █ ▀▄▄  █▄▄  █ ▀ █ █▄▄  █▀▄ █   █</span>
+<span class="c-5">█  █ ████    █ █    █   █ █    █ ▀▄█   █</span>
+<span class="c-5">███▀ █  █ ███▀ ████ █   █ ████ █  ▀█   █</span>
+<span class="c-8">░░░▒▒▒▓▓▓███</span> <span class="c-15">THE NEON BASEMENT BBS</span> <span class="c-8">███▓▓▓▒▒▒░░░</span></pre>
+      <!-- snippet:ansi-splash:end -->
+
+      <form class="bbs__login" id="bbs-login" data-trait="login" autocomplete="off">
+        <pre><span class="c-10">CONNECT 2400</span>
+<span class="c-7">Checking for ANSI... </span><span class="c-14">detected.</span>
+
+<label for="bbs-handle"><span class="c-11">Enter your handle (or NEW): </span></label><input id="bbs-handle" name="handle" maxlength="16" spellcheck="false" value="GUEST"><button type="submit" class="bbs__enter">[ENTER]</button></pre>
+      </form>
+
+      <!-- snippet:menu:start -->
+      <section class="bbs__panel is-current" id="bbs-main" data-screen="main" aria-label="Main menu">
+<pre data-trait="box-menu"><span class="c-9">╔══════════════════════════════════════════════════════════════╗</span>
+<span class="c-9">║</span><span class="c-15">  MAIN MENU                          </span><span class="c-14">Time left: 59 min</span> <span class="c-9">       ║</span>
+<span class="c-9">╠══════════════════════════════════════════════════════════════╣</span>
+<span class="c-9">║</span>  <a href="#bbs-msgs" data-key="m"><span class="c-14">[M]</span> <span class="c-7">Message bases</span></a>        <a href="#bbs-files" data-key="f"><span class="c-14">[F]</span> <span class="c-7">File areas</span></a>                     <span class="c-9">║</span>
+<span class="c-9">║</span>  <a href="#bbs-doors" data-key="d"><span class="c-14">[D]</span> <span class="c-7">Door games</span></a>           <a href="#bbs-who" data-key="w"><span class="c-14">[W]</span> <span class="c-7">Who's online</span></a>                   <span class="c-9">║</span>
+<span class="c-9">║</span>  <a href="#bbs-sysop" data-key="s"><span class="c-14">[S]</span> <span class="c-7">Page the sysop</span></a>       <a href="#bbs-bye" data-key="g"><span class="c-14">[G]</span> <span class="c-7">Goodbye (log off)</span></a>              <span class="c-9">║</span>
+<span class="c-9">╚══════════════════════════════════════════════════════════════╝</span>
+<span class="c-11">Command</span><span class="c-8"> » </span><span class="bbs__cursor" data-trait="cursor">█</span></pre>
+      </section>
+      <!-- snippet:menu:end -->
+
+      <section class="bbs__panel" id="bbs-msgs" data-screen="msgs" aria-label="Message bases">
+<pre><span class="c-11">─── MESSAGE BASES ───────────────────────────────────────────</span>
+ <span class="c-14">1</span>  <span class="c-15">General Chatter</span>        <span class="c-7">1,204 msgs</span>   <span class="c-10">3 new</span>
+ <span class="c-14">2</span>  <span class="c-15">ANSI Art Gallery</span>       <span class="c-7">  388 msgs</span>   <span class="c-10">1 new</span>
+ <span class="c-14">3</span>  <span class="c-15">Modem Talk (14.4k!)</span>    <span class="c-7">  612 msgs</span>
+ <span class="c-14">4</span>  <span class="c-15">FidoNet Echo: COOKING</span>  <span class="c-7">2,950 msgs</span>
+
+<span class="c-7">From: </span><span class="c-15">PIXEL.WITCH</span>   <span class="c-7">To: </span><span class="c-15">ALL</span>
+<span class="c-7">Subj: </span><span class="c-14">new logo up in file area 3, comments welcome :)</span>
+
+<a href="#bbs-main" data-key="q"><span class="c-14">[Q]</span> <span class="c-7">Back to main menu</span></a></pre>
+      </section>
+
+      <section class="bbs__panel" id="bbs-files" data-screen="files" aria-label="File areas">
+<pre><span class="c-11">─── FILE AREA 3: GRAPHICS ───────────────────────────────────</span>
+ <span class="c-15">NEONLOGO.ANS</span>   <span class="c-7">  6,144</span>  <span class="c-3">03-12-92</span>  <span class="c-7">Our new login screen</span>
+ <span class="c-15">TDRAW460.ZIP</span>   <span class="c-7"> 92,410</span>  <span class="c-3">11-02-91</span>  <span class="c-7">ANSI drawing program</span>
+ <span class="c-15">FONTPAK1.ZIP</span>   <span class="c-7"> 31,770</span>  <span class="c-3">01-19-92</span>  <span class="c-7">Block letter fonts</span>
+ <span class="c-15">ACIDVIEW.ZIP</span>   <span class="c-7"> 58,002</span>  <span class="c-3">07-30-92</span>  <span class="c-7">Art pack viewer</span>
+
+<span class="c-12">Download ratio: 1:4. Upload something nice first!</span>
+<span class="c-7">Est. time for TDRAW460.ZIP at 2400 baud: </span><span class="c-14">6 min 25 s</span>
+
+<a href="#bbs-main" data-key="q"><span class="c-14">[Q]</span> <span class="c-7">Back to main menu</span></a></pre>
+      </section>
+
+      <section class="bbs__panel" id="bbs-doors" data-screen="doors" aria-label="Door games">
+<pre><span class="c-11">─── DOOR GAMES ──────────────────────────────────────────────</span>
+ <span class="c-14">1</span>  <span class="c-15">Dragon Cellar</span>        <span class="c-7">turn-based dungeon crawl, 20 turns/day</span>
+ <span class="c-14">2</span>  <span class="c-15">Trade Lanes 2000</span>     <span class="c-7">space trading, 4 players this week</span>
+ <span class="c-14">3</span>  <span class="c-15">Basement Trivia</span>      <span class="c-7">yesterday's winner: BAUDBOY</span>
+
+<span class="c-10">Doors open in a separate program. Please don't hang up mid-game,</span>
+<span class="c-10">it corrupts the score file. Again.</span>
+
+<a href="#bbs-main" data-key="q"><span class="c-14">[Q]</span> <span class="c-7">Back to main menu</span></a></pre>
+      </section>
+
+      <section class="bbs__panel" id="bbs-who" data-screen="who" aria-label="Who's online">
+<pre><span class="c-11">─── WHO'S ONLINE ────────────────────────────────────────────</span>
+ <span class="c-14">Node</span>  <span class="c-14">Handle</span>          <span class="c-14">Doing</span>
+  <span class="c-15">1</span>    <span class="c-15 bbs__you">GUEST</span>           <span class="c-7">Reading this list</span>
+  <span class="c-15">2</span>    <span class="c-15">BAUDBOY</span>         <span class="c-7">In door: Basement Trivia</span>
+
+<span class="c-8">Only 2 phone lines. If you got a busy signal, that's why.</span>
+
+<a href="#bbs-main" data-key="q"><span class="c-14">[Q]</span> <span class="c-7">Back to main menu</span></a></pre>
+      </section>
+
+      <section class="bbs__panel" id="bbs-sysop" data-screen="sysop" aria-label="Sysop note">
+<pre data-trait="sysop"><span class="c-11">─── PAGING SYSOP ────────────────────────────────────────────</span>
+<span class="c-7">Paging</span> <span class="c-15">NIGHTOWL</span><span class="c-7">...</span> <span class="c-14 bbs__bell">♪ BEEP ♪</span>
+
+<span class="c-13">Sysop note:</span> <span class="c-7">I'm probably asleep. The board runs on a</span>
+<span class="c-7">286 in my parents' basement and a second phone line I pay for</span>
+<span class="c-7">with my paper route. Be cool, no cussing in General Chatter.</span>
+<span class="c-7">Upload ratio enforced. Leave feedback with [F] then [U].</span>
+                                              <span class="c-13">-- NightOwl</span>
+
+<a href="#bbs-main" data-key="q"><span class="c-14">[Q]</span> <span class="c-7">Back to main menu</span></a></pre>
+      </section>
+
+      <section class="bbs__panel" id="bbs-bye" data-screen="bye" aria-label="Log off">
+<pre><span class="c-11">Thanks for calling THE NEON BASEMENT!</span>
+<span class="c-7">You were online for </span><span class="c-14 bbs__minutes">1</span><span class="c-7"> minute(s).</span>
+
+<span class="c-12">NO CARRIER</span>
+
+<a href="#bbs-main" data-key="q"><span class="c-14">[Q]</span> <span class="c-7">Call again</span></a></pre>
+      </section>
+    </div>
+  </div>
+
+  <div class="bbs__controls">
+    <fieldset class="bbs__baud" data-trait="baud">
+      <legend>Modem speed</legend>
+      <label><input type="radio" name="baud" value="300"> 300 baud</label>
+      <label><input type="radio" name="baud" value="2400" checked> 2400 baud</label>
+      <label><input type="radio" name="baud" value="14400"> 14.4k</label>
+      <button type="button" class="bbs__redial">Redial</button>
+    </fieldset>
+    <p class="bbs__help">Click the terminal, then press a highlighted letter: <kbd>M</kbd> <kbd>F</kbd> <kbd>D</kbd> <kbd>W</kbd> <kbd>S</kbd> <kbd>G</kbd>, and <kbd>Q</kbd> to go back.</p>
+    <p class="bbs__room"><a href="/eras/01-bbs/pre-web/">Enter the pre-web room: Teletext, Minitel, Gopher →</a></p>
+  </div>
+</div>

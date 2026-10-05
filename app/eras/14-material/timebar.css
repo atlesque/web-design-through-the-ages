@@ -1,0 +1,29 @@
+/* Era 14 time bar skin: a Material bottom app bar, 8dp, with a pink accent. */
+html[data-era-page="14"] .timebar {
+  --tb-bg: #00695c;
+  --tb-fg: #ffffff;
+  --tb-muted: #d7efec;
+  --tb-accent: #ff80ab;
+  --tb-accent-fg: #1a1a1a;
+  --tb-notch: #4db6ac;
+  --tb-btn-bg: transparent;
+  --tb-btn-border: 0 solid transparent;
+  --tb-btn-radius: 2px;
+  --tb-font: Roboto, 'Noto Sans', 'Segoe UI', system-ui, sans-serif;
+  --tb-shadow: 0 -8px 10px 1px rgb(0 0 0 / 0.14), 0 -3px 14px 2px rgb(0 0 0 / 0.12), 0 -5px 5px -3px rgb(0 0 0 / 0.2);
+}
+html[data-era-page="14"] .timebar__btn,
+html[data-era-page="14"] .timebar__title {
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+html[data-era-page="14"] .timebar__btn {
+  text-transform: uppercase;
+}
+html[data-era-page="14"] .timebar__btn:hover,
+html[data-era-page="14"] .timebar__step:hover {
+  background: rgb(255 255 255 / 0.12);
+}
+html[data-era-page="14"] .timebar__notch[aria-current='page'] {
+  box-shadow: 0 3px 5px -1px rgb(0 0 0 / 0.3), 0 6px 10px 0 rgb(0 0 0 / 0.2);
+}

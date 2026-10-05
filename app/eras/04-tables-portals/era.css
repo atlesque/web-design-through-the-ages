@@ -1,0 +1,274 @@
+/* Era 04: table layouts & portals. A 760px nested-table portal inside a simulated browser window. */
+[data-era="04"] {
+  --ws-navy: #003366;
+  --ws-blue: #336699;
+  --ws-gold: #ffcc00;
+  --w98-face: #c0c0c0;
+  --w98-hi: #ffffff;
+  --w98-lo: #808080;
+  --w98-dk: #000000;
+  background: #008080;
+  color: #000;
+  font: 11px/1.35 Verdana, Tahoma, 'DejaVu Sans', Arial, sans-serif;
+
+  .ws {
+    padding: 16px;
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  /* ---------- The "lab" controls above the browser window ---------- */
+  .ws-lab {
+    max-width: 840px;
+    margin: 0 auto 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    align-items: center;
+    background: var(--w98-face);
+    padding: 8px 12px;
+    border: 2px solid;
+    border-color: var(--w98-hi) var(--w98-dk) var(--w98-dk) var(--w98-hi);
+    box-shadow: inset -1px -1px 0 var(--w98-lo), inset 1px 1px 0 #dfdfdf;
+    font-family: Tahoma, Verdana, 'DejaVu Sans', sans-serif;
+    font-size: 12px;
+  }
+  .ws-lab__vp {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    margin: 0;
+    padding: 4px 10px 6px;
+    border: 1px solid var(--w98-lo);
+    box-shadow: 1px 1px 0 var(--w98-hi), inset 1px 1px 0 var(--w98-hi);
+  }
+  .ws-lab__vp legend { padding: 0 3px; }
+  .ws-lab__hint { margin: 0; flex: 1 1 260px; color: #222; }
+  .ws-lab input { accent-color: #000080; }
+
+  /* ---------- Simulated browser window ---------- */
+  .ws-scroll {
+    position: relative;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .ws-scroll:focus-visible { outline: 2px dotted #fff; outline-offset: 2px; }
+  /* snippet:viewport:start */
+  .ws-window {
+    --ws-vp: 800px;
+    width: var(--ws-vp);
+    margin: 0 auto;
+    transition: width 0.35s ease;
+  }
+  .ws:has(#ws-vp-640:checked) .ws-window { --ws-vp: 640px; }
+  .ws:has(#ws-vp-fluid:checked) .ws-window { --ws-vp: 100%; min-width: 300px; }
+  /* Fluid mode: the old "width=100%" liquid table trick */
+  .ws:has(#ws-vp-fluid:checked) .ws-main { width: 100%; }
+  .ws:has(#ws-vp-fluid:checked) .ws-center { width: auto; }
+  .ws:has(#ws-vp-fluid:checked) .ws-center table { width: 100%; }
+  .ws:has(#ws-vp-fluid:checked) .ws-head td:first-child { width: 210px; }
+  .ws:has(#ws-vp-fluid:checked) .ws-head td:nth-child(2) { width: auto; }
+  .ws:has(#ws-vp-fluid:checked) .ws-head td:nth-child(3) { width: 220px; }
+  .ws:has(#ws-vp-fluid:checked) .ws-head img { width: 100%; }
+  .ws:has(#ws-vp-fluid:checked) .ws-search td:nth-child(2) { width: 100%; }
+  .ws:has(#ws-vp-fluid:checked) .ws-search input[type='text'] { width: 100%; }
+  .ws:has(#ws-vp-fluid:checked) .ws-head { background: linear-gradient(135deg, #003366, #336699 55%, #6699cc); }
+  /* snippet:viewport:end */
+  .ws-window {
+    background: var(--w98-face);
+    border: 2px solid;
+    border-color: #dfdfdf var(--w98-dk) var(--w98-dk) #dfdfdf;
+    box-shadow: inset -1px -1px 0 var(--w98-lo), inset 1px 1px 0 var(--w98-hi), 6px 6px 0 rgb(0 0 0 / 0.25);
+    padding: 3px;
+    box-sizing: border-box;
+  }
+  .ws-window__title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 18px;
+    padding: 0 2px 0 3px;
+    background: linear-gradient(90deg, #000080, #1084d0);
+    color: #fff;
+    font: bold 11px Tahoma, Verdana, sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .ws-window__icon {
+    width: 14px; height: 14px; flex: none;
+    background: radial-gradient(circle at 35% 35%, #99ccff, #3366cc 60%, #002266);
+    border-radius: 50%;
+  }
+  .ws-window__btns { margin-left: auto; display: flex; gap: 2px; }
+  .ws-window__btns i {
+    font-style: normal;
+    display: grid; place-items: center;
+    width: 14px; height: 12px;
+    background: var(--w98-face);
+    color: #000;
+    font-size: 9px; line-height: 1;
+    border: 1px solid; border-color: var(--w98-hi) var(--w98-dk) var(--w98-dk) var(--w98-hi);
+  }
+  .ws-window__bar {
+    display: flex; gap: 12px;
+    padding: 3px 6px;
+    font: 11px Tahoma, Verdana, sans-serif;
+    border-bottom: 1px solid var(--w98-lo);
+    box-shadow: 0 1px 0 var(--w98-hi);
+  }
+  .ws-window__addr {
+    display: flex; align-items: center; gap: 6px;
+    padding: 3px 4px;
+    font: 11px Tahoma, Verdana, sans-serif;
+  }
+  .ws-window__url {
+    flex: 1; min-width: 0;
+    background: #fff;
+    padding: 2px 4px;
+    border: 2px solid; border-color: var(--w98-lo) var(--w98-hi) var(--w98-hi) var(--w98-lo);
+    white-space: nowrap; overflow: hidden;
+  }
+  .ws-window__go {
+    padding: 1px 8px;
+    border: 2px solid; border-color: var(--w98-hi) var(--w98-dk) var(--w98-dk) var(--w98-hi);
+  }
+  /* The page itself: this is where the 640px horizontal scrollbar appears */
+  .ws-page {
+    background: #fff;
+    border: 2px solid; border-color: var(--w98-lo) var(--w98-hi) var(--w98-hi) var(--w98-lo);
+    overflow-x: auto;
+    padding: 8px 0;
+    scrollbar-color: var(--w98-face) #e6e6e6;
+  }
+
+  /* ---------- The portal ---------- */
+  table { border-collapse: separate; font: inherit; }
+  td, th { font: inherit; }
+  img { vertical-align: bottom; }
+  /* Spacer GIFs: block-level so the cell collapses to exactly their height */
+  img[src^='data:image/gif'] { display: block; }
+  a { color: #0000cc; }
+  a:visited { color: #551a8b; }
+  a:hover { color: #cc0000; }
+  :focus-visible { outline: 2px dotted #000; outline-offset: 1px; }
+  font[size="1"] { font-size: 10px; }
+
+  .ws-main { margin: 0 auto; }
+  .ws-slice { display: block; }
+  .ws-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+  .ws-ad { display: block; width: 220px; margin-left: auto; }
+  .ws-head__stretch { overflow: hidden; }
+  .ws-sr {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip-path: inset(50%); white-space: nowrap;
+  }
+
+  .ws-nav { background: var(--ws-blue); }
+  .ws-nav a { display: block; line-height: 0; }
+  .ws-nav a:focus-visible { outline: 2px dotted #fff; outline-offset: -3px; }
+  .ws-nav__head {
+    background: var(--ws-navy);
+    color: var(--ws-gold);
+    font-size: 10px; font-weight: bold;
+    letter-spacing: 1px;
+    padding: 3px 0;
+    border-bottom: 1px solid #6699cc;
+  }
+  .ws-nav__links { padding: 4px 6px; color: #fff; font-size: 11px; line-height: 1.7; }
+  .ws-nav__links a { display: inline; line-height: inherit; color: #fff; font-weight: bold; }
+  .ws-nav__links a:hover { color: var(--ws-gold); }
+  .ws-nav__counter { padding: 6px; color: #fff; text-align: center; }
+  .ws-odo {
+    display: inline-block; margin-top: 3px;
+    background: #000; color: #33ff33;
+    font: bold 12px 'Courier New', 'DejaVu Sans Mono', monospace;
+    letter-spacing: 2px; padding: 1px 3px;
+    border: 2px inset #999;
+  }
+
+  .ws-search td { padding: 4px; }
+  .ws-search { margin: 0; }
+  .ws-search input[type='text'], .ws-search select, .ws-signup input[type='text'] {
+    font: 11px Verdana, Tahoma, sans-serif;
+    border: 2px inset #ccc;
+    padding: 1px 2px;
+    background: #fff;
+  }
+  .ws-search input[type='text'] { width: 170px; box-sizing: border-box; }
+  .ws-search__pop { padding-top: 0; }
+  .ws-btn {
+    font: bold 11px Verdana, Tahoma, sans-serif;
+    background: var(--w98-face);
+    border: 2px solid; border-color: var(--w98-hi) var(--w98-dk) var(--w98-dk) var(--w98-hi);
+    padding: 1px 6px;
+    cursor: pointer;
+  }
+  .ws-btn:active { border-color: var(--w98-dk) var(--w98-hi) var(--w98-hi) var(--w98-dk); }
+  .ws-btn--red { background: #cc0000; color: #fff; margin-top: 4px; }
+  .ws-results { margin: 4px 0; font-size: 10px; color: #333; min-height: 0; }
+  .ws-results:empty { display: none; }
+
+  .ws-box { border: 1px solid var(--ws-navy); }
+  .ws-box__head { color: #fff; font-size: 11px; padding: 3px 0; letter-spacing: 0.5px; }
+  .ws-box__body { padding: 5px 6px 6px; background: #fff; vertical-align: top; }
+  .ws-box__body td { vertical-align: top; }
+  .ws-lead { font-weight: bold; font-size: 12px; }
+  .ws-heads { margin: 6px 0 4px; padding-left: 16px; list-style: square; }
+  .ws-heads li { margin: 2px 0; }
+  .ws-more { margin: 4px 0 0; font-size: 10px; }
+  .ws-stocks th { font-size: 10px; color: var(--ws-navy); }
+  .ws-stocks td, .ws-stocks th { padding: 1px 2px; font-family: Verdana, Tahoma, sans-serif; }
+  .ws-stocks .up { color: #006600; font-weight: bold; }
+  .ws-stocks .dn { color: #cc0000; font-weight: bold; }
+  .ws-stocks caption { caption-side: top; }
+  .ws-horo { margin: 5px 0 0; font-style: italic; min-height: 4.2em; }
+  #ws-sign { font: 11px Verdana, Tahoma, sans-serif; }
+  .ws-temp { font-size: 18px; color: var(--ws-navy); }
+  .ws-at { font-size: 10px; }
+  .ws-signup { margin: 0; }
+  .ws-signup input[type='text'] { width: 82px; margin-top: 4px; }
+  .ws-signup__msg { margin: 4px 0 0; font-size: 10px; color: #006600; font-weight: bold; }
+  .ws-signup__msg:empty { display: none; }
+  .ws-top10 { margin: 0; padding-left: 20px; }
+  .ws-top10 li { margin: 1px 0; }
+  .ws-chat td { padding: 1px 0; }
+  .ws-frames {
+    display: block;
+    width: 100%;
+    height: 230px;
+    border: 2px inset #ccc;
+    box-sizing: border-box;
+    background: #fff;
+  }
+  .ws-caption { margin: 4px 0 0; }
+  .ws-caption code { font-size: 10px; }
+
+  .ws-foot { color: #fff; line-height: 1.8; }
+  .ws-foot a, .ws-foot a:visited { color: var(--ws-gold); }
+  .ws-badges { display: inline-flex; gap: 8px; margin-top: 6px; }
+  .ws-badges span {
+    width: 88px; height: 31px; box-sizing: border-box;
+    display: grid; place-content: center;
+    font-size: 9px; line-height: 1.1; text-align: center;
+    background: linear-gradient(#ffffff, #c0c0c0); color: #000;
+    border: 1px solid #000;
+  }
+  .ws-badges span:nth-child(2) { background: linear-gradient(#000080, #3366cc); color: #fff; }
+  .ws-badges span:nth-child(3) { background: linear-gradient(#ffcc00, #ff9900); }
+
+  /* "Show the table grid": reveal every cell the way a WYSIWYG editor did */
+  .ws:has(#ws-slices:checked) .ws-page td {
+    outline: 1px dashed rgb(255 0 0 / 0.75);
+    outline-offset: -1px;
+  }
+  .ws:has(#ws-slices:checked) .ws-page img[width] {
+    outline: 1px solid #ff00ff;
+    background: rgb(255 0 255 / 0.25);
+    min-width: 2px; min-height: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ws-window { transition: none; }
+  }
+}

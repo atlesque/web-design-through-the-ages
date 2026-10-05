@@ -1,0 +1,139 @@
+<div class="ob" data-candy="bondi">
+  <svg class="ob-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- snippet:chrome-filter:start -->
+      <linearGradient id="ob-chrome" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ffffff"/>
+        <stop offset=".38" stop-color="#b9c6d2"/>
+        <stop offset=".5" stop-color="#3d4a57"/>
+        <stop offset=".56" stop-color="#8a98a6"/>
+        <stop offset=".8" stop-color="#eef3f7"/>
+        <stop offset="1" stop-color="#8896a4"/>
+      </linearGradient>
+      <filter id="ob-bevel" x="-10%" y="-20%" width="120%" height="150%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="1.6" result="blur"/>
+        <feSpecularLighting in="blur" surfaceScale="4" specularConstant="1.1" specularExponent="22" lighting-color="#ffffff" result="spec">
+          <feDistantLight azimuth="235" elevation="42"/>
+        </feSpecularLighting>
+        <feComposite in="spec" in2="SourceAlpha" operator="in" result="specIn"/>
+        <feComposite in="SourceGraphic" in2="specIn" operator="arithmetic" k1="0" k2="1" k3="0.85" k4="0"/>
+        <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#001a33" flood-opacity=".45"/>
+      </filter>
+      <!-- snippet:chrome-filter:end -->
+      <radialGradient id="ob-flare" cx=".5" cy=".5" r=".5">
+        <stop offset="0" stop-color="#ffffff"/>
+        <stop offset=".2" stop-color="#ffffff" stop-opacity=".8"/>
+        <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+  </svg>
+
+  <div class="ob-bubbles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+  <header class="ob-head">
+    <svg class="ob-logo" viewBox="0 0 620 130" role="img" aria-labelledby="ob-logo-t" data-trait="chrome">
+      <title id="ob-logo-t">Orbitron Labs</title>
+      <g aria-hidden="true">
+        <ellipse cx="66" cy="66" rx="56" ry="22" fill="none" stroke="url(#ob-chrome)" stroke-width="7" transform="rotate(-24 66 66)" filter="url(#ob-bevel)"/>
+        <circle cx="66" cy="66" r="30" fill="url(#ob-chrome)" filter="url(#ob-bevel)"/>
+        <circle cx="56" cy="54" r="9" fill="#fff" opacity=".85"/>
+        <text x="132" y="74" font-family="'Arial Black', Impact, 'DejaVu Sans', sans-serif" font-weight="900" font-style="italic" font-size="66" letter-spacing="-2" fill="url(#ob-chrome)" stroke="#2b3947" stroke-width="1.2" filter="url(#ob-bevel)">ORBITRON</text>
+        <text x="420" y="112" font-family="Verdana, 'DejaVu Sans', sans-serif" font-weight="bold" font-style="italic" font-size="22" letter-spacing="10" class="ob-logo__labs">LABS</text>
+        <path d="M134 92 C 260 120, 380 70, 600 84" fill="none" class="ob-logo__swoosh" stroke-width="5" stroke-linecap="round"/>
+        <circle class="ob-flare" cx="378" cy="26" r="26" fill="url(#ob-flare)"/>
+        <path class="ob-flare" d="M378 4v44M356 26h44" stroke="#fff" stroke-width="1.5"/>
+      </g>
+    </svg>
+    <p class="ob-tag" data-trait="e-everything"><span>e-Solutions</span> for the <b>e-Generation</b> &middot; <span>e-Commerce</span> &middot; <span>e-Business</span> &middot; <span>e-Everything</span></p>
+
+    <!-- snippet:blob-nav:start -->
+    <nav class="ob-nav" aria-label="Orbitron Labs" data-trait="blobs">
+      <a href="#ob-products" class="ob-blob ob-blob--1"><span>Products</span></a>
+      <a href="#ob-check" class="ob-blob ob-blob--2"><span>Y2K Check</span></a>
+      <a href="#ob-countdown" class="ob-blob ob-blob--3"><span>Countdown</span></a>
+      <a href="#ob-candy" class="ob-blob ob-blob--4"><span>e-Store</span></a>
+    </nav>
+    <!-- snippet:blob-nav:end -->
+  </header>
+
+  <div class="ob-grid">
+    <section class="ob-panel ob-panel--count" id="ob-countdown" aria-labelledby="ob-h-count" data-trait="countdown">
+      <h2 id="ob-h-count" class="ob-h">Millennium Countdown</h2>
+      <p class="ob-sub">Time remaining until <b>January 1, 2000 &middot; 00:00:00</b></p>
+      <div class="ob-lcd" role="timer" aria-live="off">
+        <div><b class="ob-lcd__d">48</b><small>days</small></div>
+        <div><b class="ob-lcd__h">07</b><small>hrs</small></div>
+        <div><b class="ob-lcd__m">22</b><small>min</small></div>
+        <div><b class="ob-lcd__s">16</b><small>sec</small></div>
+      </div>
+      <p class="ob-fine">Clock synchronised to Orbitron&trade; Atomic Time Server. Party like it's 1999.</p>
+      <h3 class="ob-h3">Your e-Millennium checklist</h3>
+      <ul class="ob-checklist">
+        <li><label><input type="checkbox"> Bottled water &amp; batteries</label></li>
+        <li><label><input type="checkbox"> Print out bank statements</label></li>
+        <li><label><input type="checkbox"> Silver party outfit</label></li>
+        <li><label><input type="checkbox"> Burn a &ldquo;2000&rdquo; mix CD</label></li>
+      </ul>
+    </section>
+
+    <section class="ob-panel ob-panel--check" id="ob-check" aria-labelledby="ob-h-check">
+      <h2 id="ob-h-check" class="ob-h">e-Y2K Compliance Scan</h2>
+      <p>Is <i>your</i> PC ready for the year 2000? Our <b>CyberScan 2K</b> engine checks your system in seconds.</p>
+      <button type="button" class="ob-gel" id="ob-scan" data-trait="scan">Start Scan</button>
+      <div class="ob-meter" aria-hidden="true"><span class="ob-meter__fill"></span></div>
+      <ul class="ob-log" aria-live="polite" aria-label="Scan log">
+        <li>Ready. Click <b>Start Scan</b> to begin.</li>
+      </ul>
+    </section>
+
+    <section class="ob-panel ob-panel--candy" id="ob-candy" aria-labelledby="ob-h-candy" data-trait="candy">
+      <h2 id="ob-h-candy" class="ob-h">Orbitron e-Pod 2000</h2>
+      <div class="ob-pod">
+        <svg class="ob-pod__art" viewBox="0 0 220 190" aria-hidden="true">
+          <defs>
+            <radialGradient id="ob-pod-shell" cx=".35" cy=".25" r=".9">
+              <stop offset="0" stop-color="#fff" stop-opacity=".9"/>
+              <stop offset=".25" class="ob-stop-a"/>
+              <stop offset="1" class="ob-stop-b"/>
+            </radialGradient>
+          </defs>
+          <path d="M30 20 Q110 -6 190 20 Q206 90 186 150 Q110 176 34 150 Q14 90 30 20Z" fill="url(#ob-pod-shell)" opacity=".88"/>
+          <rect x="50" y="34" width="120" height="86" rx="10" fill="#0b1e2c" stroke="#d7e2ec" stroke-width="5"/>
+          <path d="M58 42 h70 l-24 70 h-46z" fill="#fff" opacity=".12"/>
+          <text x="110" y="84" text-anchor="middle" font-family="Verdana, sans-serif" font-size="14" font-style="italic" font-weight="bold" fill="#7ff">e-Pod</text>
+          <ellipse cx="110" cy="140" rx="26" ry="6" fill="#fff" opacity=".35"/>
+          <path d="M60 156 Q110 196 160 156 L150 186 L70 186Z" class="ob-pod__base" opacity=".8"/>
+          <path d="M44 32 Q70 22 90 24" stroke="#fff" stroke-width="6" stroke-linecap="round" fill="none" opacity=".7"/>
+        </svg>
+        <div>
+          <p>Translucent. Friendly. <b>Internet-ready.</b> Pick your flavour:</p>
+          <fieldset class="ob-swatches">
+            <legend class="ob-sr">Candy colour</legend>
+            <label class="ob-sw ob-sw--bondi" title="Bondi Blue"><input type="radio" name="ob-candy" value="bondi" checked><span>Bondi Blue</span></label>
+            <label class="ob-sw ob-sw--tangerine" title="Tangerine"><input type="radio" name="ob-candy" value="tangerine"><span>Tangerine</span></label>
+            <label class="ob-sw ob-sw--grape" title="Grape"><input type="radio" name="ob-candy" value="grape"><span>Grape</span></label>
+            <label class="ob-sw ob-sw--lime" title="Lime"><input type="radio" name="ob-candy" value="lime"><span>Lime</span></label>
+            <label class="ob-sw ob-sw--strawberry" title="Strawberry"><input type="radio" name="ob-candy" value="strawberry"><span>Strawberry</span></label>
+          </fieldset>
+          <p class="ob-price">Only <b>$1,299</b> &middot; 400 MHz &middot; 64 MB &middot; 56K e-Modem</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ob-panel ob-panel--products" id="ob-products" aria-labelledby="ob-h-prod">
+      <h2 id="ob-h-prod" class="ob-h">e-Products</h2>
+      <ul class="ob-prod">
+        <li><b>OrbitMail&trade;</b> e-mail for the whole family, with 3D smileys.</li>
+        <li><b>CyberShop 2000</b> put your store online in a weekend.</li>
+        <li><b>NetPortal Pro</b> push channels, straight to your desktop.</li>
+        <li><b>i-Vault</b> back up the millennium on Zip disks.</li>
+      </ul>
+      <p class="ob-fine">Ask about our e-Partner program. Venture capital welcome.</p>
+    </section>
+  </div>
+
+  <footer class="ob-foot" data-trait="footer">
+    <p><span class="ob-pill">Y2K READY</span><span class="ob-pill">Enhanced for 4.0 browsers</span><span class="ob-pill">1024&times;768 &middot; Millions of colours</span></p>
+    <p>&copy; 1999 Orbitron Labs Interactive, Inc. All rights reserved. &middot; Orbitron, e-Pod and CyberScan are trademarks of Orbitron Labs. &middot; <a href="#ob-countdown">Back to top</a></p>
+  </footer>
+</div>

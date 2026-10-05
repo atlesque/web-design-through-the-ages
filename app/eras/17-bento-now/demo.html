@@ -1,0 +1,149 @@
+<div class="qn">
+  <header class="qn__nav">
+    <a class="qn__logo" href="#qn-top" aria-label="Quietnote home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="6"/><path d="M8 9h8M8 12.5h8M8 16h5"/></svg>
+      Quietnote
+    </a>
+    <nav aria-label="Quietnote">
+      <a href="#qn-features">Features</a>
+      <a href="#qn-lab">Lab</a>
+      <a href="#qn-pricing">Pricing</a>
+    </nav>
+    <a class="qn__pill" href="#qn-pricing">Get Quietnote</a>
+  </header>
+
+  <!-- snippet:kinetic:start -->
+  <section class="qn__hero" id="qn-top" data-trait="kinetic">
+    <p class="qn__eyebrow">Notes, without the noise · v4</p>
+    <h1 class="qn__mega">
+      <span class="qn__line">Write it</span>
+      <span class="qn__line qn__line--out">down.</span>
+      <span class="qn__line qn__line--small">No AI. No feed. No streaks.</span>
+    </h1>
+  </section>
+  <!-- snippet:kinetic:end -->
+
+  <div class="qn__filters" role="group" aria-label="Filter features" data-trait="view-transitions">
+    <button type="button" aria-pressed="true" data-filter="all">All</button>
+    <button type="button" aria-pressed="false" data-filter="write">Writing</button>
+    <button type="button" aria-pressed="false" data-filter="sync">Sync</button>
+    <button type="button" aria-pressed="false" data-filter="privacy">Privacy</button>
+  </div>
+
+  <!-- snippet:bento:start -->
+  <section class="qn__bento" id="qn-features" aria-label="Features" data-trait="bento">
+    <article class="qn__tile qn__tile--hero" data-tags="write" style="view-transition-name: qn-t1">
+      <h2>A blank page that opens in 80 ms</h2>
+      <p>Cold start to cursor before your thought escapes.</p>
+      <div class="qn__mock" aria-hidden="true">
+        <span class="qn__mock-bar"></span>
+        <span class="qn__mock-line" style="--w:72%"></span>
+        <span class="qn__mock-line" style="--w:88%"></span>
+        <span class="qn__mock-line" style="--w:54%"></span>
+        <span class="qn__caret"></span>
+      </div>
+      <button type="button" class="qn__expand" aria-expanded="false">Expand</button>
+    </article>
+    <article class="qn__tile qn__tile--stat" data-tags="sync" style="view-transition-name: qn-t2">
+      <p class="qn__big">0.3<small>s</small></p>
+      <h2>Sync across every device</h2>
+      <button type="button" class="qn__expand" aria-expanded="false">Expand</button>
+    </article>
+    <article class="qn__tile qn__tile--lock" data-tags="privacy" style="view-transition-name: qn-t3">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="21" width="28" height="20" rx="6"/><path d="M16 21v-5a8 8 0 0 1 16 0v5"/></svg>
+      <h2>End-to-end encrypted</h2>
+      <p>We can't read your notes. Nobody can.</p>
+      <button type="button" class="qn__expand" aria-expanded="false">Expand</button>
+    </article>
+    <article class="qn__tile qn__tile--md" data-tags="write" style="view-transition-name: qn-t4">
+      <h2>Markdown, quietly</h2>
+      <p><code># heading</code> <code>**bold**</code> <code>- [ ] todo</code></p>
+      <button type="button" class="qn__expand" aria-expanded="false">Expand</button>
+    </article>
+    <article class="qn__tile qn__tile--offline" data-tags="sync privacy" style="view-transition-name: qn-t5">
+      <h2>Offline first</h2>
+      <p>Your notes live on your device. The cloud is a backup, not a landlord.</p>
+      <button type="button" class="qn__expand" aria-expanded="false">Expand</button>
+    </article>
+    <article class="qn__tile qn__tile--quote" data-tags="write" style="view-transition-name: qn-t6">
+      <blockquote><p>"The first notes app that doesn't want my attention."</p><footer>— a very calm reviewer</footer></blockquote>
+      <button type="button" class="qn__expand" aria-expanded="false">Expand</button>
+    </article>
+    <article class="qn__tile qn__tile--export" data-tags="privacy" style="view-transition-name: qn-t7">
+      <h2>Plain-text export</h2>
+      <p>One folder of <code>.md</code> files. Leave whenever you like.</p>
+      <button type="button" class="qn__expand" aria-expanded="false">Expand</button>
+    </article>
+    <article class="qn__tile qn__tile--widgets" data-tags="sync" style="view-transition-name: qn-t8">
+      <h2>Widgets everywhere</h2>
+      <div class="qn__dots" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      <button type="button" class="qn__expand" aria-expanded="false">Expand</button>
+    </article>
+  </section>
+  <!-- snippet:bento:end -->
+
+  <section class="qn__lab" id="qn-lab" aria-labelledby="qn-lab-h">
+    <div class="qn__lab-head reveal" data-trait="scroll-driven">
+      <h2 id="qn-lab-h">The lab</h2>
+      <p>How this page is built, live. Drag the slider: the card below doesn't look at the viewport, only at its container.</p>
+    </div>
+
+    <!-- snippet:container:start -->
+    <div class="qn__resizer reveal" data-trait="container">
+      <label for="qn-width">Container width <output id="qn-width-out" for="qn-width">100%</output></label>
+      <input id="qn-width" type="range" min="30" max="100" value="100" step="1">
+      <div class="qn__cq" id="qn-cq" style="--cq: 100%">
+        <article class="qn__cq-card">
+          <div class="qn__cq-art" aria-hidden="true"></div>
+          <div class="qn__cq-body">
+            <h3>Morning pages</h3>
+            <p>3 notes · edited 2 min ago</p>
+            <label class="qn__cq-pin"><input type="checkbox"> Pin to widget</label>
+          </div>
+          <span class="qn__cq-badge" aria-hidden="true"></span>
+        </article>
+      </div>
+    </div>
+    <!-- snippet:container:end -->
+
+    <div class="qn__support reveal">
+      <h3>Your browser, right now</h3>
+      <ul class="qn__features" data-trait="feature-detect">
+        <li data-check="vt"><span>View Transitions</span><b>checking…</b></li>
+        <li data-check="sda"><span>Scroll-driven animations</span><b>checking…</b></li>
+        <li data-check="has"><span>:has()</span><b>checking…</b></li>
+        <li data-check="cq"><span>Container queries</span><b>checking…</b></li>
+        <li data-check="subgrid"><span>Subgrid</span><b>checking…</b></li>
+        <li data-check="anchor"><span>Anchor positioning</span><b>checking…</b></li>
+        <li data-check="oklch"><span>oklch() + color-mix()</span><b>checking…</b></li>
+        <li data-check="nesting"><span>CSS nesting</span><b>checking…</b></li>
+        <li data-check="popover"><span>Popover API</span><b>checking…</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="qn__pricing" id="qn-pricing" aria-labelledby="qn-pricing-h">
+    <h2 id="qn-pricing-h" class="reveal">One price. Forever.</h2>
+    <div class="qn__plans" data-trait="has">
+      <label class="qn__plan reveal">
+        <input type="radio" name="qn-plan" value="personal" checked>
+        <span class="qn__plan-name">Personal</span>
+        <span class="qn__plan-price">€0</span>
+        <span class="qn__plan-row">One device</span>
+        <span class="qn__plan-row">Markdown export</span>
+      </label>
+      <label class="qn__plan reveal">
+        <input type="radio" name="qn-plan" value="lifetime">
+        <span class="qn__plan-name">Lifetime</span>
+        <span class="qn__plan-price">€29</span>
+        <span class="qn__plan-row">Every device</span>
+        <span class="qn__plan-row">Encrypted sync</span>
+      </label>
+    </div>
+    <p class="qn__plan-note reveal">Pick a plan above; the selected card is styled with <code>:has(input:checked)</code>.</p>
+  </section>
+
+  <footer class="qn__foot">
+    <p>Quietnote · Made by four people in a small office · <a href="#qn-top">Back to top</a></p>
+  </footer>
+</div>

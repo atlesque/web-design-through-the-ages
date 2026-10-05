@@ -1,0 +1,385 @@
+/* Era 08: Blogs and social profiles. A hosted-blog template with a two-column
+   float layout, then a FriendSpace profile in a sandboxed same-origin iframe. */
+[data-era="08"] {
+  background: #efe6d2 url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='6' height='6'><rect width='6' height='6' fill='%23efe6d2'/><rect width='1' height='1' fill='%23e2d6bd'/></svg>");
+  color: #3a2c1f;
+  font: 13px/1.5 'Trebuchet MS', Trebuchet, Verdana, sans-serif;
+
+  a {
+    color: #8a3f12;
+  }
+  a:visited {
+    color: #6e4a2f;
+  }
+  a:hover {
+    color: #c45a1a;
+  }
+  :focus-visible {
+    outline: 2px solid #1c5fa8;
+    outline-offset: 2px;
+  }
+
+  /* The hosted-blog navbar every free blog carried across the top. */
+  .kk__navbar {
+    background: #3b5998 linear-gradient(#5b7cbf, #34508d);
+    color: #fff;
+    font: 11px/26px Arial, sans-serif;
+    padding: 0 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-bottom: 1px solid #22386a;
+  }
+  .kk__navbar span {
+    margin-right: 12px;
+    opacity: 0.95;
+  }
+  .kk__navbar-logo {
+    font: bold 13px Georgia, serif;
+    background: #fff;
+    color: #34508d;
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+  .kk__navbar-right {
+    float: right;
+  }
+
+  /* snippet:blog-layout:start */
+  .kk__outer {
+    width: 760px;
+    max-width: calc(100% - 20px);
+    margin: 20px auto 0;
+    background: #fffaf0;
+    border: 1px solid #c9b48f;
+    box-shadow: 0 2px 6px rgb(80 50 20 / 0.2);
+  }
+  .kk__wrap:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  .kk__main {
+    float: left;
+    width: 480px;
+    padding: 0 0 20px 24px;
+  }
+  .kk__sidebar {
+    float: right;
+    width: 200px;
+    padding: 0 20px 20px 0;
+  }
+  /* snippet:blog-layout:end */
+
+  .kk__header {
+    margin: 0;
+    padding: 34px 24px 26px;
+    background: #6e3b1a linear-gradient(#8a4d24, #5a2f13);
+    border-bottom: 4px solid #d9a441;
+    color: #f8e8c8;
+    h1 {
+      margin: 0;
+      font: normal 40px/1.1 Georgia, 'Times New Roman', serif;
+      letter-spacing: -1px;
+    }
+    h1 a,
+    h1 a:visited {
+      color: #fff6e0;
+      text-decoration: none;
+    }
+  }
+  .kk__desc {
+    margin: 6px 0 0;
+    font: italic 14px Georgia, serif;
+    color: #f0d9a8;
+  }
+
+  .kk__date {
+    margin: 26px 0 6px;
+    font: bold 11px/1 'Trebuchet MS', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #8f7a5a;
+  }
+  .kk__post {
+    border-bottom: 1px dotted #c9b48f;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  .kk__title {
+    margin: 0 0 4px;
+    font: normal 21px/1.25 Georgia, serif;
+    a,
+    a:visited {
+      color: #5a2f13;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+  .kk__body p {
+    margin: 0 0 0.9em;
+  }
+  .kk__now {
+    font-size: 11px;
+    color: #6b5a44;
+    background: #f5ead2;
+    padding: 4px 8px;
+    border-left: 3px solid #d9a441;
+  }
+  .kk__byline {
+    font-size: 11px;
+    color: #6b5a44;
+    margin: 0;
+  }
+  .kk__labels {
+    display: inline-block;
+  }
+
+  .kk__comments {
+    margin-top: 18px;
+    background: #f5ead2;
+    padding: 4px 14px;
+    h4 {
+      font: normal 16px Georgia, serif;
+      margin: 8px 0;
+    }
+    dt {
+      font-size: 11px;
+      color: #6b5a44;
+      padding-left: 18px;
+      background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12'><path d='M1 1h10v7H5l-3 3V8H1z' fill='%23d9a441'/></svg>") no-repeat 0 2px;
+    }
+    dd {
+      margin: 0 0 10px 18px;
+    }
+  }
+
+  .kk__sidebar {
+    h2 {
+      margin: 24px 0 6px;
+      font: bold 11px/1 'Trebuchet MS', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #8f7a5a;
+      border-bottom: 1px dotted #c9b48f;
+      padding-bottom: 5px;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      padding-left: 14px;
+      text-indent: -14px;
+      margin: 3px 0;
+    }
+    li:before {
+      content: '\00bb\00a0\00a0';
+      color: #d9a441;
+    }
+    p {
+      margin: 6px 0;
+    }
+  }
+  .kk__avatar {
+    float: left;
+    margin: 4px 8px 4px 0;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 1px #c9b48f;
+  }
+  .kk__about:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  /* snippet:feeds:start */
+  /* The orange 80x15 "button" badges, drawn in CSS instead of GIFs. */
+  .kk__feeds {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .feed {
+    display: inline-flex;
+    height: 15px;
+    border: 1px solid #000;
+    font: bold 9px/15px Verdana, sans-serif;
+    text-decoration: none;
+  }
+  .feed b,
+  .feed i {
+    padding: 0 4px;
+    font-style: normal;
+  }
+  .feed b {
+    background: #ff6600;
+    color: #fff;
+  }
+  .feed i {
+    background: #898e79;
+    color: #fff;
+  }
+  .feed--xml b {
+    padding: 0 8px;
+  }
+  /* snippet:feeds:end */
+
+  .kk__cloud {
+    line-height: 1.35;
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .t1 { font-size: 10px; color: #a07a52; }
+    .t2 { font-size: 12px; }
+    .t3 { font-size: 15px; }
+    .t4 { font-size: 18px; }
+    .t5 { font-size: 22px; font-weight: bold; }
+    .t6 { font-size: 27px; font-weight: bold; color: #5a2f13; }
+  }
+  .kk__counter span {
+    font: bold 12px 'Courier New', monospace;
+    background: #000;
+    color: #6f6;
+    padding: 1px 4px;
+    letter-spacing: 2px;
+  }
+  .kk__powered {
+    clear: both;
+    margin: 0;
+    padding: 12px 24px;
+    font-size: 11px;
+    text-align: center;
+    color: #f0d9a8;
+    background: #5a2f13;
+  }
+
+  /* ---------- FriendSpace ---------- */
+  .fs {
+    margin: 36px 0 0;
+    padding: 0 10px 30px;
+    background: linear-gradient(#e5e5e5, #cfd8e6);
+    border-top: 6px solid #036;
+  }
+  .fs__head {
+    margin: 0 -10px 12px;
+    padding: 10px 16px;
+    background: #036 linear-gradient(#1d5a9a, #003366);
+    color: #fff;
+    font: bold 22px/1.1 Arial, Helvetica, sans-serif;
+    letter-spacing: -0.5px;
+    span {
+      display: block;
+      font: italic normal 12px Georgia, serif;
+      color: #bcd3ee;
+      letter-spacing: 0;
+    }
+  }
+  .fs__intro {
+    max-width: 960px;
+    margin: 0 auto 12px;
+    font: 12px/1.5 Verdana, sans-serif;
+    color: #223;
+  }
+  .fs__lab {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .fs__editor {
+    flex: 1 1 260px;
+    background: #fff;
+    border: 1px solid #6699cc;
+    padding: 8px;
+    font: 11px Verdana, sans-serif;
+    color: #222;
+    label {
+      display: block;
+      font-weight: bold;
+      background: #6699cc;
+      color: #fff;
+      margin: -8px -8px 8px;
+      padding: 4px 6px;
+    }
+    textarea {
+      box-sizing: border-box;
+      width: 100%;
+      font: 12px/1.4 'Courier New', Courier, monospace;
+      border: 1px solid #999;
+      background: #fafafa;
+      color: #111;
+      resize: vertical;
+    }
+  }
+  .fs__presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 6px;
+    button {
+      font: bold 11px Verdana, sans-serif;
+      padding: 4px 8px;
+      cursor: pointer;
+      border: 1px solid #036;
+      background: linear-gradient(#fff, #d6e2f0);
+      color: #036;
+    }
+    button[data-preset='glitter'] {
+      background: linear-gradient(#ffe0f1, #ff9fd2);
+      color: #6b0040;
+      border-color: #c0007a;
+    }
+    button[data-preset='emo'] {
+      background: linear-gradient(#444, #000);
+      color: #f66;
+      border-color: #000;
+    }
+    button[data-preset='hacked'] {
+      background: #000;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+    }
+  }
+  .fs__status {
+    margin: 6px 0 0;
+    color: #555;
+  }
+  .fs__frame {
+    flex: 3 1 560px;
+    min-width: 0;
+    width: 100%;
+    height: 700px;
+    border: 1px solid #6699cc;
+    background: #e5e5e5;
+  }
+
+  @media (max-width: 800px) {
+    .kk__outer {
+      width: auto;
+    }
+    .kk__main,
+    .kk__sidebar {
+      float: none;
+      width: auto;
+      padding: 0 16px 16px;
+    }
+    .kk__navbar-right {
+      display: none;
+    }
+    .kk__header h1 {
+      font-size: 32px;
+    }
+    .fs__frame {
+      flex-basis: 100%;
+      height: 640px;
+    }
+  }
+}

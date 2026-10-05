@@ -1,0 +1,45 @@
+/* Era 15 time bar skin: neubrutalist yellow bar, thick black border, hard shadow. */
+html[data-era-page="15"] .timebar {
+  --tb-bg: #fde047;
+  --tb-fg: #111111;
+  --tb-muted: #111111;
+  --tb-accent: #111111;
+  --tb-accent-fg: #fde047;
+  --tb-notch: #111111;
+  --tb-btn-bg: #ffffff;
+  --tb-btn-border: 3px solid #111111;
+  --tb-btn-radius: 6px;
+  --tb-font: 'Arial Black', 'Helvetica Neue', system-ui, sans-serif;
+  --tb-border: 4px solid #111111;
+  --tb-shadow: 0 -6px 0 #111111;
+}
+html[data-era-page="15"] .timebar__years {
+  color: #111111;
+  font-weight: 800;
+}
+html[data-era-page="15"] .timebar__notch {
+  border-radius: 4px;
+  background: #ffffff;
+}
+html[data-era-page="15"] .timebar__notch[aria-current='page'] {
+  background: #111111;
+  color: #fde047;
+  box-shadow: 3px 3px 0 #ff6b9d;
+}
+html[data-era-page="15"] .timebar__btn {
+  box-shadow: 3px 3px 0 #111111;
+}
+html[data-era-page="15"] .timebar__btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+html[data-era-page="15"] .timebar__btn[aria-pressed='true'],
+html[data-era-page="15"] .timebar__btn[aria-expanded='true'] {
+  background: #111111;
+  color: #fde047;
+}
+html[data-era-page="15"] .timebar__preview {
+  border: 2px solid #111111;
+  background: #ffffff;
+  color: #111111;
+}

@@ -1,0 +1,104 @@
+<div class="rw">
+  <header class="rw-head">
+    <div class="rw-wrap">
+      <p class="rw-kicker">Device lab &middot; 2013</p>
+      <h1>One site, every screen</h1>
+      <p class="rw-lead">Below is <strong>Hatchly</strong>, an invented startup whose homepage is built the way thousands were between 2010 and 2015: a 12-column fluid grid, a few media queries and a navbar that folds into a hamburger. Pick a device width or drag the frame&rsquo;s edge and watch the layout reflow.</p>
+    </div>
+  </header>
+
+  <section class="rw-lab" aria-labelledby="rw-lab-h">
+    <div class="rw-wrap">
+      <h2 class="rw-sr" id="rw-lab-h">Resize the Hatchly homepage</h2>
+      <div class="rw-toolbar" role="toolbar" aria-label="Device width">
+        <div class="rw-devices">
+          <button type="button" class="rw-dev" data-w="320" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="1" width="8" height="14" rx="1.5"/></svg>320 <span>phone</span></button>
+          <button type="button" class="rw-dev" data-w="768" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="1" width="12" height="14" rx="1.5"/></svg>768 <span>tablet</span></button>
+          <button type="button" class="rw-dev" data-w="1024" aria-pressed="true"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="3" width="14" height="9" rx="1"/><path d="M0 13h16v1H0z"/></svg>1024 <span>laptop</span></button>
+          <button type="button" class="rw-dev" data-w="1440" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="0" y="2" width="16" height="10" rx="1"/><path d="M6 12h4v2H6zM4 14h8v1H4z"/></svg>1440 <span>desktop</span></button>
+        </div>
+        <label class="rw-gridtoggle" data-trait="grid"><input type="checkbox" id="rw-grid"> Show 12-column grid</label>
+        <output class="rw-readout" id="rw-readout" aria-live="polite">1024px &middot; md</output>
+      </div>
+
+      <!-- snippet:ruler:start -->
+      <div class="rw-ruler" data-trait="breakpoints" aria-hidden="true">
+        <span class="rw-bp" style="--at: 0">xs</span>
+        <span class="rw-bp" style="--at: 768">sm &ge;768</span>
+        <span class="rw-bp" style="--at: 992">md &ge;992</span>
+        <span class="rw-bp" style="--at: 1200">lg &ge;1200</span>
+        <span class="rw-marker" id="rw-marker"></span>
+      </div>
+      <!-- snippet:ruler:end -->
+
+      <div class="rw-stage" id="rw-stage">
+        <div class="rw-device" id="rw-device">
+          <div class="rw-chrome" aria-hidden="true"><i></i><i></i><i></i><span>hatchly.example/</span></div>
+          <iframe class="rw-frame" id="rw-frame" src="/demos/responsive/index.html" title="Hatchly homepage, a responsive site from 2013" loading="lazy"></iframe>
+          <div class="rw-handle" id="rw-handle" role="slider" tabindex="0" data-keys="own" aria-label="Frame width" aria-valuemin="280" aria-valuemax="1600" aria-valuenow="1024" aria-valuetext="1024 pixels" hidden><span aria-hidden="true"></span></div>
+        </div>
+      </div>
+      <p class="rw-note">Drag the grip on the right edge, or focus it and use the arrow keys. Wide frames are shrunk to fit your screen; the page inside still thinks it is that wide.</p>
+    </div>
+  </section>
+
+  <section class="rw-notes" aria-labelledby="rw-notes-h">
+    <div class="rw-wrap">
+      <h2 id="rw-notes-h">What to look for</h2>
+      <div class="rw-cards">
+        <article class="rw-card" data-trait="hamburger">
+          <h3>The hamburger</h3>
+          <p>Under 768px the nav links fold behind three bars. Here it opens with a hidden checkbox and a <code>:checked</code> selector, so it works without JavaScript.</p>
+          <button type="button" class="rw-try" data-w="320">Try at 320px</button>
+        </article>
+        <article class="rw-card" data-trait="fluid">
+          <h3>Fluid grid &amp; images</h3>
+          <p>Columns are percentages (<code>33.333%</code>), not pixels, and images get <code>max-width: 100%</code> so they shrink with their column.</p>
+          <button type="button" class="rw-try" data-w="768">Try at 768px</button>
+        </article>
+        <article class="rw-card" data-trait="carousel">
+          <h3>The hero carousel</h3>
+          <p>Every startup had one: three slides, arrows and little dots. Usability studies later showed almost nobody clicked past slide one.</p>
+          <button type="button" class="rw-try" data-w="1440">Try at 1440px</button>
+        </article>
+        <article class="rw-card" data-trait="mobile-first">
+          <h3>Mobile first</h3>
+          <p>Styles start with the phone layout and use <code>min-width</code> queries to add columns as space appears, the approach Bootstrap 3 adopted in 2013.</p>
+          <button type="button" class="rw-try" data-w="1024">Try at 1024px</button>
+        </article>
+      </div>
+
+      <details class="rw-source">
+        <summary>View source: the grid in 14 lines</summary>
+<!-- snippet:grid:start -->
+<pre data-trait="viewport"><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+
+.container { margin: 0 auto; padding: 0 15px; }
+.row { margin: 0 -15px; }
+.row:after { content: ""; display: table; clear: both; }
+[class*="col-"] { min-height: 1px; padding: 0 15px; }
+
+@media (min-width: 768px) {
+  .container { width: 750px; }
+  .col-sm-4 { float: left; width: 33.33333333%; }
+}
+@media (min-width: 992px) {
+  .container { width: 970px; }
+  .col-md-7 { float: left; width: 58.33333333%; }
+}</code></pre>
+<!-- snippet:grid:end -->
+      </details>
+
+      <blockquote class="rw-quote">
+        <p>&ldquo;Rather than tailoring disconnected designs to each of an ever-increasing number of web devices, we can treat them as facets of the same experience.&rdquo;</p>
+        <footer>Ethan Marcotte, &ldquo;Responsive Web Design&rdquo;, <cite>A List Apart</cite>, May 2010</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <footer class="rw-foot">
+    <div class="rw-wrap">
+      <p>Hatchly is invented. The grid, buttons and navbar were written for this museum in the style of the frameworks of the day; no framework code is used.</p>
+    </div>
+  </footer>
+</div>

@@ -1,0 +1,120 @@
+<div class="gl">
+  <div class="gl__top">
+    <div class="gl__inner">
+      <!-- snippet:logo:start -->
+      <div class="gl__brand">
+        <h1 class="gl__logo" data-trait="reflection"><span class="gl__word">snippr</span><span class="gl__mirror" aria-hidden="true">snippr</span></h1>
+        <span class="gl__beta" data-trait="beta">beta</span>
+      </div>
+      <!-- snippet:logo:end -->
+      <ul class="gl__nav">
+        <li><a href="#gl-tour">Tour</a></li>
+        <li><a href="#gl-blog">Blog</a></li>
+        <li><a href="#gl-help">Help</a></li>
+        <li><a href="#gl-signup" class="gl__login">Log in</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="gl__hero" data-trait="stripes">
+    <div class="gl__inner gl__hero-inner">
+      <div class="gl__pitch">
+        <h2>Save the bits of the web you love. <em>Share them with friends.</em></h2>
+        <p>Snippr lets you clip quotes, links and pictures from any page, tag them, and see what
+          everyone else is snipping right now. No software to install. It just works, right in your browser.</p>
+        <!-- snippet:pill:start -->
+        <p class="gl__cta" id="gl-signup">
+          <a href="#gl-try" class="gl__pill" data-trait="gloss">Sign up &mdash; it's free!</a>
+          <span class="gl__small">Takes 30 seconds. No credit card. We hate spam too.</span>
+        </p>
+        <!-- snippet:pill:end -->
+      </div>
+      <div class="gl__burst" aria-hidden="true">
+        <svg viewBox="0 0 120 120" width="120" height="120"><path d="M60 2l9 18 19-9 1 21 21-1-8 19 19 9-17 12 13 16-21 4 4 21-20-6-6 20-14-15-14 15-6-20-20 6 4-21-21-4 13-16-17-12 19-9-8-19 21 1 1-21 19 9z" fill="#ffcf2e" stroke="#f2a400" stroke-width="2"/></svg>
+        <span>100%<br/>free!</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="gl__inner gl__body">
+    <div class="gl__app" id="gl-try" data-trait="ajax">
+      <div class="gl__app-head">
+        <h2>Your snips</h2>
+        <span class="gl__count"><b id="gl-num">3</b> snips</span>
+      </div>
+      <!-- snippet:ajax:start -->
+      <form class="gl__add" action="#gl-try" aria-label="Add a snippet">
+        <label for="gl-input" class="gl__label">Snip something:</label>
+        <input id="gl-input" name="snip" type="text" maxlength="80" placeholder="e.g. a recipe for perfect pancakes" />
+        <button type="submit" class="gl__pill gl__pill--small">Add snip</button>
+        <span class="gl__spinner" role="status" aria-live="polite"><i aria-hidden="true"></i><span class="gl__spin-text"></span></span>
+      </form>
+      <ul class="gl__list">
+        <li><b>How to fold a fitted sheet</b> <span class="gl__tags">tagged <a href="#gl-tags">home</a> <a href="#gl-tags">lifehacks</a></span> <span class="gl__meta">by melody_k, 2 minutes ago</span></li>
+        <li><b>Pixel art palettes that don't suck</b> <span class="gl__tags">tagged <a href="#gl-tags">design</a></span> <span class="gl__meta">by ruby_rex, 9 minutes ago</span></li>
+        <li><b>The best free podcasts about space</b> <span class="gl__tags">tagged <a href="#gl-tags">podcasts</a> <a href="#gl-tags">space</a></span> <span class="gl__meta">by orbit_otto, 1 hour ago</span></li>
+      </ul>
+      <!-- snippet:ajax:end -->
+    </div>
+
+    <div class="gl__side" id="gl-tags">
+      <h3>Popular tags</h3>
+      <p class="gl__cloud" data-trait="tag-cloud">
+        <a href="#gl-tags" class="s3">ajax</a> <a href="#gl-tags" class="s1">books</a> <a href="#gl-tags" class="s4">design</a>
+        <a href="#gl-tags" class="s2">diy</a> <a href="#gl-tags" class="s1">food</a> <a href="#gl-tags" class="s5">funny</a>
+        <a href="#gl-tags" class="s2">lifehacks</a> <a href="#gl-tags" class="s3">music</a> <a href="#gl-tags" class="s1">podcasts</a>
+        <a href="#gl-tags" class="s4">web2.0</a> <a href="#gl-tags" class="s2">space</a> <a href="#gl-tags" class="s1">travel</a>
+      </p>
+      <h3>Snip this!</h3>
+      <p class="gl__share" data-trait="share">
+        <a href="#gl-tags" aria-label="Save to Taggle"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect width="8" height="8" fill="#3a7bd5"/><rect x="8" width="8" height="8" fill="#222"/><rect y="8" width="8" height="8" fill="#ccc"/><rect x="8" y="8" width="8" height="8" fill="#fff" stroke="#ccc"/></svg></a>
+        <a href="#gl-tags" aria-label="Vote it up on Upvotr"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect width="16" height="16" rx="3" fill="#1d5c9b"/><path d="M8 3l4 5H9.5v5h-3V8H4z" fill="#fff"/></svg></a>
+        <a href="#gl-tags" aria-label="Stumble onto Wanderpage"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="8" fill="#ea4b24"/><circle cx="8" cy="8" r="3" fill="#fff"/></svg></a>
+        <a href="#gl-tags" aria-label="Post to Sprout"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect width="16" height="16" rx="3" fill="#5aa02c"/><path d="M8 13V7M8 8q-4 0-4-4 4 0 4 4zM8 7q4 0 4-4-4 0-4 4z" stroke="#fff" fill="#fff"/></svg></a>
+        <a href="#gl-tags" aria-label="Email to a friend"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect y="3" width="16" height="10" rx="1" fill="#999"/><path d="M0 4l8 5 8-5" stroke="#fff" fill="none"/></svg></a>
+      </p>
+      <p class="gl__badges"><span class="gl__chip">Ajax inside</span> <span class="gl__chip gl__chip--rss">RSS</span></p>
+    </div>
+  </div>
+
+  <div class="gl__inner" id="gl-tour">
+    <h2 class="gl__section">Why you'll love Snippr</h2>
+    <ul class="gl__features" data-trait="icons">
+      <li>
+        <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><defs><linearGradient id="gl-g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9be15d"/><stop offset="1" stop-color="#3fa11c"/></linearGradient></defs><rect x="4" y="4" width="56" height="56" rx="14" fill="url(#gl-g1)"/><path d="M18 34l10 10 18-22" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 18q0-10 10-10h28q10 0 10 10v6q-24-10-48 4z" fill="#fff" opacity=".45"/></svg>
+        <h3>One-click snipping</h3>
+        <p>Drag our bookmarklet to your toolbar. Click it on any page. Done!</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><defs><linearGradient id="gl-g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fd3ff"/><stop offset="1" stop-color="#1c7fd1"/></linearGradient></defs><rect x="4" y="4" width="56" height="56" rx="14" fill="url(#gl-g2)"/><circle cx="24" cy="30" r="8" fill="#fff"/><circle cx="42" cy="30" r="8" fill="#fff"/><path d="M12 52q12-16 24 0M30 52q12-16 24 0" fill="#fff"/><path d="M8 18q0-10 10-10h28q10 0 10 10v6q-24-10-48 4z" fill="#fff" opacity=".45"/></svg>
+        <h3>Social by design</h3>
+        <p>Follow friends, see their snips, and discover what's hot today.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><defs><linearGradient id="gl-g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffb3e6"/><stop offset="1" stop-color="#e0399a"/></linearGradient></defs><rect x="4" y="4" width="56" height="56" rx="14" fill="url(#gl-g3)"/><path d="M14 28l14-14h20v20L34 48z" fill="#fff"/><circle cx="40" cy="22" r="4" fill="#e0399a"/><path d="M8 18q0-10 10-10h28q10 0 10 10v6q-24-10-48 4z" fill="#fff" opacity=".45"/></svg>
+        <h3>Tags, not folders</h3>
+        <p>Tag it however you like. Your tags, your folksonomy.</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><defs><linearGradient id="gl-g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27a"/><stop offset="1" stop-color="#f08a00"/></linearGradient></defs><rect x="4" y="4" width="56" height="56" rx="14" fill="url(#gl-g4)"/><circle cx="20" cy="46" r="5" fill="#fff"/><path d="M15 31a18 18 0 0 1 18 18M15 19a30 30 0 0 1 30 30" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M8 18q0-10 10-10h28q10 0 10 10v6q-24-10-48 4z" fill="#fff" opacity=".45"/></svg>
+        <h3>Feeds for everything</h3>
+        <p>Every tag and every friend has an RSS feed. Mash it up!</p>
+      </li>
+    </ul>
+
+    <h2 class="gl__section" id="gl-blog">People are talking</h2>
+    <div class="gl__quotes">
+      <blockquote><p>&ldquo;I literally can't remember how I bookmarked things before Snippr.&rdquo;</p><cite>Jess, designer and snip addict</cite></blockquote>
+      <blockquote><p>&ldquo;It's like a scrapbook that talks to all my friends' scrapbooks. Love it.&rdquo;</p><cite>Marco, grad student</cite></blockquote>
+      <blockquote><p>&ldquo;Finally, a web app that feels like a desktop app. Those rounded corners!&rdquo;</p><cite>A very happy beta tester</cite></blockquote>
+    </div>
+  </div>
+
+  <div class="gl__foot" id="gl-help">
+    <div class="gl__inner">
+      <p><a href="#gl-tour">About</a> &middot; <a href="#gl-blog">Blog</a> &middot; <a href="#gl-help">API</a> &middot; <a href="#gl-help">Developers</a> &middot; <a href="#gl-help">Privacy</a> &middot; <a href="#gl-help">Jobs (we're hiring!)</a></p>
+      <p>&copy; 2007 Snippr, Inc. Made with love (and lots of coffee) in a tiny office above a bakery.
+        <span class="gl__chip gl__chip--rails">Powered by Rails</span></p>
+    </div>
+  </div>
+</div>

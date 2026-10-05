@@ -1,0 +1,111 @@
+<div class="fm">
+  <header class="fm-bar">
+    <p class="fm-logo" data-trait="thin"><span class="fm-logo__mark" aria-hidden="true"></span><span>nimbus<b>go</b></span></p>
+    <nav aria-label="nimbusgo">
+      <ul class="fm-nav">
+        <li><a href="#fm-start" aria-current="page">start</a></li>
+        <li><a href="#fm-trips">trips</a></li>
+        <li><a href="#fm-about">about</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="fm-hero" aria-labelledby="fm-h">
+    <h1 id="fm-h" class="fm-hero__title" data-trait="thin">weather, minus the clutter.</h1>
+    <p class="fm-hero__sub">Your forecast and your next trip, on one screen of colourful tiles. For phone, tablet and desktop.</p>
+    <p class="fm-hero__ctas">
+      <a class="fm-ghost" href="#fm-start" data-trait="ghost">Get the app</a>
+      <a class="fm-ghost fm-ghost--alt" href="#fm-about">Watch the tour</a>
+    </p>
+  </section>
+
+  <section class="fm-start" id="fm-start" aria-labelledby="fm-start-h">
+    <div class="fm-start__head">
+      <h2 id="fm-start-h" class="fm-h2" data-trait="thin">Start</h2>
+      <label class="fm-live"><input type="checkbox" id="fm-live" checked> live tiles</label>
+    </div>
+
+    <!-- snippet:tiles:start -->
+    <ul class="fm-tiles" data-trait="tiles">
+      <li class="fm-tile fm-tile--wide c-peter" data-trait="live">
+        <button type="button" class="fm-tile__btn" aria-controls="fm-panel" data-panel="today">
+          <span class="fm-face fm-face--a">
+            <span class="fm-big">18°</span>
+            <span class="fm-tile__txt">Lisbon<br>partly sunny</span>
+          </span>
+          <span class="fm-face fm-face--b" aria-hidden="true">
+            <span class="fm-tile__txt">Tomorrow 21° &middot; Sat 23° &middot; Sun 19°</span>
+          </span>
+          <span class="fm-tile__label">Today</span>
+        </button>
+      </li>
+      <!-- snippet:tiles:end -->
+      <li class="fm-tile c-turquoise">
+        <button type="button" class="fm-tile__btn" aria-controls="fm-panel" data-panel="flights">
+          <span class="fm-ls fm-ls--plane" data-trait="long-shadow" aria-hidden="true">✈</span>
+          <span class="fm-tile__label">Flights</span>
+        </button>
+      </li>
+      <li class="fm-tile c-emerald" data-trait="live">
+        <button type="button" class="fm-tile__btn" aria-controls="fm-panel" data-panel="trips">
+          <span class="fm-face fm-face--a"><span class="fm-big">3</span><span class="fm-tile__txt">upcoming trips</span></span>
+          <span class="fm-face fm-face--b" aria-hidden="true"><span class="fm-tile__txt">Porto in 12 days</span></span>
+          <span class="fm-tile__label">Trips</span>
+        </button>
+      </li>
+      <li class="fm-tile c-amethyst">
+        <button type="button" class="fm-tile__btn" aria-controls="fm-panel" data-panel="radar">
+          <span class="fm-ls fm-ls--radar" aria-hidden="true">◎</span>
+          <span class="fm-tile__label">Radar</span>
+        </button>
+      </li>
+      <li class="fm-tile c-asphalt" data-trait="live">
+        <button type="button" class="fm-tile__btn" aria-controls="fm-panel" data-panel="alerts">
+          <span class="fm-face fm-face--a"><span class="fm-big">1</span><span class="fm-tile__txt">alert</span></span>
+          <span class="fm-face fm-face--b" aria-hidden="true"><span class="fm-tile__txt">Wind 40 km/h after 6pm</span></span>
+          <span class="fm-tile__label">Alerts</span>
+        </button>
+      </li>
+      <li class="fm-tile fm-tile--wide c-carrot">
+        <button type="button" class="fm-tile__btn" aria-controls="fm-panel" data-panel="pack">
+          <span class="fm-ls fm-ls--sun" aria-hidden="true">☀</span>
+          <span class="fm-tile__txt fm-tile__txt--side">Pack sunglasses. And a light jacket for the evening.</span>
+          <span class="fm-tile__label">What to pack</span>
+        </button>
+      </li>
+      <li class="fm-tile c-alizarin">
+        <button type="button" class="fm-tile__btn" aria-controls="fm-panel" data-panel="photos">
+          <span class="fm-ls fm-ls--cam" aria-hidden="true">▣</span>
+          <span class="fm-tile__label">Photos</span>
+        </button>
+      </li>
+    </ul>
+
+    <!-- snippet:panel:start -->
+    <section class="fm-panel c-peter" id="fm-panel" data-trait="panel" aria-live="polite" hidden>
+      <button type="button" class="fm-back" aria-label="Back to start"><span aria-hidden="true">←</span></button>
+      <h3 class="fm-panel__title" tabindex="-1">today</h3>
+      <p class="fm-panel__body">18° and partly sunny in Lisbon.</p>
+    </section>
+    <!-- snippet:panel:end -->
+  </section>
+
+  <section class="fm-trips" id="fm-trips" aria-labelledby="fm-trips-h">
+    <h2 id="fm-trips-h" class="fm-h2" data-trait="thin">Three steps. No fuss.</h2>
+    <ol class="fm-steps">
+      <li><span class="fm-circ c-turquoise" aria-hidden="true">1</span><h3>Pick a place</h3><p>Type a city. We do the rest.</p></li>
+      <li><span class="fm-circ c-emerald" aria-hidden="true">2</span><h3>Pin your dates</h3><p>The forecast follows your trip.</p></li>
+      <li><span class="fm-circ c-amethyst" aria-hidden="true">3</span><h3>Just go</h3><p>Tiles update while you travel.</p></li>
+    </ol>
+  </section>
+
+  <section class="fm-about c-asphalt" id="fm-about" aria-labelledby="fm-about-h">
+    <h2 id="fm-about-h" class="fm-h2" data-trait="thin">content, not chrome.</h2>
+    <p>No fake leather. No glossy buttons. Just type, colour and space &mdash; the way a station sign or an airport board tells you where to go.</p>
+    <a class="fm-ghost" href="#fm-start">Back to start</a>
+  </section>
+
+  <footer class="fm-foot">
+    <p>&copy; 2014 nimbusgo &middot; <a href="#fm-about">press</a> &middot; <a href="#fm-about">jobs</a> &middot; <a href="#fm-about">privacy</a></p>
+  </footer>
+</div>

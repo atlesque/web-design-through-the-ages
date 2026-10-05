@@ -1,0 +1,25 @@
+/* Era 08 time bar skin: a social network's blue header bar. */
+html[data-era-page="08"] .timebar {
+  --tb-bg: #003366;
+  --tb-fg: #ffffff;
+  --tb-muted: #c8daf0;
+  --tb-accent: #ffcc66;
+  --tb-accent-fg: #002244;
+  --tb-notch: #4f7fb3;
+  --tb-btn-bg: #1d4f84;
+  --tb-btn-border: 1px solid #6699cc;
+  --tb-btn-radius: 3px;
+  --tb-font: Verdana, Arial, Helvetica, sans-serif;
+  --tb-shadow: inset 0 1px 0 #5a8cc4;
+  background: linear-gradient(#1d5a9a, #003366);
+  border-top: 2px solid #6699cc;
+}
+html[data-era-page="08"] .timebar__title {
+  font-size: 12px;
+}
+html[data-era-page="08"] .timebar__years {
+  font-family: Verdana, Arial, sans-serif;
+}
+html[data-era-page="08"] .timebar__notch {
+  border-radius: 3px;
+}

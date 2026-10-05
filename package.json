@@ -1,0 +1,31 @@
+{
+  "name": "web-design-through-the-ages",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt generate && node scripts/postgenerate.mjs",
+    "generate": "nuxt generate && node scripts/postgenerate.mjs",
+    "preview": "npx serve dist",
+    "postinstall": "nuxt prepare",
+    "test": "playwright test",
+    "check:size": "node scripts/check-size.mjs",
+    "preview:eras": "node scripts/preview-eras.mjs"
+  },
+  "dependencies": {
+    "nuxt": "^4.1.0",
+    "vue": "^3.5.0",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@playwright/test": "^1.55.0",
+    "serve": "^14.2.0",
+    "shiki": "^3.12.0",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
