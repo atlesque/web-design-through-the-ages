@@ -30,10 +30,10 @@ export function monitorFor(eraId: string): MonitorKind {
   return byEra[eraId] ?? 'crt'
 }
 
-/** Rough real-world size of each device (cm), so the swap scenes keep a believable scale. */
-export const physical: Record<MonitorKind, { width: number; label: string }> = {
-  classic: { width: 26, label: 'a beige all-in-one computer' },
-  crt: { width: 40, label: 'a CRT monitor' },
-  lcd: { width: 50, label: 'a flat LCD screen' },
-  phone: { width: 7.5, label: 'a smartphone' },
+/** Rough real-world size of each device with its stand (cm), so the swap scenes keep a believable scale. */
+export const physical: Record<MonitorKind, { width: number; height: number }> = {
+  classic: { width: 26, height: 33 },
+  crt: { width: 40, height: 39 },
+  lcd: { width: 50, height: 39 },
+  phone: { width: 7.5, height: 18 },
 }

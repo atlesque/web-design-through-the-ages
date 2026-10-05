@@ -51,8 +51,16 @@ export const cam = (x: number, y: number, rx: number, ry: number, s = 1) =>
 export const CAM_REST = cam(0, 0, 0, 0, 1)
 
 /** A device's pose on the desk, around its bottom centre. */
-export const pose = (x: number, y: number, z: number, ry: number, k: number) =>
-  `translate3d(${x}px, ${y}px, ${z}px) rotateY(${ry}deg) scale3d(${k}, ${k}, ${k})`
+export const pose = (x: number, y: number, z: number, ry: number, k: number | Scale) => {
+  const { x: kx, y: ky } = typeof k === 'number' ? { x: k, y: k } : k
+  return `translate3d(${x}px, ${y}px, ${z}px) rotateY(${ry}deg) scale3d(${kx}, ${ky}, ${kx})`
+}
+
+/** Shrink factors from reading size to real-world size, per axis. */
+export interface Scale {
+  x: number
+  y: number
+}
 export const POSE_REST = pose(0, 0, 0, 0, 1)
 
 export interface KindSize {
@@ -69,8 +77,12 @@ export interface Geometry {
   size: (kind: MonitorKind) => KindSize
   /** The desk line (bottom of the device) when `kind` is on the desk at reading size. */
   deskY: (kind: MonitorKind) => number
-  /** Scale that shrinks `kind` from reading size to its real-world size on the desk. */
-  k: (kind: MonitorKind) => number
+  /**
+   * Scale that shrinks `kind` from reading size to its real-world size on the
+   * desk. On small screens the reading frame is stretched to the window, so the
+   * two axes differ; the screen is dark during a scene, so nobody sees the squash.
+   */
+  k: (kind: MonitorKind) => Scale
 }
 
 export function makeGeometry(vw: number, vh: number, size: (kind: MonitorKind) => KindSize): Geometry {
@@ -81,7 +93,12 @@ export function makeGeometry(vw: number, vh: number, size: (kind: MonitorKind) =
     cm,
     size,
     deskY: (kind) => vh / 2 + size(kind).rigH / 2,
-    k: (kind) => (physical[kind].width * cm) / size(kind).W,
+    k: (kind) => {
+      const x = (physical[kind].width * cm) / size(kind).W
+      // The phone stays uniform: the zoom into the hand must land on it exactly.
+      const y = kind === 'phone' ? x : (physical[kind].height * cm) / size(kind).rigH
+      return { x, y }
+    },
   }
 }
 
@@ -305,10 +322,10 @@ const phone: Scene = {
   cast: 'phone',
   build({ g, kindA, kindB, deskKind, A, B, camera, mover, held }) {
     const kA = g.k(kindA)
-    const kP = g.k('phone')
+    const kP = g.k('phone').x
     const cm = g.cm
     const off = g.vw * 0.8
-    const stand = (kA * g.size(kindA).W) / 2 + 34 * cm
+    const stand = (kA.x * g.size(kindA).W) / 2 + 34 * cm
     const tl = new Timeline()
     const body = mover?.querySelector('.mv-bob')
     const armsCarry = mover?.querySelector('.mv-arms-carry')

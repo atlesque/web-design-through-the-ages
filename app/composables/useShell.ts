@@ -1,4 +1,4 @@
-/** Shell UI state shared by the time bar and the curator panel. */
+/** Shell UI state shared by the stage (hardware buttons, keys) and the curator panel. */
 export function useShell() {
   const curatorOpen = useState('curator-open', () => false)
   const readable = useState('readable', () => false)

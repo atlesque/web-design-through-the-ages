@@ -573,7 +573,7 @@
   .stage__skip {
     position: absolute;
     right: 16px;
-    bottom: 16px;
+    top: 16px;
     z-index: 20;
     padding: 8px 14px;
     border: 1px solid rgb(255 255 255 / 0.4);
