@@ -2,6 +2,10 @@
 import { loadRoom, mountRoomBehaviour } from '~/composables/useRoom'
 import { findEra } from '~/composables/useEras'
 
+// The room renders inside the stage's monitor (app/layouts/stage.vue), which
+// stays mounted while the visitor travels from era to era.
+definePageMeta({ layout: 'stage' })
+
 const route = useRoute()
 const parts = ([] as string[]).concat(route.params.path as string | string[]).filter(Boolean)
 const path = parts.join('/')
@@ -24,10 +28,7 @@ useHead({
     { property: 'og:description', content: room.value.meta.summary },
     { property: 'og:image', content: 'https://webdesign.atlesque.dev/og.png' },
   ],
-  style: [
-    { key: 'era-css', innerHTML: room.value.css },
-    ...(room.value.skinCss ? [{ key: 'skin-css', innerHTML: room.value.skinCss }] : []),
-  ],
+  style: [{ key: 'era-css', innerHTML: room.value.css }],
 })
 
 const root = ref<HTMLElement | null>(null)
@@ -39,19 +40,19 @@ onBeforeUnmount(() => cleanup?.())
 </script>
 
 <template>
-  <div class="shell-room">
-    <a class="shell-skip" href="#timebar">Skip to the time bar</a>
-    <!-- Period markup, rendered byte for byte at build time. -->
-    <main
-      id="main"
-      ref="root"
-      class="era"
-      :data-era="era!.id"
-      :data-room="path"
-      :aria-label="`${room!.meta.title} demo`"
-      v-html="room!.html"
-    />
+  <!-- Period markup, rendered byte for byte at build time. -->
+  <main
+    id="main"
+    ref="root"
+    class="era"
+    tabindex="-1"
+    :data-era="era!.id"
+    :data-room="path"
+    :aria-label="`${room!.meta.title} demo`"
+    v-html="room!.html"
+  />
+  <!-- Outside the monitor, so the panel slides over the whole window. -->
+  <Teleport to="#teleports">
     <CuratorPanel :era="era!" :room="room!" :is-sub-room="isSubRoom" />
-    <TimeBar :current="era!.slug" />
-  </div>
+  </Teleport>
 </template>

@@ -1,4 +1,6 @@
 import type { EraMeta, EraSnippet, RoomMeta } from '~/eras/types'
+import { frameRoom, toScreenCss } from '~/lib/frame'
+import { eras } from './useEras'
 
 export interface RoomSnippet {
   caption: string
@@ -12,7 +14,6 @@ export interface RoomPayload {
   meta: EraMeta | RoomMeta
   html: string
   css: string
-  skinCss: string
   snippets: RoomSnippet[]
 }
 
@@ -57,10 +58,6 @@ export async function loadRoom(path: string): Promise<RoomPayload> {
     if (!metaLoader) throw createError({ statusCode: 404, statusMessage: `Unknown room ${path}` })
     const meta = await metaLoader()
 
-    const eraFolder = path.split('/')[0]
-    const skinLoader = raw[`../eras/${eraFolder}/timebar.css`]
-    const skin = skinLoader ? await skinLoader() : ''
-
     const { highlight } = await import('../lib/highlight')
     const snippets: RoomSnippet[] = []
     for (const s of meta.snippets as EraSnippet[]) {
@@ -71,9 +68,14 @@ export async function loadRoom(path: string): Promise<RoomPayload> {
     return {
       path,
       meta,
-      html: stripMarkers(await read('demo.html')),
-      css: `@layer era, shell, skin;\n@layer era {\n${stripMarkers(await read('era.css'))}\n}`,
-      skinCss: skin ? `@layer era, shell, skin;\n@layer skin {\n${stripMarkers(skin)}\n}` : '',
+      html: frameRoom(stripMarkers(await read('demo.html')), {
+        path,
+        title: meta.title,
+        years: meta.years,
+        eras,
+        cta: meta.cta,
+      }),
+      css: `@layer era, shell;\n@layer era {\n${toScreenCss(stripMarkers(await read('era.css')))}\n}`,
       snippets,
     }
   }

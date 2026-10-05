@@ -8,15 +8,20 @@ export default function setup(root: HTMLElement) {
   }))
   const observers: IntersectionObserver[] = []
   let frame = 0
+  // Inside the stage the room scrolls in the monitor's screen, not the window.
+  const scroller: HTMLElement | Window = root.closest<HTMLElement>('.rig__scroll') ?? window
+  const viewport = () =>
+    scroller instanceof Window ? { top: 0, height: innerHeight } : { top: scroller.getBoundingClientRect().top, height: scroller.clientHeight }
 
   // snippet:parallax:start
   function update() {
     frame = 0
-    const vh = innerHeight
+    const { top, height: vh } = viewport()
     for (const { el, layers } of scenes) {
       const r = el.getBoundingClientRect()
-      if (r.bottom < 0 || r.top > vh) continue // off screen: skip the work
-      const d = el.classList.contains('px-hero') ? r.top : r.top + r.height / 2 - vh / 2
+      const y = r.top - top
+      if (y + r.height < 0 || y > vh) continue // off screen: skip the work
+      const d = el.classList.contains('px-hero') ? y : y + r.height / 2 - vh / 2
       for (const { l, depth } of layers) {
         // Far layers (low depth) lag behind the page; near layers rush past it.
         l.style.setProperty('--shift', `${(-d * (0.6 - depth) * 0.35).toFixed(1)}px`)
@@ -29,7 +34,7 @@ export default function setup(root: HTMLElement) {
   // snippet:parallax:end
 
   if (!still) {
-    addEventListener('scroll', onScroll, { passive: true })
+    scroller.addEventListener('scroll', onScroll, { passive: true })
     addEventListener('resize', onScroll)
     update()
   }
@@ -82,7 +87,7 @@ export default function setup(root: HTMLElement) {
   }
 
   return () => {
-    removeEventListener('scroll', onScroll)
+    scroller.removeEventListener('scroll', onScroll)
     removeEventListener('resize', onScroll)
     cancelAnimationFrame(frame)
     observers.forEach((o) => o.disconnect())

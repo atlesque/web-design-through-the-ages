@@ -38,6 +38,8 @@ export interface EraMeta {
   rooms?: { path: string; label: string }[]
   /** Notes about effects recreated with modern tech because the original is dead. */
   recreated?: string[]
+  /** Wording for the travel buttons, in the voice of the era (e.g. "ENTER SITE »"). */
+  cta?: { prev?: string; next?: string }
 }
 
 export type RoomMeta = Pick<EraMeta, 'title' | 'years' | 'summary' | 'traits' | 'snippets' | 'sources'> & {
@@ -45,4 +47,5 @@ export type RoomMeta = Pick<EraMeta, 'title' | 'years' | 'summary' | 'traits' | 
   context?: EraMeta['context']
   tech?: string[]
   thenVsNow?: string
+  cta?: EraMeta['cta']
 }
