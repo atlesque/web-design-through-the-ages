@@ -4,7 +4,7 @@ export default defineConfig({
   testDir: 'tests',
   timeout: 30_000,
   fullyParallel: true,
-  reporter: [['list'], ['html', { open: 'never' }]],
+  reporter: process.env.CI ? [['github'], ['list']] : [['list'], ['html', { open: 'never' }]],
   use: { baseURL: 'http://localhost:4173', trace: 'retain-on-failure' },
   webServer: {
     command: 'npx serve .output/public -l 4173 --no-clipboard',
