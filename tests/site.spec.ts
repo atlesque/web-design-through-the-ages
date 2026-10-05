@@ -16,14 +16,24 @@ const rooms = [
 
 test.describe('landing', () => {
   test('lists every era and links to it', async ({ page }) => {
-    await page.addInitScript(() => sessionStorage.setItem('wdta-booted', '1'))
     await page.goto('/')
     await expect(page.locator('.bento__tile')).toHaveCount(eras.length)
     await expect(page.locator('h1')).toContainText('Web design')
   })
 
+  test('title screen loads, then Start exploring opens the first era', async ({ page }) => {
+    await page.goto('/')
+    const start = page.getByRole('link', { name: 'Start exploring' })
+    await expect(start).toBeVisible()
+    await expect(start).toBeFocused()
+    await start.click()
+    await expect(page).toHaveURL(new RegExp(`/eras/${eras[0]}/$`))
+    await expect(page.locator('.stage[data-kind="classic"]')).toBeVisible()
+    await expect(page.locator('.stage')).not.toHaveClass(/is-booting/)
+    await expect(page.locator('main.era')).toBeFocused()
+  })
+
   test('shell passes axe', async ({ page }) => {
-    await page.addInitScript(() => sessionStorage.setItem('wdta-booted', '1'))
     await page.emulateMedia({ reducedMotion: 'reduce' })
     await page.goto('/')
     const results = await new AxeBuilder({ page }).analyze()

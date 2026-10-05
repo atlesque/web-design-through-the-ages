@@ -77,29 +77,30 @@
   @keyframes e03-blink {
     50% { visibility: hidden; }
   }
-  .dk__new {
-    color: #ffff00;
-    font: 700 11px Verdana, sans-serif;
-    background: #ff0000;
-    padding: 0 3px;
-    animation: e03-blink 1s steps(1) infinite;
+  /* Real animated GIFs (public/demos/03-homepages, drawn by scripts/make-era03-gifs.py).
+     Dave stretched some with width= and height=; keep the pixels chunky when he did. */
+  img {
+    image-rendering: pixelated;
+    vertical-align: middle;
   }
-
   .dk__uc {
     display: block;
     margin: 12px auto 4px;
     border: 2px outset #c0c0c0;
-    image-rendering: pixelated;
   }
-  .dk__uc-light {
-    animation: e03-blink 0.8s steps(1) infinite;
+  .dk__div {
+    margin: 14px 0;
+    text-align: center;
+    line-height: 0;
   }
-  .dk__uc-shovel {
-    transform-origin: 37px 28px;
-    animation: e03-dig 0.8s steps(2) infinite;
+  .dk__div img {
+    max-width: 100%;
   }
-  @keyframes e03-dig {
-    50% { transform: rotate(-18deg); }
+  .dk__dancer {
+    margin: 0 0 8px 12px;
+  }
+  .dk__badges img {
+    margin: 0 4px;
   }
 
   .dk__rainbow {
@@ -139,14 +140,21 @@
     letter-spacing: 0;
     color: #fff;
   }
+  /* Each digit is a slice of one GIF strip, like a CGI counter's digit images.
+     The real digit stays in the text (transparent), so readable mode, which drops
+     background images, still shows the number. */
   .dk__digit {
     display: inline-block;
-    width: 1.1ch;
-    padding: 2px 2px;
-    margin: 0 1px;
-    background: linear-gradient(#333, #000 50%, #222 50%, #111);
-    color: #fff;
+    width: 14px;
+    height: 20px;
+    margin: 0 1px 0 0;
+    font-size: 16px;
+    line-height: 20px;
+    background: #000 url('/demos/03-homepages/counter-digits.gif') no-repeat;
+    background-position: calc(var(--d, 0) * -14px) 0;
+    color: transparent;
     text-align: center;
+    vertical-align: top;
   }
   .dk__digit.is-rolling {
     animation: e03-roll 0.35s ease-out;
@@ -160,21 +168,6 @@
     text-decoration: none;
     color: #fff;
     display: inline-block;
-  }
-  .dk__letter {
-    animation: e03-letter 2s steps(4) infinite;
-  }
-  @keyframes e03-letter {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
-    100% { transform: translateY(8px); opacity: 0; }
-  }
-  .dk__flag {
-    transform-origin: 39px 20px;
-    animation: e03-flag 2s steps(1) infinite;
-  }
-  @keyframes e03-flag {
-    50% { transform: rotate(-80deg); }
   }
 
   .dk__cat {

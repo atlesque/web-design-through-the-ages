@@ -31,6 +31,8 @@ const kind = ref<MonitorKind>(monitorFor(eraOf(roomPath(route.path))?.id ?? '01'
 const ghostKind = ref<MonitorKind | null>(null)
 const cast = ref<'none' | 'carry' | 'phone'>('none')
 const busy = ref(false)
+// Set by the lobby's Start button: the screen stays dark until the title screen has zoomed out into it.
+const booting = useState('stage-booting', () => false)
 const cinematic = ref(false)
 const announcement = ref('')
 const cm = ref(7)
@@ -286,6 +288,21 @@ function skip() {
   travel.anims.forEach((a) => a.finish())
 }
 
+async function boot() {
+  const main = el(mainRig.value)
+  if (!booting.value || !main) {
+    booting.value = false
+    return
+  }
+  const on = still() ? [] : powerOn(main, kind.value)
+  booting.value = false
+  await settle(on)
+  on.forEach((a) => a.cancel())
+  const era = eraOf(roomPath(route.path))
+  if (era) announcement.value = `${era.years}: ${era.title}`
+  main.querySelector<HTMLElement>('main.era')?.focus({ preventScroll: true })
+}
+
 // ---------------------------------------------------------------------------
 // Navigation: links, keys
 
@@ -355,7 +372,9 @@ let unregister: (() => void) | undefined
 onMounted(() => {
   restoreReadable()
   window.addEventListener('keydown', onKey)
-  unregister = registerStage({ depart, arrive: () => travel?.arrived.resolve(), abort: reset, skip })
+  unregister = registerStage({ depart, arrive: () => travel?.arrived.resolve(), abort: reset, skip, boot })
+  // Never leave the screen dark if the lobby's transition is interrupted.
+  if (booting.value) setTimeout(boot, 5000)
 })
 onBeforeUnmount(() => {
   reset()
@@ -365,7 +384,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="stageEl" class="stage" :data-kind="kind" :class="{ 'is-travelling': busy }" @click="onClick">
+  <div ref="stageEl" class="stage" :data-kind="kind" :class="{ 'is-travelling': busy, 'is-booting': booting }" @click="onClick">
     <div ref="cameraEl" class="stage__camera">
       <div class="desk" aria-hidden="true"><i class="desk__top" /><i class="desk__front" /></div>
       <MonitorRig v-if="ghostKind" ref="ghostRig" :kind="ghostKind" ghost />

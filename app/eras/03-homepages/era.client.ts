@@ -1,4 +1,4 @@
-// Era 03: hit counter, guestbook, webring and a Web Audio "MIDI" tune.
+// Era 03: still GIFs on request, hit counter, guestbook, webring and a Web Audio "MIDI" tune.
 
 export default function setup(root: HTMLElement) {
   const calm = matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('readable')
@@ -6,6 +6,21 @@ export default function setup(root: HTMLElement) {
     get(k: string) { try { return localStorage.getItem(k) } catch { return null } },
     set(k: string, v: string) { try { localStorage.setItem(k, v) } catch { /* private mode */ } },
   }
+
+  // ---------- Animated GIFs ----------
+  // CSS cannot pause a GIF. Under prefers-reduced-motion each <picture> already picks its
+  // *-still.gif <source>; readable mode is a class on <html>, so swap the src here.
+  const gifs = [...root.querySelectorAll<HTMLImageElement>('img[data-still]')].map((img) => ({ img, anim: img.getAttribute('src')! }))
+  const syncGifs = () => {
+    const still = document.documentElement.classList.contains('readable')
+    for (const { img, anim } of gifs) {
+      const want = still ? img.dataset.still! : anim
+      if (img.getAttribute('src') !== want) img.setAttribute('src', want)
+    }
+  }
+  syncGifs()
+  const watch = new MutationObserver(syncGifs)
+  watch.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
 
   // ---------- Hit counter: every visit bumps it, odometer style ----------
   const digits = root.querySelector<HTMLElement>('.dk__digits')!
@@ -17,6 +32,7 @@ export default function setup(root: HTMLElement) {
     const s = document.createElement('span')
     s.className = 'dk__digit'
     s.textContent = d
+    s.style.setProperty('--d', d)
     if (!calm && d !== prev[i]) s.classList.add('is-rolling')
     digits.append(s)
   })
@@ -127,6 +143,7 @@ export default function setup(root: HTMLElement) {
   })
 
   return () => {
+    watch.disconnect()
     clearInterval(timer)
     void ctx?.close()
   }

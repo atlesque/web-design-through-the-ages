@@ -11,6 +11,8 @@ export interface StageController {
   abort(): void
   /** Jump to the end of whatever is playing. */
   skip(): void
+  /** Switch the monitor on after the lobby's title screen has zoomed out into it. */
+  boot(): Promise<void>
 }
 
 let current: StageController | null = null

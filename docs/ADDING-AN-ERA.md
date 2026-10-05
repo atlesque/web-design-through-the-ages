@@ -36,7 +36,8 @@ width-only `@media` queries become `@container screen` queries, `vw`/`vh`/`dvh` 
 - One invented brand per era with a period-plausible name. No real companies, logos, people, screenshots or
   copyrighted characters.
 - At least: a header/nav, a content section, one interactive element, and a footer typical of the era.
-- All imagery is drawn in the repo: inline SVG, CSS, or hand-made pixel art as SVG. No external URLs.
+- All imagery is drawn in the repo: inline SVG, CSS, hand-made pixel art as SVG, or GIFs written by a script in
+  `scripts/` and served from `public/demos/<era>/` (with a still for reduced motion). No external URLs.
 - Mark every signature trait with `data-trait="<id>"` (space-separated for several). Every trait id in `meta.ts`
   must appear in the demo.
 - Must make sense with JavaScript disabled; play toggles may degrade.

@@ -82,7 +82,7 @@ The site uses no Pages Functions, so the Workers request quota never applies.
 ## House rules
 
 - Every brand in the demos is invented. No real logos, screenshots or copyrighted characters.
-- All imagery is drawn in the repo with CSS or SVG. No external requests, no analytics, no cookies.
+- All imagery is drawn in the repo with CSS, SVG or a script that writes GIFs (`scripts/make-era03-gifs.py`). No external requests, no analytics, no cookies.
 - Nothing autoplays sound. Blinking stays under three flashes per second.
 
 ## Licence
