@@ -43,9 +43,10 @@ const meta: EraMeta = {
     { label: 'Blink element (Wikipedia)', url: 'https://en.wikipedia.org/wiki/Blink_element' },
     { label: 'Web Design Museum', url: 'https://www.webdesignmuseum.org/' },
   ],
+  cta: { next: 'ENTER the next era!!', prev: '<< Go back' },
   recreated: [
     '<marquee> and <blink> are recreated with CSS animations (blink at 1 Hz, under the flash threshold).',
-    'Animated GIFs (under construction, mailbox) are drawn as animated inline SVG.',
+    'The animated GIFs are real GIFs, but new ones: drawn pixel by pixel by a script in this repo (scripts/make-era03-gifs.py), not copied from 1998. With reduced motion or readable mode on you get a still frame of each.',
     'Background MIDI is replaced by a Web Audio square-wave tune that only plays after you press Play.',
     'The hit counter and guestbook live in your browser’s localStorage instead of a CGI script.',
   ],

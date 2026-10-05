@@ -1,0 +1,766 @@
+/*
+ * The stage: a room, a desk and the era's hardware, built from CSS 3D boxes.
+ * Each era room renders inside the monitor's screen (a scroll container that
+ * is also a size container named "screen"; see the CSS rewrite in useRoom.ts).
+ * At rest the camera is untransformed so text stays crisp; the swap scenes in
+ * app/lib/travel.ts move the camera and the rigs with the Web Animations API.
+ */
+@layer era, shell;
+
+@property --wall-a {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #2a2d33;
+}
+@property --wall-b {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0e1013;
+}
+
+@layer shell {
+  /* ---------- Hardware dimensions ---------- */
+  [data-kind='classic'] {
+    --bx: 38px;
+    --bt: 38px;
+    --bb: 128px;
+    --below: 16px;
+    --arw: 4;
+    --arh: 3;
+    --maxw: 820px;
+    --depth: 0.9;
+    --case: #e3dbc6;
+    --radius: 18px;
+    --screen-radius: 12px;
+    --btn-bg: #efe8d6;
+    --btn-fg: #3b3428;
+    --wall-a: #5b4835;
+    --wall-b: #1c1611;
+  }
+  [data-kind='crt'] {
+    --bx: 40px;
+    --bt: 36px;
+    --bb: 60px;
+    --below: 50px;
+    --arw: 4;
+    --arh: 3;
+    --maxw: 1024px;
+    --depth: 0.3;
+    --case: #d8d2c1;
+    --radius: 12px;
+    --screen-radius: 22px / 18px;
+    --btn-bg: #e9e4d6;
+    --btn-fg: #35322a;
+    --wall-a: #4c5257;
+    --wall-b: #17191b;
+  }
+  [data-kind='lcd'] {
+    --bx: 16px;
+    --bt: 16px;
+    --bb: 30px;
+    --below: 84px;
+    --arw: 16;
+    --arh: 10;
+    --maxw: 1480px;
+    --depth: 0.04;
+    --case: #2a2c31;
+    --radius: 10px;
+    --screen-radius: 2px;
+    --btn-bg: #3b3e45;
+    --btn-fg: #eceef2;
+    --wall-a: #34404f;
+    --wall-b: #0f1319;
+  }
+  [data-kind='phone'] {
+    --bx: 11px;
+    --bt: 13px;
+    --bb: 13px;
+    --below: 60px;
+    --arw: 9;
+    --arh: 19.5;
+    --maxw: 460px;
+    --depth: 0.075;
+    --case: #141417;
+    --radius: 50px;
+    --screen-radius: 40px;
+    --btn-bg: rgb(255 255 255 / 0.1);
+    --btn-fg: #f2f2f4;
+    --wall-a: #3d4150;
+    --wall-b: #0c0d11;
+  }
+  [data-kind] {
+    --mt: 14px;
+    --mb: 10px;
+    --mx: 16px;
+    --avail-h: calc(100dvh - var(--bt) - var(--bb) - var(--below) - var(--mt) - var(--mb));
+    --avail-w: calc(100vw - 2 * var(--bx) - 2 * var(--mx));
+    --sh: min(var(--avail-h), var(--avail-w) * var(--arh) / var(--arw), var(--maxw) * var(--arh) / var(--arw));
+    --sw: calc(var(--sh) * var(--arw) / var(--arh));
+    --W: calc(var(--sw) + 2 * var(--bx));
+    --H: calc(var(--sh) + var(--bt) + var(--bb));
+    --rig-h: calc(var(--H) + var(--below));
+    --D: calc(var(--W) * var(--depth));
+  }
+  /* Small or short viewports: the screen fills the window and the bezel slims down. */
+  @media (max-width: 700px), (max-height: 560px) {
+    [data-kind] {
+      --mt: 0px;
+      --mb: 0px;
+      --mx: 0px;
+      --below: 0px;
+      --bx: 7px;
+      --bt: 7px;
+      --bb: 46px;
+      --sw: var(--avail-w);
+      --sh: var(--avail-h);
+    }
+    [data-kind='phone'] {
+      --radius: 22px;
+      --screen-radius: 16px;
+    }
+    [data-kind='crt'],
+    [data-kind='classic'] {
+      --screen-radius: 10px;
+    }
+  }
+
+  /* ---------- Room, camera, desk ---------- */
+  html:has(.stage) {
+    overflow: hidden;
+  }
+  .stage {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    perspective: 2400px;
+    perspective-origin: 50% 50%;
+    background: radial-gradient(ellipse 80% 70% at 50% 38%, var(--wall-a), var(--wall-b));
+    transition:
+      --wall-a 1.2s ease,
+      --wall-b 1.2s ease;
+    --desk-y: calc(50dvh + var(--rig-h) / 2);
+    --cm: 7px;
+    color-scheme: normal;
+  }
+  .stage__camera {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transform-origin: 50vw var(--desk-y);
+  }
+  .desk {
+    position: absolute;
+    left: -200vw;
+    width: 500vw;
+    top: var(--desk-y);
+    height: 0;
+    transform-style: preserve-3d;
+    pointer-events: none;
+  }
+  .desk__top {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: calc(110 * var(--cm));
+    transform-origin: 50% 0;
+    transform: translateZ(calc(-70 * var(--cm))) rotateX(90deg);
+    background:
+      radial-gradient(ellipse 18% 30% at 50% 62%, rgb(0 0 0 / 0.35), transparent 70%),
+      repeating-linear-gradient(90deg, rgb(255 255 255 / 0.025) 0 3px, transparent 3px 11px),
+      linear-gradient(#5d4532, #7a5a3f 70%, #8a6747);
+  }
+  .desk__front {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: calc(80 * var(--cm));
+    transform: translateZ(calc(40 * var(--cm)));
+    background: linear-gradient(#a07a55 0 calc(3 * var(--cm)), #3e2c1e calc(3 * var(--cm)), #22180f);
+  }
+
+  /* ---------- A rig (one device) ---------- */
+  .rig {
+    position: absolute;
+    left: calc(50vw - var(--W) / 2);
+    top: calc(var(--desk-y) - var(--rig-h));
+    width: var(--W);
+    height: var(--rig-h);
+    transform-style: preserve-3d;
+    transform-origin: 50% 100%;
+  }
+  .rig__model {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    pointer-events: none;
+  }
+  .rig__front {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--W);
+    height: var(--H);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 0.14), transparent 30%, rgb(0 0 0 / 0.08)),
+      var(--case);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.35),
+      inset 0 -2px 0 rgb(0 0 0 / 0.18);
+  }
+  .rig__screen {
+    position: absolute;
+    left: var(--bx);
+    top: var(--bt);
+    width: var(--sw);
+    height: var(--sh);
+    overflow: hidden;
+    border-radius: var(--screen-radius);
+    background: #000;
+    container: screen / size;
+    /* Fixed-position elements inside a demo stick to the screen, not the window. */
+    contain: layout paint;
+    isolation: isolate;
+    box-shadow: 0 0 0 2px rgb(0 0 0 / 0.35);
+  }
+  .rig__scroll {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  .rig__glass,
+  .rig__power {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  .rig__power {
+    background: #050505;
+    opacity: 0;
+  }
+  .rig--ghost .rig__power {
+    opacity: 1;
+  }
+  [data-kind='classic'] .rig__glass,
+  [data-kind='crt'] .rig__glass {
+    background:
+      linear-gradient(160deg, rgb(255 255 255 / 0.07), transparent 38%),
+      radial-gradient(ellipse 75% 70% at 50% 50%, transparent 62%, rgb(0 0 0 / 0.32));
+  }
+  /* A real tube: scanlines, the aperture grille's RGB stripes, phosphor bloom,
+     a faint refresh band rolling down and a slow mains hum in the brightness.
+     The hum is a 2% swell twice a second, far from a flash. */
+  [data-kind='classic'] .rig__glass,
+  [data-kind='crt'] .rig__glass {
+    backdrop-filter: blur(0.35px) saturate(1.12) brightness(1.04);
+    box-shadow:
+      inset 0 0 calc(var(--sw) * 0.06) rgb(0 0 0 / 0.55),
+      inset 0 0 2px 1px rgb(0 0 0 / 0.6);
+    animation: crt-hum 0.5s ease-in-out infinite alternate;
+  }
+  [data-kind='classic'] .rig__glass::before,
+  [data-kind='crt'] .rig__glass::before,
+  [data-kind='classic'] .rig__glass::after,
+  [data-kind='crt'] .rig__glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  [data-kind='classic'] .rig__glass::before,
+  [data-kind='crt'] .rig__glass::before {
+    background:
+      repeating-linear-gradient(to bottom, rgb(0 0 0 / 0) 0 1.5px, rgb(0 0 0 / 0.22) 1.5px 3px),
+      repeating-linear-gradient(
+        to right,
+        rgb(255 40 40 / 0.06) 0 1px,
+        rgb(40 255 40 / 0.06) 1px 2px,
+        rgb(40 80 255 / 0.06) 2px 3px
+      );
+  }
+  [data-kind='classic'] .rig__glass::before {
+    /* The compact Mac's small black-and-white tube: finer lines, no colour mask. */
+    background: repeating-linear-gradient(to bottom, rgb(0 0 0 / 0) 0 1px, rgb(0 0 0 / 0.16) 1px 2px);
+  }
+  [data-kind='classic'] .rig__glass::after,
+  [data-kind='crt'] .rig__glass::after {
+    background: linear-gradient(to bottom, transparent, rgb(255 255 255 / 0.035) 45%, rgb(255 255 255 / 0.05) 50%, transparent);
+    background-size: 100% 22%;
+    background-repeat: no-repeat;
+    animation: crt-roll 7s linear infinite;
+  }
+  @keyframes crt-hum {
+    to {
+      opacity: 0.94;
+    }
+  }
+  @keyframes crt-roll {
+    from {
+      background-position: 0 -30%;
+    }
+    to {
+      background-position: 0 130%;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rig__glass,
+    .rig__glass::after {
+      animation: none !important;
+    }
+  }
+  [data-kind='lcd'] .rig__glass {
+    background: linear-gradient(115deg, rgb(255 255 255 / 0.05), transparent 30%);
+  }
+  html.readable .rig__glass {
+    display: none;
+  }
+
+  /* Chin details */
+  .rig__chin {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: var(--bb);
+    pointer-events: none;
+  }
+  .rig__brand {
+    position: absolute;
+    left: calc(var(--bx) + 4px);
+    top: 50%;
+    translate: 0 -50%;
+    font: 700 11px/1 var(--shell-font);
+    letter-spacing: 0.32em;
+    color: color-mix(in srgb, var(--case), #000 38%);
+    text-shadow: 0 1px 0 rgb(255 255 255 / 0.35);
+  }
+  [data-kind='lcd'] .rig__brand {
+    left: 50%;
+    translate: -50% -50%;
+    font-size: 9px;
+    color: #8d9099;
+    text-shadow: none;
+  }
+  [data-kind='classic'] .rig__brand {
+    top: 38px;
+  }
+  .rig__led {
+    position: absolute;
+    right: calc(var(--bx) + 2px);
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    margin-top: -3.5px;
+    border-radius: 50%;
+    background: #48e06a;
+    box-shadow: 0 0 6px #48e06a;
+  }
+  [data-kind='lcd'] .rig__led {
+    background: #5aa7ff;
+    box-shadow: 0 0 6px #5aa7ff;
+    width: 5px;
+    height: 5px;
+  }
+  .rig--ghost .rig__led,
+  .rig.is-unplugged .rig__led {
+    background: #3a3a33;
+    box-shadow: none;
+  }
+  .rig__floppy {
+    position: absolute;
+    right: calc(var(--bx) + 40px);
+    top: 30px;
+    width: 120px;
+    height: 10px;
+    border-radius: 3px;
+    background: #2d2a24;
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.5),
+      inset 0 2px 2px rgb(0 0 0 / 0.6);
+  }
+
+  /* ---------- 3D boxes ---------- */
+  .box {
+    position: absolute;
+    display: block;
+    transform-style: preserve-3d;
+    width: var(--bw);
+    height: var(--bh);
+    left: var(--bl, 0px);
+    top: var(--btp, 0px);
+    transform: translateZ(var(--bz, 0px));
+    --face: var(--case);
+  }
+  .box__f {
+    position: absolute;
+    display: block;
+    background: var(--face);
+  }
+  .box__f--front {
+    inset: 0;
+  }
+  .box__f--back {
+    inset: 0;
+    transform: translateZ(calc(-1 * var(--bd))) rotateY(180deg);
+    background: color-mix(in srgb, var(--face), #000 42%);
+  }
+  .box__f--left {
+    left: 0;
+    top: 0;
+    width: var(--bd);
+    height: 100%;
+    transform-origin: 0 50%;
+    transform: rotateY(90deg);
+    background: color-mix(in srgb, var(--face), #000 22%);
+  }
+  .box__f--right {
+    right: 0;
+    top: 0;
+    width: var(--bd);
+    height: 100%;
+    transform-origin: 100% 50%;
+    transform: rotateY(-90deg);
+    background: color-mix(in srgb, var(--face), #000 32%);
+  }
+  .box__f--top {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: var(--bd);
+    transform-origin: 50% 0;
+    transform: rotateX(-90deg);
+    background: color-mix(in srgb, var(--face), #fff 10%);
+  }
+  .box__f--bottom {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: var(--bd);
+    transform-origin: 50% 100%;
+    transform: rotateX(90deg);
+    background: color-mix(in srgb, var(--face), #000 55%);
+  }
+  .box--case {
+    --bw: var(--W);
+    --bh: var(--H);
+    --bd: var(--D);
+  }
+  .box--case .box__f--back {
+    border-radius: var(--radius);
+  }
+  /* Keep the sides clear of the rounded corners of the front. */
+  .box--case .box__f--left,
+  .box--case .box__f--right {
+    top: var(--radius);
+    height: calc(100% - 2 * var(--radius));
+  }
+  .box--case .box__f--top,
+  .box--case .box__f--bottom {
+    left: var(--radius);
+    width: calc(100% - 2 * var(--radius));
+  }
+  /* At rest the camera looks straight on: only the stand needs drawing. */
+  .stage:not(.is-travelling) .rig:not(.rig--held) :is(.box--case, .box--tube) {
+    visibility: hidden;
+  }
+  .box--tube {
+    --bw: calc(var(--W) * 0.7);
+    --bh: calc(var(--H) * 0.72);
+    --bl: calc(var(--W) * 0.15);
+    --btp: calc(var(--H) * 0.1);
+    --bz: calc(-1 * var(--D));
+    --bd: calc(var(--W) * 0.42);
+    --face: color-mix(in srgb, var(--case), #000 8%);
+  }
+  .box--foot {
+    --bw: calc(var(--W) * 0.92);
+    --bh: var(--below);
+    --bl: calc(var(--W) * 0.04);
+    --btp: var(--H);
+    --bz: calc(-0.04 * var(--W));
+    --bd: calc(var(--D) * 0.86);
+    --face: color-mix(in srgb, var(--case), #000 12%);
+  }
+  [data-kind='crt'] .box--foot {
+    --bw: calc(var(--W) * 0.44);
+    --bl: calc(var(--W) * 0.28);
+    --bz: calc(-0.1 * var(--W));
+    --bd: calc(var(--W) * 0.42);
+  }
+  [data-kind='lcd'] .box--foot {
+    --bw: calc(var(--W) * 0.34);
+    --bh: 12px;
+    --bl: calc(var(--W) * 0.33);
+    --btp: calc(var(--H) + var(--below) - 12px);
+    --bz: calc(-0.01 * var(--W));
+    --bd: calc(var(--W) * 0.2);
+    --face: #b9bcc3;
+  }
+  .box--neck {
+    --bw: calc(var(--W) * 0.09);
+    --bh: calc(var(--H) * 0.4 + var(--below) - 12px);
+    --bl: calc(var(--W) * 0.455);
+    --btp: calc(var(--H) * 0.6);
+    --bz: calc(-1 * var(--D) - 6px);
+    --bd: 16px;
+    --face: #a9adb5;
+  }
+  .rig__cable {
+    position: absolute;
+    display: block;
+    left: 80%;
+    top: 66%;
+    width: 24%;
+    height: 34%;
+    border: 5px solid #2a2a2a;
+    border-left: 0;
+    border-bottom: 0;
+    border-radius: 0 100% 0 0;
+    transform: translateZ(calc(-0.75 * var(--D)));
+    transform-origin: 0 0;
+  }
+  [data-kind='classic'] .rig__cable {
+    top: 72%;
+  }
+  .rig__hand {
+    position: absolute;
+    left: -25%;
+    width: 150%;
+    top: calc(var(--H) - var(--W) * 0.6);
+    height: auto;
+    overflow: visible;
+  }
+  .rig__hand-skin {
+    fill: #c98f66;
+  }
+  .rig__hand-shade {
+    fill: #b47b55;
+  }
+  .rig__hand-sleeve {
+    fill: #2a4364;
+  }
+  .rig__screen::before {
+    /* front camera on the phone */
+    content: none;
+  }
+  @media (max-width: 700px), (max-height: 560px) {
+    .box--foot,
+    .box--neck,
+    .rig__hand,
+    .rig__cable,
+    .rig__floppy,
+    .rig__brand {
+      display: none !important;
+    }
+  }
+
+  /* ---------- Hardware buttons (curator, readable, help, lobby) ---------- */
+  .rig__controls {
+    position: absolute;
+    right: calc(var(--bx) + 22px);
+    bottom: 0;
+    height: var(--bb);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  [data-kind='classic'] .rig__controls {
+    right: auto;
+    left: calc(var(--bx) + 2px);
+    height: auto;
+    bottom: 26px;
+  }
+  .hw-btn {
+    display: inline-grid;
+    place-items: center;
+    min-width: 34px;
+    height: 28px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 6px;
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    font: 700 11px/1 var(--shell-font);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow:
+      inset 0 -2px 0 rgb(0 0 0 / 0.22),
+      0 1px 0 rgb(255 255 255 / 0.35);
+  }
+  .hw-btn:hover {
+    filter: brightness(1.06);
+  }
+  .hw-btn:active {
+    translate: 0 1px;
+    box-shadow: inset 0 1px 2px rgb(0 0 0 / 0.3);
+  }
+  .hw-btn[aria-pressed='true'],
+  .hw-btn[aria-expanded='true'] {
+    background: #f59e0b;
+    color: #1b1406;
+  }
+  .hw-btn:focus-visible {
+    outline: 3px solid #f59e0b;
+    outline-offset: 2px;
+  }
+  [data-kind='phone'] .hw-btn {
+    border: 1px solid rgb(255 255 255 / 0.22);
+    box-shadow: none;
+    backdrop-filter: blur(8px);
+  }
+  @media (min-width: 701px) and (min-height: 561px) {
+    [data-kind='phone'] .rig__controls {
+      right: auto;
+      left: calc(100% + 28px);
+      bottom: auto;
+      top: 50%;
+      height: auto;
+      translate: 0 -50%;
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  /* ---------- The era room inside the screen ---------- */
+  .stage main.era {
+    display: flow-root;
+    min-height: 100%;
+    padding-bottom: 0;
+    box-sizing: border-box;
+  }
+  .stage__skip {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    z-index: 20;
+    padding: 8px 14px;
+    border: 1px solid rgb(255 255 255 / 0.4);
+    border-radius: 999px;
+    background: rgb(0 0 0 / 0.55);
+    color: #fff;
+    font: 600 13px/1 var(--shell-font);
+    cursor: pointer;
+  }
+  .stage__skip:focus-visible {
+    outline: 3px solid #f59e0b;
+    outline-offset: 2px;
+  }
+  .stage.is-travelling .rig__scroll {
+    pointer-events: none;
+  }
+}
+
+@layer shell {
+  .stage__probe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: var(--W);
+    height: var(--rig-h);
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .rig--held {
+    left: calc(var(--hold-x) - var(--W) / 2);
+    top: calc(var(--hold-y) - var(--rig-h));
+    transform: translate3d(0, 0, 0) scale3d(0.1, 0.1, 0.1);
+  }
+  .mover--front {
+    transform: translate3d(200vw, 0, 0);
+  }
+}
+
+/* ---------- Same-hardware travel: the room morphs into the next era ---------- */
+.stage.is-morphing .rig__screen {
+  view-transition-name: era-screen;
+}
+::view-transition-group(*) {
+  animation-duration: 900ms;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.25, 1);
+}
+::view-transition-old(era-screen) {
+  animation: stage-dissolve-out 650ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+::view-transition-new(era-screen) {
+  animation: stage-dissolve-in 850ms cubic-bezier(0, 0, 0.2, 1) 180ms both;
+}
+@keyframes stage-dissolve-out {
+  to {
+    opacity: 0;
+    filter: blur(6px) saturate(0.3);
+    transform: scale(0.985);
+  }
+}
+@keyframes stage-dissolve-in {
+  from {
+    opacity: 0;
+    filter: blur(8px) saturate(1.8);
+    transform: scale(1.015);
+  }
+}
+
+/* ---------- Arriving from the lobby: the screen is dark until it switches on ---------- */
+.stage.is-booting .rig__power {
+  opacity: 1;
+}
+.stage.is-booting .rig__screen {
+  view-transition-name: era-screen;
+}
+
+/* The lobby's Start: its title screen pulls back into the first era's monitor.
+   Lives here because the lobby's own styles unload with it. */
+html.is-intro::view-transition-group(era-screen) {
+  animation-duration: 1500ms;
+  animation-timing-function: cubic-bezier(0.7, 0, 0.2, 1);
+}
+/* The title screen goes dark as the pull starts (the new, unlit tube fades in on top), then the camera pulls back. */
+html.is-intro::view-transition-old(era-screen) {
+  animation: intro-title-out 1500ms linear both;
+}
+html.is-intro::view-transition-new(era-screen) {
+  animation: intro-screen-in 1500ms linear both;
+}
+html.is-intro::view-transition-old(root) {
+  animation: none;
+}
+html.is-intro::view-transition-new(root) {
+  transform-origin: var(--intro-o, 50% 50%);
+  animation: intro-room 1500ms cubic-bezier(0.7, 0, 0.2, 1) both;
+}
+@keyframes intro-title-out {
+  0%,
+  30% {
+    opacity: 1;
+  }
+  36%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes intro-screen-in {
+  0%,
+  8% {
+    opacity: 0;
+  }
+  30%,
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes intro-room {
+  from {
+    transform: var(--intro-t, scale(2));
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}

@@ -323,6 +323,115 @@
   }
   .vx-foot__fps { margin-left: auto; color: var(--vx-orange); }
 
+  /* ---------- The HTML page around the movie: era stamp + ENTER SITE ---------- */
+  .vx-head {
+    max-width: 760px;
+    margin: 0 auto 10px;
+    display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+    gap: 4px 16px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--vx-line);
+  }
+  .vx-head__url { color: #8a8a8a; }
+  .era-stamp {
+    margin: 0;
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px;
+    font-family: var(--vx-pixfont);
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    -webkit-font-smoothing: none;
+    color: #b8b8b8;
+  }
+  .era-stamp__no { color: #000; background: var(--vx-orange); padding: 1px 5px; }
+  .era-stamp__years { color: #fff; }
+  .era-stamp__years::after { content: ' //'; color: #8a8a8a; }
+  .era-stamp__title { color: var(--vx-orange); }
+
+  .vx-enter {
+    max-width: 760px;
+    margin: 16px auto 0;
+  }
+  .era-cta {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+    gap: 12px 22px;
+    padding: 14px 12px;
+    border-top: 1px solid var(--vx-line);
+    border-bottom: 1px solid var(--vx-line);
+    background:
+      linear-gradient(90deg, transparent, rgb(255 106 0 / 0.08) 50%, transparent);
+  }
+  .era-cta a {
+    font-family: var(--vx-pixfont);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    -webkit-font-smoothing: none;
+    text-decoration: none;
+    display: inline-grid; justify-items: center; gap: 6px;
+    text-align: center;
+  }
+  .era-cta__label, .era-cta__to { display: block; }
+  .era-cta__to { font-size: 8px; letter-spacing: 0.14em; }
+
+  /* The big ENTER SITE button */
+  .era-cta__next {
+    position: relative;
+    overflow: hidden;
+    min-width: 220px;
+    padding: 12px 22px 10px;
+    color: #fff;
+    background: #000;
+    border: 2px solid var(--vx-orange);
+    box-shadow: 0 0 12px rgb(255 106 0 / 0.45), inset 0 0 10px rgb(255 106 0 / 0.25);
+    transition: background 0.15s, color 0.15s, box-shadow 0.2s;
+  }
+  .era-cta__next .era-cta__label { font-size: 18px; letter-spacing: 0.3em; }
+  .era-cta__next .era-cta__to { color: #ffb27a; }
+  /* the light streak that sweeps across a Flash button on rollover */
+  .era-cta__next::before {
+    content: '';
+    position: absolute; top: 0; bottom: 0; left: -60%;
+    width: 40%;
+    background: linear-gradient(100deg, transparent, rgb(255 255 255 / 0.55), transparent);
+    transform: skewX(-20deg);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .era-cta__next:hover, .era-cta__next:focus-visible {
+    background: var(--vx-orange);
+    color: #000;
+    box-shadow: 0 0 22px rgb(255 106 0 / 0.8), 0 0 2px #fff;
+  }
+  .era-cta__next:hover .era-cta__to, .era-cta__next:focus-visible .era-cta__to { color: #000; }
+  .era-cta__next:hover::before, .era-cta__next:focus-visible::before {
+    opacity: 1;
+    animation: e05-sweep 0.7s ease-out;
+  }
+  .era-cta__next:hover .era-cta__label, .era-cta__next:focus-visible .era-cta__label {
+    animation: e05-pulse 0.9s ease-in-out infinite alternate;
+  }
+  .era-cta__next:focus-visible { outline: 2px dashed #fff; outline-offset: 4px; }
+
+  /* The quieter way back: a dashed SKIP-INTRO style text link */
+  .era-cta__prev {
+    padding: 7px 10px;
+    color: #c8c8c8;
+    border: 1px dashed #666;
+    font-size: 9px;
+  }
+  .era-cta__prev .era-cta__to { color: #9a9a9a; }
+  .era-cta__prev:hover, .era-cta__prev:focus-visible { color: var(--vx-orange); border-color: var(--vx-orange); }
+  .era-cta__prev:hover .era-cta__to, .era-cta__prev:focus-visible .era-cta__to { color: #ffb27a; }
+  .era-cta__prev:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+  @media (max-width: 480px) {
+    .era-cta { flex-direction: column; align-items: stretch; }
+    .era-cta__next { min-width: 0; }
+    .era-cta__next .era-cta__label { font-size: 16px; }
+  }
+
   /* ---------- Controls outside the stage ---------- */
   .vx-controls {
     max-width: 760px;
@@ -358,6 +467,8 @@
 
   @media (prefers-reduced-motion: reduce) {
     .vx-orbit { animation: none; }
+    .era-cta__next:hover::before, .era-cta__next:focus-visible::before,
+    .era-cta__next:hover .era-cta__label, .era-cta__next:focus-visible .era-cta__label { animation: none; }
   }
 }
 
@@ -379,4 +490,12 @@
 @keyframes e05-panel {
   0% { clip-path: inset(0 0 100% 0); }
   100% { clip-path: inset(0); }
+}
+@keyframes e05-sweep {
+  from { left: -60%; }
+  to { left: 130%; }
+}
+@keyframes e05-pulse {
+  from { text-shadow: 0 0 0 transparent; }
+  to { text-shadow: 0 0 6px #fff; }
 }

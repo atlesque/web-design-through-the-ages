@@ -1,4 +1,6 @@
 import type { EraMeta, EraSnippet, RoomMeta } from '~/eras/types'
+import { frameRoom, toScreenCss } from '~/lib/frame'
+import { eras } from './useEras'
 
 export interface RoomSnippet {
   caption: string
@@ -12,7 +14,6 @@ export interface RoomPayload {
   meta: EraMeta | RoomMeta
   html: string
   css: string
-  skinCss: string
   snippets: RoomSnippet[]
 }
 
@@ -24,7 +25,8 @@ export function extractRegion(source: string, region: string) {
   const start = lines.findIndex((l) => l.includes(`snippet:${region}:start`))
   const end = lines.findIndex((l, i) => i > start && l.includes(`snippet:${region}:end`))
   if (start < 0 || end < 0) return `/* snippet "${region}" not found */`
-  const body = lines.slice(start + 1, end).filter((l) => !MARKER.test(l))
+  // The stage's era:stamp / era:cta slots are filled at build time, so they don't belong in the code panel.
+  const body = lines.slice(start + 1, end).filter((l) => !MARKER.test(l) && !/<!--\s*era:(stamp|cta)\s*-->/.test(l))
   const indent = Math.min(...body.filter((l) => l.trim()).map((l) => l.match(/^\s*/)![0].length))
   return body.map((l) => l.slice(Number.isFinite(indent) ? indent : 0)).join('\n')
 }
@@ -57,10 +59,6 @@ export async function loadRoom(path: string): Promise<RoomPayload> {
     if (!metaLoader) throw createError({ statusCode: 404, statusMessage: `Unknown room ${path}` })
     const meta = await metaLoader()
 
-    const eraFolder = path.split('/')[0]
-    const skinLoader = raw[`../eras/${eraFolder}/timebar.css`]
-    const skin = skinLoader ? await skinLoader() : ''
-
     const { highlight } = await import('../lib/highlight')
     const snippets: RoomSnippet[] = []
     for (const s of meta.snippets as EraSnippet[]) {
@@ -71,9 +69,14 @@ export async function loadRoom(path: string): Promise<RoomPayload> {
     return {
       path,
       meta,
-      html: stripMarkers(await read('demo.html')),
-      css: `@layer era, shell, skin;\n@layer era {\n${stripMarkers(await read('era.css'))}\n}`,
-      skinCss: skin ? `@layer era, shell, skin;\n@layer skin {\n${stripMarkers(skin)}\n}` : '',
+      html: frameRoom(stripMarkers(await read('demo.html')), {
+        path,
+        title: meta.title,
+        years: meta.years,
+        eras,
+        cta: meta.cta,
+      }),
+      css: `@layer era, shell;\n@layer era {\n${toScreenCss(stripMarkers(await read('era.css')))}\n}`,
       snippets,
     }
   }

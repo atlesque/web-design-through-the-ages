@@ -31,12 +31,19 @@ HTML/CSS.
 ## How it works
 
 - **Nuxt 4 in static mode.** `nuxt generate` prerenders every route; nothing runs on a server.
-- **Era rooms** live in `app/eras/NN-slug/`. Each has `demo.html` (period markup, rendered byte for byte),
-  `era.css` (scoped under `[data-era="NN"]`, in `@layer era`), `timebar.css` (the era's skin for the time bar),
+- **Era rooms** live in `app/eras/NN-slug/`. Each has `demo.html` (period markup, rendered byte for byte, with
+  markers for the era stamp and the travel buttons), `era.css` (scoped under `[data-era="NN"]`, in `@layer era`),
   `meta.ts` (curator notes) and an optional `era.client.ts`. See [docs/ADDING-AN-ERA.md](docs/ADDING-AN-ERA.md).
-- **The shell** (`app/components/TimeBar.vue`, `CuratorPanel.vue`, `app/assets/shell.css`) sits in
+- **The stage** (`app/layouts/stage.vue`, `MonitorRig.vue`, `app/assets/stage.css`) shows each room inside its
+  era's hardware, built from CSS 3D boxes: a beige all-in-one, a CRT, a flat LCD, then a phone in a hand
+  (`app/lib/monitors.ts`). The room is live inside the screen; era CSS is fitted to it at build time
+  (`app/lib/frame.ts`).
+- **Travel between eras** stays in the app so the monitor persists (`app/plugins/travel.client.ts`). On the same
+  hardware the room morphs into the next with a View Transition; a change of hardware plays a swap scene
+  (`app/lib/travel.ts`, Web Animations), reversed when going back. Escape skips; reduced motion and readable
+  mode switch instantly. Without JavaScript the travel buttons are plain links.
+- **The shell** (`CuratorPanel.vue`, the monitor's hardware buttons, `app/assets/shell.css`) sits in
   `@layer shell` and always wins over era styles. Readable mode and reduced motion override every era.
-- **Navigation between eras** uses real page loads, so cross-document View Transitions run between rooms.
 - **Code snippets** in the curator panel are pulled from marked regions of the real source files and
   highlighted with Shiki at build time; no highlighter ships to the browser.
 - **Security headers:** `scripts/postgenerate.mjs` writes `_headers` with a per-page Content-Security-Policy
@@ -75,7 +82,7 @@ The site uses no Pages Functions, so the Workers request quota never applies.
 ## House rules
 
 - Every brand in the demos is invented. No real logos, screenshots or copyrighted characters.
-- All imagery is drawn in the repo with CSS or SVG. No external requests, no analytics, no cookies.
+- All imagery is drawn in the repo with CSS, SVG or a script that writes GIFs (`scripts/make-era03-gifs.py`). No external requests, no analytics, no cookies.
 - Nothing autoplays sound. Blinking stays under three flashes per second.
 
 ## Licence

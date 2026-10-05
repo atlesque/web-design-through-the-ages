@@ -5,6 +5,7 @@ const meta: EraMeta = {
   slug: '08-blogs-myspace',
   title: 'Blogs & MySpace',
   years: '2003–2008',
+  cta: { next: 'Add the next era as a friend', prev: "Visit the last era's profile" },
   summary:
     'Anyone could publish: hosted blogs gave everyone dated posts, permalinks and a sidebar, while social profiles let millions of teenagers paste raw CSS into an "About me" box.',
   context: {

@@ -5,6 +5,7 @@ const meta: EraMeta = {
   slug: '05-flash',
   title: 'Flash & splash intros',
   years: '1997–2009',
+  cta: { next: 'ENTER »', prev: '« BACK' },
   summary:
     'Macromedia Flash turned web pages into fixed-size stages: preloaders, skippable splash intros, swooshing menus, pixel fonts, sound effects and navigation you had to discover by hovering.',
   context: {

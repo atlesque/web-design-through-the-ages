@@ -41,6 +41,7 @@ const meta: EraMeta = {
     { label: 'Viewport meta tag (MDN)', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag' },
     { label: 'Bootstrap (front-end framework) (Wikipedia)', url: 'https://en.wikipedia.org/wiki/Bootstrap_(front-end_framework)' },
   ],
+  cta: { next: 'Next era »', prev: '« Previous era' },
   recreated: [
     'Developers tested by resizing the browser or on a drawer of real devices; here an iframe stands in for each device so its media queries respond to the frame width.',
   ],

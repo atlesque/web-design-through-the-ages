@@ -40,6 +40,7 @@ const meta: EraMeta = {
     { label: 'Flexbox (MDN)', url: 'https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox' },
     { label: 'Flat UI Colors', url: 'https://flatuicolors.com/' },
   ],
+  cta: { next: 'next', prev: 'back' },
   recreated: [
     'Flat UI palette colours are darkened here so white text on every tile meets WCAG AA; the originals (#1abc9c, #3498db…) were lighter.',
   ],

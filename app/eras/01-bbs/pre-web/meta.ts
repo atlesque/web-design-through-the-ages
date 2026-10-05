@@ -2,6 +2,7 @@ import type { RoomMeta } from '../../types'
 
 const meta: RoomMeta = {
   parent: '01-bbs',
+  cta: { next: 'GREEN: on to the web', prev: 'RED: back to the BBS' },
   title: 'Pre-web systems: Teletext, Minitel & Gopher',
   years: '1974–1995',
   summary:

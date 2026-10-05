@@ -40,6 +40,7 @@ const meta: EraMeta = {
     { label: 'History of the World Wide Web (Wikipedia)', url: 'https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web' },
     { label: 'Web Design Museum', url: 'https://www.webdesignmuseum.org/' },
   ],
+  cta: { next: 'Next document:', prev: 'Previous document:' },
   recreated: [
     'The browser window, toolbar and loading globe are drawn with CSS; the original program cannot run in a page.',
     'The modern browser default stylesheet is reset to match the period look (grey page, #0000ee links).',

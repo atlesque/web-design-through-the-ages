@@ -77,29 +77,30 @@
   @keyframes e03-blink {
     50% { visibility: hidden; }
   }
-  .dk__new {
-    color: #ffff00;
-    font: 700 11px Verdana, sans-serif;
-    background: #ff0000;
-    padding: 0 3px;
-    animation: e03-blink 1s steps(1) infinite;
+  /* Real animated GIFs (public/demos/03-homepages, drawn by scripts/make-era03-gifs.py).
+     Dave stretched some with width= and height=; keep the pixels chunky when he did. */
+  img {
+    image-rendering: pixelated;
+    vertical-align: middle;
   }
-
   .dk__uc {
     display: block;
     margin: 12px auto 4px;
     border: 2px outset #c0c0c0;
-    image-rendering: pixelated;
   }
-  .dk__uc-light {
-    animation: e03-blink 0.8s steps(1) infinite;
+  .dk__div {
+    margin: 14px 0;
+    text-align: center;
+    line-height: 0;
   }
-  .dk__uc-shovel {
-    transform-origin: 37px 28px;
-    animation: e03-dig 0.8s steps(2) infinite;
+  .dk__div img {
+    max-width: 100%;
   }
-  @keyframes e03-dig {
-    50% { transform: rotate(-18deg); }
+  .dk__dancer {
+    margin: 0 0 8px 12px;
+  }
+  .dk__badges img {
+    margin: 0 4px;
   }
 
   .dk__rainbow {
@@ -139,14 +140,21 @@
     letter-spacing: 0;
     color: #fff;
   }
+  /* Each digit is a slice of one GIF strip, like a CGI counter's digit images.
+     The real digit stays in the text (transparent), so readable mode, which drops
+     background images, still shows the number. */
   .dk__digit {
     display: inline-block;
-    width: 1.1ch;
-    padding: 2px 2px;
-    margin: 0 1px;
-    background: linear-gradient(#333, #000 50%, #222 50%, #111);
-    color: #fff;
+    width: 14px;
+    height: 20px;
+    margin: 0 1px 0 0;
+    font-size: 16px;
+    line-height: 20px;
+    background: #000 url('/demos/03-homepages/counter-digits.gif') no-repeat;
+    background-position: calc(var(--d, 0) * -14px) 0;
+    color: transparent;
     text-align: center;
+    vertical-align: top;
   }
   .dk__digit.is-rolling {
     animation: e03-roll 0.35s ease-out;
@@ -160,21 +168,6 @@
     text-decoration: none;
     color: #fff;
     display: inline-block;
-  }
-  .dk__letter {
-    animation: e03-letter 2s steps(4) infinite;
-  }
-  @keyframes e03-letter {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(8px); }
-    100% { transform: translateY(8px); opacity: 0; }
-  }
-  .dk__flag {
-    transform-origin: 39px 20px;
-    animation: e03-flag 2s steps(1) infinite;
-  }
-  @keyframes e03-flag {
-    50% { transform: rotate(-80deg); }
   }
 
   .dk__cat {
@@ -235,6 +228,118 @@
   .dk__ringout {
     display: block;
     margin-top: 4px;
+  }
+
+  /* The era stamp: a rainbow tagline under the big welcome, in Comic Sans of course. */
+  .era-stamp {
+    margin: 4px auto 10px;
+    font: 700 15px/1.4 'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', 'Comic Neue', sans-serif;
+    text-shadow: 2px 2px 0 #000;
+  }
+  .era-stamp__no { color: #00ffff; }
+  .era-stamp__years { color: #ffff00; }
+  .era-stamp__title { color: #ff66ff; }
+  .era-stamp__years::before,
+  .era-stamp__title::before {
+    content: '~*~ ';
+    color: #66ff66;
+  }
+
+  /* The travel buttons: bevelled "GIF buttons" made in Paint Shop Pro, with a blinking NEW! sticker. */
+  .era-cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 14px 22px;
+    margin: 18px auto 8px;
+    text-align: center;
+  }
+  .era-cta a {
+    display: inline-block;
+    text-decoration: none;
+    border: 4px outset #c0c0c0;
+    font-family: 'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', 'Comic Neue', sans-serif;
+  }
+  .era-cta a:active {
+    border-style: inset;
+  }
+  .era-cta__label,
+  .era-cta__to {
+    display: block;
+  }
+  .era-cta__next {
+    position: relative;
+    padding: 10px 26px 8px;
+    background: linear-gradient(#ff33cc, #9900cc 55%, #660099);
+    border-color: #ff99ff;
+    color: #ffff00;
+    box-shadow: 4px 4px 0 #000;
+  }
+  .era-cta__next .era-cta__label {
+    font-size: 24px;
+    font-weight: 700;
+    text-shadow: 2px 2px 0 #000;
+  }
+  .era-cta__next .era-cta__to {
+    margin-top: 2px;
+    font: 700 12px/1.3 Verdana, Arial, sans-serif;
+    color: #fff;
+    text-shadow: 1px 1px 0 #000;
+  }
+  /* The NEW! sticker, blinking at 1 Hz (one flash a second). */
+  .era-cta__next::after {
+    content: 'NEW!';
+    position: absolute;
+    top: -12px;
+    right: -14px;
+    padding: 1px 5px;
+    background: #ff0000;
+    color: #ffff00;
+    font: 700 12px Verdana, Arial, sans-serif;
+    border: 2px solid #ffff00;
+    transform: rotate(12deg);
+    animation: e03-blink 1s steps(1) infinite;
+  }
+  .era-cta__prev {
+    padding: 6px 14px;
+    background: linear-gradient(#e0e0e0, #a0a0a0);
+    color: #000;
+    font-size: 14px;
+    box-shadow: 3px 3px 0 #000;
+  }
+  .era-cta__prev .era-cta__label {
+    font-weight: 700;
+  }
+  .era-cta__prev .era-cta__to {
+    font: 11px/1.3 Verdana, Arial, sans-serif;
+    color: #000;
+  }
+  .era-cta a:hover {
+    filter: brightness(1.15);
+  }
+  .era-cta a:focus-visible {
+    outline: 3px dashed #ffff00;
+    outline-offset: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .era-cta__next::after { animation: none; }
+  }
+  /* On a small screen the 760px page scrolls sideways: keep the stamp and the buttons in view. */
+  @media (max-width: 800px) {
+    /* <center> centres block children too; plain text centring lets the stamp stick to the left. */
+    center:has(> .era-stamp) {
+      text-align: center;
+    }
+    .era-stamp,
+    .era-cta {
+      position: sticky;
+      left: 8px;
+      width: calc(100vw - 32px);
+      margin-left: 0;
+      margin-right: 0;
+      box-sizing: border-box;
+    }
   }
 
   :focus-visible {

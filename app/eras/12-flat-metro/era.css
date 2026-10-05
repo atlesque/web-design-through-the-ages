@@ -71,6 +71,83 @@
   .fm-nav a[aria-current],
   .fm-nav a:hover { border-color: #f1c40f; }
 
+  /* Era stamp: a thin lowercase status line in the app bar, with a little yellow tile */
+  .era-stamp {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    margin: 0 auto 0 0;
+    font-size: 15px;
+    font-weight: 300;
+    text-transform: lowercase;
+    color: #d5dde3;
+  }
+  .era-stamp__no {
+    padding: 2px 8px;
+    font-weight: 600;
+    color: var(--midnight);
+    background: #f1c40f;
+  }
+  .era-stamp__years { color: #fff; }
+
+  /* Travel CTA: two tiles in the hero, a wide one to go on and a small one back */
+  .era-cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    max-width: 520px;
+    margin: 36px auto 0;
+    text-align: left;
+  }
+  .era-cta__next,
+  .era-cta__prev {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 120px;
+    padding: 12px 14px 10px;
+    box-sizing: border-box;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 120ms ease;
+  }
+  .era-cta__next { flex: 2 1 240px; background: var(--carrot); }
+  .era-cta__prev { flex: 1 1 130px; background: var(--midnight); }
+  .era-cta__next::after,
+  .era-cta__prev::after {
+    content: '\2192';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    line-height: 1;
+    border: 2px solid #fff;
+    border-radius: 50%;
+  }
+  .era-cta__prev::after { content: '\2190'; }
+  .era-cta__label {
+    font-size: 34px;
+    font-weight: 200;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .era-cta__to {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+  .era-cta a:hover { outline: 3px solid rgb(255 255 255 / 0.5); outline-offset: -3px; }
+  .era-cta a:active { transform: scale(0.97); }
+  .era-cta a:focus-visible { outline: 4px solid #f1c40f; outline-offset: 2px; }
+
   .fm-hero {
     padding: clamp(48px, 10vw, 110px) clamp(16px, 4vw, 48px);
     background: var(--turquoise);

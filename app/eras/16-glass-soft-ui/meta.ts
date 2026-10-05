@@ -42,6 +42,7 @@ const meta: EraMeta = {
     { label: 'Glassmorphism in User Interfaces (Nielsen Norman Group)', url: 'https://www.nngroup.com/articles/glassmorphism/' },
     { label: 'Variable fonts guide (MDN)', url: 'https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_fonts/Variable_fonts_guide' },
   ],
+  cta: { next: 'Continue', prev: 'Go back' },
   recreated: ['The weight animation is smooth only where the system UI font is a variable font; elsewhere it steps between the weights available.'],
 }
 

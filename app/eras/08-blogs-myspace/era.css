@@ -93,6 +93,89 @@
     color: #f0d9a8;
   }
 
+  /* Era stamp: a third line under the blog description */
+  .era-stamp {
+    margin: 10px 0 0;
+    padding-top: 8px;
+    border-top: 1px dotted rgb(240 217 168 / 0.5);
+    font: bold 11px/1.4 'Trebuchet MS', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #f0d9a8;
+  }
+  .era-stamp__no {
+    padding: 1px 6px;
+    background: #d9a441;
+    color: #3a1f0a;
+    border-radius: 2px;
+  }
+  .era-stamp__years::after {
+    content: ' \00bb';
+  }
+  .era-stamp__title {
+    color: #fff6e0;
+  }
+
+  /* Travel buttons: a FriendSpace "Contacting" box pasted into the blog */
+  .kk__contact {
+    margin: 4px 0 14px;
+    border: 1px solid #6699cc;
+    background: #fff;
+    font: 11px/1.4 Verdana, Arial, sans-serif;
+  }
+  .kk__contact-head {
+    margin: 0;
+    padding: 4px 8px;
+    background: #336699;
+    color: #fff;
+    font: bold 12px/1.4 Verdana, Arial, sans-serif;
+  }
+  .era-cta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #d5e2f0;
+    border-top: 1px solid #6699cc;
+  }
+  .era-cta a {
+    display: block;
+    padding: 8px 10px 8px 40px;
+    background: #fff no-repeat 10px 9px;
+    background-size: 22px 22px;
+    text-decoration: none;
+  }
+  .era-cta__label {
+    display: block;
+    font-weight: bold;
+    color: #b84a00;
+    text-decoration: underline;
+  }
+  .era-cta__to {
+    display: block;
+    color: #555;
+    font-size: 10px;
+  }
+  .era-cta .era-cta__next {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'><circle cx='8' cy='6' r='4' fill='%236699cc'/><path d='M1 19c0-5 3-8 7-8s7 3 7 8z' fill='%236699cc'/><circle cx='17' cy='15' r='5' fill='%2366aa33'/><path d='M17 12v6M14 15h6' stroke='%23fff' stroke-width='2'/></svg>");
+  }
+  .era-cta__next .era-cta__label {
+    font-size: 12px;
+  }
+  .era-cta .era-cta__prev {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'><rect x='1' y='3' width='20' height='16' rx='2' fill='%23ffd27a' stroke='%23cc8a1a'/><path d='M14 7l-6 4 6 4' fill='none' stroke='%23336699' stroke-width='2'/></svg>");
+  }
+  .era-cta a:hover,
+  .era-cta a:focus-visible {
+    background-color: #eef3fa;
+  }
+  .era-cta a:hover .era-cta__label {
+    color: #003399;
+  }
+  .era-cta a:focus-visible {
+    outline: 2px solid #003399;
+    outline-offset: -3px;
+  }
+
   .kk__date {
     margin: 26px 0 6px;
     font: bold 11px/1 'Trebuchet MS', sans-serif;
@@ -380,6 +463,11 @@
     .fs__frame {
       flex-basis: 100%;
       height: 640px;
+    }
+  }
+  @media (max-width: 420px) {
+    .era-cta {
+      grid-template-columns: 1fr;
     }
   }
 }

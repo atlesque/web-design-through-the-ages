@@ -6,9 +6,12 @@
  *
  * For every room in app/eras (and nested rooms like 01-bbs/pre-web) it:
  *   - checks meta.ts fields, that every trait id appears as data-trait in demo.html,
- *     that every snippet region exists, and that era.css rules are scoped;
- *   - writes a standalone preview page (demo + era.css + time bar skin + era.client.ts);
- *   - with --shots, screenshots each page with Playwright (desktop + mobile).
+ *     that every snippet region exists, that the era stamp and travel buttons are
+ *     placed, and that era.css rules are scoped;
+ *   - writes a standalone preview page: the room inside its era's monitor screen, framed
+ *     and with its CSS fitted to the screen exactly as the site does (app/lib/frame.ts);
+ *   - with --shots, screenshots each page with Playwright (desktop + mobile), scrolling
+ *     the screen down a few times (-s0, -s1, ...).
  *
  * Needs `typescript` and (for --shots) `playwright`, resolved from the project or
  * the global node_modules.
@@ -41,6 +44,14 @@ const ts = loadModule('typescript')
 const transpile = (src) =>
   ts.transpileModule(src, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } }).outputText
 
+async function importTsModule(file) {
+  const js = transpile(readFileSync(file, 'utf8')).replace(/^import type .*$/gm, '')
+  const tmp = join(outDir, '_mods', file.replace(root, '').replace(/[\\/]/g, '_') + '.mjs')
+  mkdirSync(dirname(tmp), { recursive: true })
+  writeFileSync(tmp, js)
+  return import(pathToFileURL(tmp).href + '?t=' + Date.now())
+}
+
 async function importTs(file) {
   const js = transpile(readFileSync(file, 'utf8')).replace(/^import type .*$/gm, '')
   const tmp = join(outDir, '_mods', file.replace(root, '').replace(/[\\/]/g, '_') + '.mjs')
@@ -65,7 +76,7 @@ function rooms() {
 
 const read = (p) => (existsSync(p) ? readFileSync(p, 'utf8') : '')
 const strip = (s) => s.split('\n').filter((l) => !/snippet:[\w-]+:(start|end)/.test(l)).join('\n')
-const shellCss = read(join(root, 'app/assets/shell.css'))
+const shellCss = read(join(root, 'app/assets/shell.css')) + '\n' + read(join(root, 'app/assets/stage.css'))
 
 /** Strip comments, then check that every top-level rule is scoped. */
 function lintCss(css, id, file, problems) {
@@ -108,6 +119,15 @@ const problems = []
 const built = []
 mkdirSync(outDir, { recursive: true })
 
+// Shared with the site: framing (stamp + travel buttons), CSS fitted to the screen, hardware per era.
+const frameMod = await importTsModule(join(root, 'app/lib/frame.ts'))
+const monitorsMod = await importTsModule(join(root, 'app/lib/monitors.ts'))
+const allEras = []
+for (const d of readdirSync(erasDir, { withFileTypes: true })) {
+  if (d.isDirectory() && /^\d\d-/.test(d.name)) allEras.push(await importTs(join(erasDir, d.name, 'meta.ts')))
+}
+allEras.sort((a, b) => a.id.localeCompare(b.id))
+
 for (const room of rooms()) {
   const dir = join(erasDir, room.path)
   const id = room.era.slice(0, 2)
@@ -120,7 +140,6 @@ for (const room of rooms()) {
   const meta = await importTs(metaFile)
   const demo = read(join(dir, 'demo.html'))
   const css = read(join(dir, 'era.css'))
-  const skin = read(join(erasDir, room.era, 'timebar.css'))
   const client = read(join(dir, 'era.client.ts'))
 
   const isEra = room.path === room.era
@@ -140,42 +159,45 @@ for (const room of rooms()) {
     }
   }
   if (!demo.trim()) local.push('demo.html empty')
+  if (!demo.includes('<!-- era:stamp -->')) local.push('demo.html needs <!-- era:stamp --> (the era and its years, in the header)')
+  if (!demo.includes('<!-- era:cta -->')) local.push('demo.html needs <!-- era:cta --> (the travel buttons, in the main content)')
   if (/<(html|head|body)[\s>]/i.test(demo)) local.push('demo.html must be a fragment (no html/head/body)')
   if (/<script\b/i.test(demo)) local.push('demo.html must not contain <script>; use era.client.ts')
   if (/https?:\/\/(?!webdesign\.atlesque\.dev)[^"'\s]+\.(png|jpe?g|gif|svg|webp|woff2?|css|js)/i.test(demo + css)) {
     local.push('external asset URL found')
   }
   lintCss(css, id, `${room.path}/era.css`, local)
-  if (isEra) {
-    if (!skin) local.push('missing timebar.css')
-    else lintCss(skin, id, `${room.path}/timebar.css`, local)
-  }
+  if (/\.era-(stamp|cta)/.test(demo)) local.push('demo.html must not hand-write .era-stamp/.era-cta markup; use the markers')
   problems.push(...local.map((p) => `${room.path}: ${p}`))
+
+  const kind = monitorsMod.monitorFor(id)
+  const framed = frameMod.frameRoom(strip(demo), { path: room.path, title: meta.title, years: meta.years, eras: allEras, cta: meta.cta })
 
   const html = `<!doctype html>
 <html lang="en" data-era-page="${id}">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="data:,">
 <title>${meta.title} preview</title>
 <style>${shellCss}</style>
-<style>@layer era, shell, skin;\n@layer era {\n${strip(css)}\n}</style>
-<style>@layer era, shell, skin;\n@layer skin {\n${strip(skin)}\n}</style>
+<style>@layer era, shell;\n@layer era {\n${frameMod.toScreenCss(strip(css))}\n}</style>
 </head>
 <body>
-<div class="shell-room">
-<main id="main" class="era" data-era="${id}" data-room="${room.path}">
-${strip(demo)}
+<div class="stage" data-kind="${kind}">
+<div class="stage__camera">
+<div class="desk" aria-hidden="true"><i class="desk__top"></i><i class="desk__front"></i></div>
+<div class="rig" data-kind="${kind}">
+<div class="rig__front">
+<div class="rig__screen" data-screen>
+<div class="rig__scroll">
+<main id="main" class="era" data-era="${id}" data-room="${room.path}" tabindex="-1">
+${framed}
 </main>
-<nav id="timebar" class="timebar" aria-label="Time bar">
-  <a class="timebar__step timebar__prev" href="#"><span aria-hidden="true">‹</span></a>
-  <div class="timebar__now"><span class="timebar__years">${meta.years}</span><span class="timebar__title">${meta.title}</span></div>
-  <div class="timebar__track"><ol class="timebar__notches">${Array.from({ length: 17 }, (_, i) => {
-    const n = String(i + 1).padStart(2, '0')
-    return `<li><a class="timebar__notch" href="#"${n === id ? ' aria-current="page"' : ''}><span class="timebar__notch-label">${n}</span></a></li>`
-  }).join('')}</ol></div>
-  <div class="timebar__tools"><button class="timebar__btn" aria-pressed="false">Aa</button><button class="timebar__btn timebar__btn--curator" aria-expanded="false">Curator</button><button class="timebar__btn">?</button><a class="timebar__btn timebar__home" href="#">◰</a></div>
-  <a class="timebar__step timebar__next" href="#"><span aria-hidden="true">›</span></a>
-</nav>
+</div>
+<div class="rig__glass" aria-hidden="true"></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 ${client ? `<script type="module">\n${transpile(client).replace(/^export default /m, 'const __setup = ')}\nconst __cleanup = __setup(document.querySelector('main.era'));\nwindow.__eraReady = true;\n</script>` : '<script>window.__eraReady = true</script>'}
 </body>
@@ -210,11 +232,11 @@ if (shots) {
     })
     .listen(0)
   const port = server.address().port
-  const browser = await chromium.launch()
+  const browser = await chromium.launch(process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {})
   mkdirSync(join(outDir, 'shots'), { recursive: true })
   for (const { room, file } of built) {
     for (const [label, viewport] of [
-      ['desktop', { width: 1280, height: 800 }],
+      ['desktop', { width: 1440, height: 900 }],
       ['mobile', { width: 390, height: 844 }],
     ]) {
       const page = await browser.newPage({ viewport })
@@ -224,13 +246,28 @@ if (shots) {
       await page.goto(`http://localhost:${port}/${file.split('/').pop()}`)
       await page.waitForFunction(() => window.__eraReady === true, null, { timeout: 5000 }).catch(() => errors.push('era.client did not finish'))
       await page.waitForTimeout(1200)
-      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
+      const overflow = await page.evaluate(() => {
+        const s = document.querySelector('.rig__scroll')
+        return s.scrollWidth - s.clientWidth
+      })
       if (overflow > 1 && label === 'mobile' && !['04'].includes(room.era.slice(0, 2))) {
-        problems.push(`${room.path}: horizontal overflow of ${overflow}px on mobile`)
+        problems.push(`${room.path}: horizontal overflow of ${overflow}px inside the screen on mobile`)
       }
       const name = `${room.path.replace('/', '__')}-${label}`
       await page.screenshot({ path: join(outDir, 'shots', `${name}.png`) })
-      await page.screenshot({ path: join(outDir, 'shots', `${name}-full.png`), fullPage: true })
+      // The room scrolls inside the monitor: page through it.
+      const pages = await page.evaluate(() => {
+        const s = document.querySelector('.rig__scroll')
+        return Math.min(6, Math.ceil(s.scrollHeight / s.clientHeight))
+      })
+      for (let i = 0; i < pages; i++) {
+        await page.evaluate((i) => {
+          const s = document.querySelector('.rig__scroll')
+          s.scrollTop = i * s.clientHeight * 0.9
+        }, i)
+        await page.waitForTimeout(150)
+        await page.screenshot({ path: join(outDir, 'shots', `${name}-s${i}.png`) })
+      }
       if (errors.length) problems.push(`${room.path} (${label}): ${errors.join(' | ')}`)
       await page.close()
     }

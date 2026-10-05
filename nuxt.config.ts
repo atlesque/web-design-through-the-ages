@@ -23,7 +23,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   telemetry: false,
 
-  css: ['~/assets/shell.css'],
+  css: ['~/assets/shell.css', '~/assets/stage.css'],
 
   app: {
     head: {

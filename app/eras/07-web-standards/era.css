@@ -203,6 +203,75 @@
     outline-offset: -4px;
   }
 
+  /* ---------- Era stamp: a quiet dateline above the logo ---------- */
+  .era-stamp {
+    margin: 0 0 0.4em;
+    font-size: 0.85em;
+    line-height: 1.4;
+    color: var(--sg-stamp, #555);
+  }
+  .era-stamp__no {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--sg-stamp-no, #333);
+  }
+  .era-stamp__years:before,
+  .era-stamp__title:before {
+    content: '\00b7  ';
+  }
+
+  /* ---------- Travel buttons: a sprite-gradient button and a plain text link ---------- */
+  /* The gradient is one tall "sprite"; hover slides it up, the way 2005 rollovers
+     swapped halves of a single background image. */
+  .era-cta {
+    margin: 1.2em 1.6em 0.4em;
+  }
+  .era-cta__next {
+    display: inline-block;
+    padding: 0.55em 1.1em 0.5em;
+    border: 1px solid var(--sg-cta-edge, #3b5226);
+    border-radius: 4px;
+    color: var(--sg-cta-ink, #fff);
+    text-decoration: none;
+    background: linear-gradient(var(--sg-cta-hi, #5e7a43), var(--sg-cta-lo, #3b5226) 50%, var(--sg-cta-hover-hi, #4a6532) 50%, var(--sg-cta-hover-lo, #26371a)) 0 0 / 100% 200% no-repeat;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35);
+  }
+  .era-cta__next:hover,
+  .era-cta__next:focus-visible {
+    background-position: 0 100%;
+  }
+  .era-cta__next .era-cta__label {
+    display: block;
+    font-weight: bold;
+    font-size: 1.15em;
+  }
+  .era-cta__next .era-cta__to {
+    display: block;
+    font-size: 0.85em;
+    opacity: 0.95;
+  }
+  .era-cta__prev {
+    display: block;
+    width: fit-content;
+    margin: 0.7em 0 0;
+    color: var(--sg-cta-link, #4f6b34);
+    font-size: 0.9em;
+  }
+  .era-cta__prev .era-cta__to {
+    color: var(--sg-stamp, #555);
+  }
+  .era-cta__prev .era-cta__to:before {
+    content: '(';
+  }
+  .era-cta__prev .era-cta__to:after {
+    content: ')';
+  }
+  .era-cta a:focus-visible {
+    outline: 2px dotted var(--sg-focus, #222);
+    outline-offset: 3px;
+  }
+
   .badges {
     display: flex;
     flex-wrap: wrap;
@@ -246,6 +315,20 @@
     background: #c9c2d4 url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'><circle cx='6' cy='6' r='1.5' fill='%23b7aec6'/><circle cx='18' cy='18' r='1.5' fill='%23b7aec6'/></svg>");
   }
   .sg:has(#sgt-a:checked) {
+    --sg-stamp: #6b5a7e;
+    --sg-stamp-no: #4f6b34;
+    --sg-cta-link: #5b3f7d;
+    --sg-focus: #5b3f7d;
+    .era-stamp {
+      font-style: italic;
+    }
+    .era-stamp__no {
+      font-style: normal;
+      font-size: 0.85em;
+    }
+    .era-cta__next {
+      font-style: italic;
+    }
     #sg-page {
       background: #fbf8ef;
       border: 1px solid #a99bbd;
@@ -254,7 +337,7 @@
       box-shadow: 0 0 0 6px #ece5f2;
     }
     #header {
-      height: 150px;
+      min-height: 150px;
       padding: 22px 1.6em 0;
       box-sizing: border-box;
       background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='150'><path d='M260 4C200 10 170 30 150 60S100 100 60 96' fill='none' stroke='%237d9a5b' stroke-width='3'/><path d='M150 60c6-14 22-16 30-10-10 2-20 8-30 10zM110 86c-4-14 6-24 16-24-4 8-8 18-16 24z' fill='%237d9a5b'/><g fill='%23a385c9'><circle cx='200' cy='30' r='7'/><circle cx='194' cy='44' r='6'/><circle cx='204' cy='54' r='5'/><circle cx='198' cy='66' r='4'/><circle cx='202' cy='76' r='3'/></g><g fill='%23b99ad8'><circle cx='130' cy='76' r='6'/><circle cx='124' cy='88' r='5'/><circle cx='132' cy='98' r='4'/><circle cx='127' cy='108' r='3'/><circle cx='131' cy='116' r='2'/></g><g fill='%238e6ab8'><circle cx='72' cy='100' r='5'/><circle cx='68' cy='111' r='4'/><circle cx='73' cy='120' r='3'/><circle cx='70' cy='128' r='2'/></g></svg>") no-repeat 100% 0;
@@ -349,7 +432,7 @@
     #sidebar label {
       color: #4f6b34;
     }
-    #content a {
+    #content a:not(.era-cta a) {
       color: #5b3f7d;
     }
     #footer {
@@ -366,6 +449,27 @@
     background: #ececec;
   }
   .sg:has(#sgt-b:checked) {
+    --sg-stamp: #444;
+    --sg-stamp-no: #c41c14;
+    --sg-cta-edge: #111;
+    --sg-cta-hi: #333;
+    --sg-cta-lo: #111;
+    --sg-cta-hover-hi: #e2231a;
+    --sg-cta-hover-lo: #b01a12;
+    --sg-cta-link: #c41c14;
+    --sg-focus: #111;
+    .era-stamp {
+      margin-left: 34px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.75em;
+    }
+    .era-cta__next {
+      border-radius: 0;
+      box-shadow: none;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
     #sg-page {
       background: #fff;
       border-top: 14px solid #e2231a;
@@ -470,7 +574,7 @@
     #sidebar label {
       color: #fff;
     }
-    #content a {
+    #content a:not(.era-cta a) {
       color: #c41c14;
     }
     #footer {
@@ -494,6 +598,24 @@
     background: #07050d repeating-linear-gradient(135deg, #0d0918 0 2px, transparent 2px 9px);
   }
   .sg:has(#sgt-c:checked) {
+    --sg-stamp: #b8a6e6;
+    --sg-stamp-no: #00e5ff;
+    --sg-cta-edge: #ff2fa8;
+    --sg-cta-ink: #120c1f;
+    --sg-cta-hi: #ff8fd2;
+    --sg-cta-lo: #ff2fa8;
+    --sg-cta-hover-hi: #8ff4ff;
+    --sg-cta-hover-lo: #00c4dc;
+    --sg-cta-link: #8ff4ff;
+    --sg-focus: #00e5ff;
+    .era-stamp {
+      font-variant: small-caps;
+      letter-spacing: 0.1em;
+    }
+    .era-cta__next {
+      border-radius: 14px;
+      box-shadow: 0 0 14px rgb(255 47 168 / 0.5), inset 0 1px 0 rgb(255 255 255 / 0.4);
+    }
     .sg__switcher {
       background: #1d1233;
       color: #e8e0ff;
@@ -513,7 +635,7 @@
       box-shadow: 0 0 40px rgb(255 47 168 / 0.25);
     }
     #header {
-      height: 140px;
+      min-height: 140px;
       padding: 26px 1.6em 0;
       box-sizing: border-box;
       background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='140'><g fill='%2300e5ff' opacity='.8'><rect x='40' y='80' width='10' height='40'/><rect x='56' y='50' width='10' height='70'/><rect x='72' y='92' width='10' height='28'/><rect x='88' y='30' width='10' height='90'/><rect x='104' y='64' width='10' height='56'/></g><g fill='%23ff2fa8' opacity='.8'><rect x='120' y='40' width='10' height='80'/><rect x='136' y='76' width='10' height='44'/><rect x='152' y='56' width='10' height='64'/><rect x='168' y='96' width='10' height='24'/></g></svg>") no-repeat 100% 0;
@@ -597,7 +719,7 @@
     }
     #sidebar a,
     #sidebar label,
-    #content a {
+    #content a:not(.era-cta a) {
       color: #8ff4ff;
     }
     #footer {

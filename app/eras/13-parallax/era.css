@@ -31,8 +31,8 @@
   /* snippet:scene:end */
 
   .px-hero {
-    height: 100vh;
-    min-height: 520px;
+    height: auto;
+    min-height: max(560px, 100vh);
     max-height: 1100px;
     background: linear-gradient(180deg, #2b2f5c, #6a5b9a 40%, #f2a07b 75%, #ffd3a1);
     background-size: 100% 300%;
@@ -45,8 +45,8 @@
     display: grid;
     justify-items: center;
     align-content: center;
-    height: 100%;
-    padding: 0 16px 12vh;
+    min-height: inherit;
+    padding: 96px 16px 10vh;
     box-sizing: border-box;
     text-align: center;
     text-shadow: 0 2px 20px rgb(20 26 46 / 0.6);
@@ -91,6 +91,70 @@
     animation: e13-bob 2s ease-in-out infinite;
   }
 
+  /* Era stamp: a transparent header floating over the hero, as these sites had */
+  .era-stamp {
+    position: absolute;
+    z-index: 3;
+    inset: 0 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    margin: 0;
+    padding: 22px clamp(16px, 4vw, 48px);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #fff;
+    text-shadow: 0 1px 8px rgb(20 26 46 / 0.6);
+  }
+  .era-stamp__no {
+    padding: 5px 10px;
+    font-weight: 800;
+    border: 2px solid #fff;
+  }
+  .era-stamp__title { font-weight: 300; }
+  .era-stamp__title::before { content: '/ '; }
+
+  /* Travel CTA: ghost buttons over the full-bleed hero */
+  .era-cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin: 0 0 36px;
+  }
+  .era-cta__next,
+  .era-cta__prev {
+    display: grid;
+    gap: 4px;
+    padding: 14px 26px 13px;
+    text-decoration: none;
+    text-shadow: none;
+    transition: background-color 200ms, color 200ms;
+  }
+  .era-cta__label {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .era-cta__to { font-size: 13px; }
+  .era-cta__next {
+    background: var(--accent);
+    color: #1d1010;
+  }
+  .era-cta__next .era-cta__label::after { content: ' \2192'; }
+  .era-cta__next:hover { background: #fff; }
+  .era-cta__prev {
+    color: #fff;
+    background: rgb(20 26 46 / 0.35);
+    box-shadow: inset 0 0 0 2px #fff;
+  }
+  .era-cta__prev .era-cta__label::before { content: '\2190  '; }
+  .era-cta__prev:hover { background: #fff; color: var(--ink); }
+  .era-cta a:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+
   /* snippet:nav:start */
   .px-nav {
     position: sticky;
@@ -105,6 +169,20 @@
     color: #fff;
   }
   /* snippet:nav:end */
+  /* snippet:progress:start */
+  @supports (animation-timeline: scroll()) {
+    .px-nav::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 3px;
+      background: var(--accent);
+      transform-origin: 0 50%;
+      animation: e13-progress linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+  /* snippet:progress:end */
   .px-nav__brand {
     flex: none;
     color: #fff;
@@ -262,6 +340,10 @@
 @keyframes e13-dawn {
   from { background-position: 0 0; }
   to { background-position: 0 100%; }
+}
+@keyframes e13-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 @keyframes e13-bob {
   50% { transform: translateY(8px); }

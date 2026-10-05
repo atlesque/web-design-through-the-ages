@@ -42,6 +42,7 @@ const meta: EraMeta = {
     { label: 'Color Graphics Adapter palette (Wikipedia)', url: 'https://en.wikipedia.org/wiki/Color_Graphics_Adapter' },
   ],
   rooms: [{ path: 'pre-web', label: 'pre-web room: Teletext, Minitel, Gopher' }],
+  cta: { next: '[N]ext era', prev: '[H]ang up' },
   recreated: ['The modem reveal is simulated in the browser; nothing is actually dialled.'],
 }
 
