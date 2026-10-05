@@ -24,6 +24,7 @@ test.describe('landing', () => {
 
   test('shell passes axe', async ({ page }) => {
     await page.addInitScript(() => sessionStorage.setItem('wdta-booted', '1'))
+    await page.emulateMedia({ reducedMotion: 'reduce' })
     await page.goto('/')
     const results = await new AxeBuilder({ page }).analyze()
     const serious = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical')
@@ -57,9 +58,11 @@ for (const room of rooms) {
     })
 
     test('time bar and curator pass axe', async ({ page }) => {
+      await page.emulateMedia({ reducedMotion: 'reduce' })
       await page.goto(`/eras/${room}/`)
       await page.locator('.timebar__btn--curator').click()
       await expect(page.locator('#curator')).toHaveClass(/is-open/)
+      await page.waitForTimeout(400)
       const results = await new AxeBuilder({ page }).include('#timebar').include('#curator').analyze()
       const serious = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical')
       expect(serious.map((v) => `${v.id}: ${v.nodes.map((n) => n.target).join(', ')}`)).toEqual([])

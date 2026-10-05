@@ -160,7 +160,6 @@ const wide = new Set(['01', '05', '09', '13', '17'])
   }
   .bento__num {
     font: 700 13px/1 var(--shell-mono);
-    opacity: 0.7;
   }
   .bento__years {
     font: 600 13px/1 var(--shell-mono);
@@ -175,7 +174,6 @@ const wide = new Set(['01', '05', '09', '13', '17'])
   .bento__summary {
     font-size: 14px;
     line-height: 1.45;
-    opacity: 0.85;
   }
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
@@ -197,7 +195,7 @@ const wide = new Set(['01', '05', '09', '13', '17'])
   .tile-01 a { background: #000; color: #55ff55; font-family: var(--shell-mono); }
   .tile-01 .bento__title { color: #ffff55; }
   .tile-02 a { background: #c0c0c0; color: #000; font-family: 'Times New Roman', Times, serif; }
-  .tile-02 .bento__title { color: #0000ee; text-decoration: underline; font-weight: 400; }
+  .tile-02 .bento__title { color: #0000aa; text-decoration: underline; font-weight: 400; }
   .tile-03 a {
     background: #000080 radial-gradient(#ffff00 1px, transparent 1.5px) 0 0 / 14px 14px;
     color: #fff; font-family: 'Comic Sans MS', 'Comic Neue', cursive;
@@ -219,12 +217,12 @@ const wide = new Set(['01', '05', '09', '13', '17'])
   .tile-12 .bento__title { font-weight: 300; font-size: 26px; }
   .tile-13 a { background: linear-gradient(#0f2027, #2c5364); color: #fff; }
   .tile-14 a { background: #fff; color: #212121; box-shadow: inset 0 0 0 1px #e0e0e0; font-family: Roboto, Arial, sans-serif; }
-  .tile-14 .bento__num { justify-self: start; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #e91e63; color: #fff; opacity: 1; }
+  .tile-14 .bento__num { justify-self: start; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #c2185b; color: #fff; }
   .tile-15 a { background: #ffde59; color: #000; border: 3px solid #000; box-shadow: 6px 6px 0 #000; font-family: 'Arial Black', Arial, sans-serif; }
   .bento__tile.tile-15 { overflow: visible; border-radius: 0; }
   .tile-15 a:hover { transform: translate(-2px, -2px); }
   .tile-16 a { background: linear-gradient(135deg, #5b3cc4, #1d6f50 60%, #a83b62); color: #fff; }
-  .tile-16 .bento__summary { background: rgb(255 255 255 / 0.18); backdrop-filter: blur(10px); border-radius: 10px; padding: 8px 10px; }
+  .tile-16 .bento__summary { background: rgb(0 0 0 / 0.22); backdrop-filter: blur(10px); border-radius: 10px; padding: 8px 10px; }
   .tile-17 a { background: #101014; color: #f5f3ee; border: 1px solid #2c2c34; }
   .tile-17 .bento__title { font-size: clamp(22px, 8cqi, 44px); letter-spacing: -0.03em; }
 

@@ -1,6 +1,6 @@
 /* Era 16 time bar skin: a frosted glass bar floating over the gradient blobs. */
 html[data-era-page="16"] .timebar {
-  --tb-bg: rgb(40 28 96 / 0.62);
+  --tb-bg: rgb(36 24 88 / 0.9);
   --tb-fg: #ffffff;
   --tb-muted: #e4defc;
   --tb-accent: #ffb3d9;
@@ -22,4 +22,7 @@ html[data-era-page="16"] .timebar__notch {
 html[data-era-page="16"] .timebar__notch[aria-current='page'] {
   background: linear-gradient(135deg, #ffb3d9, #c9c1ff);
   box-shadow: 0 4px 14px rgb(255 122 182 / 0.6);
+}
+html[data-era-page="16"] .timebar__years {
+  color: #ffd6ea;
 }

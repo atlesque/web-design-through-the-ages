@@ -1,6 +1,6 @@
 /* Era 14 time bar skin: a Material bottom app bar, 8dp, with a pink accent. */
 html[data-era-page="14"] .timebar {
-  --tb-bg: #00695c;
+  --tb-bg: #004d40;
   --tb-fg: #ffffff;
   --tb-muted: #d7efec;
   --tb-accent: #ff80ab;
@@ -26,4 +26,7 @@ html[data-era-page="14"] .timebar__step:hover {
 }
 html[data-era-page="14"] .timebar__notch[aria-current='page'] {
   box-shadow: 0 3px 5px -1px rgb(0 0 0 / 0.3), 0 6px 10px 0 rgb(0 0 0 / 0.2);
+}
+html[data-era-page="14"] .timebar__years {
+  color: #ffd1e1;
 }
