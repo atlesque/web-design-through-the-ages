@@ -77,7 +77,7 @@
   @keyframes e03-blink {
     50% { visibility: hidden; }
   }
-  /* Real animated GIFs (public/demos/03-homepages, drawn by scripts/make-era03-gifs.py).
+  /* Real animated GIFs from the 90s (public/demos/03-homepages; see scripts/import-era03-originals.py).
      Dave stretched some with width= and height=; keep the pixels chunky when he did. */
   img {
     image-rendering: pixelated;
@@ -145,13 +145,13 @@
      background images, still shows the number. */
   .dk__digit {
     display: inline-block;
-    width: 14px;
+    width: 15px;
     height: 20px;
     margin: 0 1px 0 0;
     font-size: 16px;
     line-height: 20px;
     background: #000 url('/demos/03-homepages/counter-digits.gif') no-repeat;
-    background-position: calc(var(--d, 0) * -14px) 0;
+    background-position: calc(var(--d, 0) * -15px) 0;
     color: transparent;
     text-align: center;
     vertical-align: top;

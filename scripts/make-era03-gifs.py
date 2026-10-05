@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Draws the animated GIFs for era 03 (Dave's Kool Page), pixel by pixel, with Pillow.
+"""Draws the era 03 GIFs (Dave's Kool Page) that have no archived original, pixel by pixel, with Pillow.
 
     python3 scripts/make-era03-gifs.py
 
@@ -535,14 +535,9 @@ def counter_digits():
 
 
 if __name__ == '__main__':
-    under_construction()
-    globe()
+    # The other roles are archived originals now (scripts/import-era03-originals.py).
+    # Their drawn versions stay below in case an original is ever dropped.
     fire()
-    divider()
-    mailbox()
-    new()
-    dancer()
     badge_navigator()
     badge_notepad()
     badge_hometown()
-    counter_digits()
