@@ -46,7 +46,8 @@ function policyFor(html) {
   for (const m of html.matchAll(/\son[a-z]+\s*=\s*"([^"]*)"/gi)) handlers.add(sha(decode(m[1])))
   for (const m of html.matchAll(/\son[a-z]+\s*=\s*'([^']*)'/gi)) handlers.add(sha(decode(m[1])))
 
-  const scriptSrc = ["'self'", ...scripts, ...(handlers.size ? ["'unsafe-hashes'", ...handlers] : [])]
+  // tools.atlesque.dev serves the shared consent banner, which loads Cloudflare Web Analytics only after opt-in.
+  const scriptSrc = ["'self'", 'https://tools.atlesque.dev', 'https://static.cloudflareinsights.com', ...scripts, ...(handlers.size ? ["'unsafe-hashes'", ...handlers] : [])]
   return [
     "default-src 'self'",
     `script-src ${scriptSrc.join(' ')}`,
@@ -54,7 +55,7 @@ function policyFor(html) {
     "img-src 'self' data: blob:",
     "font-src 'self' data:",
     "media-src 'self' data: blob:",
-    "connect-src 'self'",
+    "connect-src 'self' https://cloudflareinsights.com",
     "frame-src 'self'",
     "frame-ancestors 'self'",
     "form-action 'self'",

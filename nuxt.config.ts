@@ -34,6 +34,8 @@ export default defineNuxtConfig({
         { name: 'theme-color', content: '#101014' },
       ],
       link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+      // Shared opt-in analytics consent banner (loads Cloudflare Web Analytics only after "Allow").
+      script: [{ src: 'https://tools.atlesque.dev/consent.js', defer: true }],
     },
   },
 

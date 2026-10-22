@@ -177,6 +177,8 @@ async function start(e: MouseEvent) {
         <p>
           Built as a static Nuxt site, hosted on Cloudflare Pages. Code MIT, words CC BY 4.0.
           <a href="/about/">About &amp; sources</a>.
+          <a href="https://tools.atlesque.dev/privacy">Privacy</a>.
+          <button type="button" class="landing__privacy" data-privacy-settings>Privacy settings</button>
         </p>
       </footer>
     </main>
@@ -464,6 +466,15 @@ async function start(e: MouseEvent) {
     margin: 64px auto 0;
     font-size: 14px;
     color: var(--shell-muted);
+  }
+  .landing__privacy {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    text-decoration: underline;
+    cursor: pointer;
   }
 }
 </style>
